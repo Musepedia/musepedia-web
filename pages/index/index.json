@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "message-component": "/components/message-component/index"
+  }
+}

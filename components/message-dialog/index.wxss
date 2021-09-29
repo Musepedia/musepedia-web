@@ -1,0 +1,55 @@
+.message-dialog{
+  --dialog-background-color: var(--vscode-light-green);
+  display: grid;
+  grid-template-columns: 65px 1fr 65px;
+  grid-template-areas: "left-avatar message right-avatar";
+}
+
+
+.avatar{
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  margin: 0 10px;
+  grid-area: left-avatar;
+}
+
+.message-area{
+  position: relative;
+  margin-top: 5px;
+  max-width: 100%;
+  grid-area: message;
+}
+
+.message-arrow{
+  position: absolute;
+  box-sizing: border-box;
+  width: 10px;
+  height: 10px;
+  top: 10px;
+  left: -14px;
+  border-width: 8px;
+  border-color: transparent var(--dialog-background-color) transparent transparent;
+  border-style: solid;
+}
+
+.message-display{
+  display: inline-block;
+  background-color: var(--dialog-background-color);
+  border-radius: 8px;
+  padding: 8px 12px;
+}
+
+.message-dialog.right .avatar{
+  grid-area: right-avatar;
+}
+
+.message-dialog.right .message-arrow{
+  left: unset;
+  right: -14px;
+  border-color: transparent transparent transparent var(--dialog-background-color);
+}
+
+.message-dialog.right .message-display{
+  float: right;
+}

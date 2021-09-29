@@ -1,0 +1,41 @@
+.message-component{
+  position: absolute;
+}
+
+.dialog-area{
+  height: calc(100vh - 50px);
+  overflow-y: scroll;
+}
+
+.input-area{
+  min-height: 50px;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  background-color: #eee;
+}
+
+.input-message{
+  box-sizing: content-box;
+  min-height: 36rpx;
+  max-height: 160rpx;
+  background-color: #fff;
+  padding: 10rpx 20rpx;
+  border-radius: 30rpx;
+  margin: 0 10rpx;
+}
+
+.input-icon{
+  height: 30px;
+  width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 54rpx;
+  margin: 0 8rpx;
+} 

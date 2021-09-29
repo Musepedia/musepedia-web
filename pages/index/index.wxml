@@ -1,0 +1,4 @@
+<!--index.wxml-->
+<view class="container">
+  <router-link to="/pages/qa/index">问答</router-link>
+</view>
