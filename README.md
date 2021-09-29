@@ -1,4 +1,7 @@
-# Everybody Museum Front End
+# MGS-web
+
+### QA-RS-Based-Museum-Guide-System
+- 本仓库包含项目的前端
 
 ### 所需环境
 - 微信开发者工具
