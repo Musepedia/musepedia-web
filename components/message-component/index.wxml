@@ -1,45 +1,93 @@
 <view 
-  style="top: {{-keyboardHeight}}px"
+  style="top: {{showAdditionalInput ? -additionalInputHeight : -keyboardHeight}}px"
   class="message-component">
+
   <scroll-view 
     class="dialog-area"  
+    bindtap="closeAdditionalInput"
+    scroll-into-view="{{bottomAnchor}}"
     scroll-y>
-    <message-dialog avatar="https://www.neptu.cn/uploads/img/1623154552723-84596340_p0_master1200.jpg" right="{{true}}">
-      <text>使用sass,stylus可以很方便的使用变量来做样式设计，其实css也同样可以定义变量，在小程序中由于原生不支持动态css语法，so，可以使用css变量来使用开发工作变简单。</text>
+    <message-dialog avatar="https://www.neptu.cn/uploads/img/1623154552723-84596340_p0_master1200.jpg" right="{{true}}"> 
+      <common-message right>
+        <text>使用sass,stylus可以很方便的使用变量来做样式设计，其实css也同样可以定义变量，在小程序中由于原生不支持动态css语法，so，可以使用css变量来使用开发工作变简单。</text>
+      </common-message>
     </message-dialog>
     <message-dialog avatar="http://sornk.cn/wp-content/uploads/2020/11/cropped-IMG_5289.jpg">
-      <text>使用sass,stylus可以很方便的使用变量来做样式设计，</text>
-      <image src="https://upload-bbs.mihoyo.com/upload/2021/07/09/276248688/73268b5d159c3159s27ac4c5a82571834_1729033728249102877.jpg?x-oss-process=images//resize,s_500/quality,q_80/auto-orient,0/interlace,1/format,jpg" mode="widthFix" show-menu-by-longpress></image>
-      <text>使用sass,stylus可以很方便的使用变量来做样式设计，</text>
+      <common-message>
+        <text>使用sass,stylus可以很方便的使用变量来做样式设计，</text>
+        <image src="https://upload-bbs.mihoyo.com/upload/2021/07/09/276248688/73268b5d159c3159s27ac4c5a82571834_1729033728249102877.jpg?x-oss-process=images//resize,s_500/quality,q_80/auto-orient,0/interlace,1/format,jpg" mode="widthFix" show-menu-by-longpress></image>
+        <text>使用sass,stylus可以很方便的使用变量来做样式设计，</text>
+      </common-message>
     </message-dialog>
     <message-dialog avatar="http://sornk.cn/wp-content/uploads/2020/11/cropped-IMG_5289.jpg">
-      <text>使用sass,stylus可，</text>
+      <common-message>
+        <text>使用sass,stylus可，</text>
+      </common-message>
     </message-dialog>
     <message-dialog avatar="http://sornk.cn/wp-content/uploads/2020/11/cropped-IMG_5289.jpg" right>
-      <text>使用sass,stylus可，</text>
+      <common-message right>
+        <text>使用sass,stylus可，</text>
+      </common-message>
     </message-dialog>
+    <message-dialog>
+      <common-message showArrow="{{false}}"  style="width:100%">
+        <view>使用sass,stylus可，</view>
+      </common-message>
+    </message-dialog>
+
+    <message-dialog 
+      wx:for="{{messages}}" 
+      wx:for-item="message" 
+      wx:key="unique" 
+      id="message-{{index}}" 
+      right="{{message.right}}"
+      avatar="{{message.avatar}}">
+      <template is="{{messageComponent[message.type]}}" data="{{...message}}"></template>
+    </message-dialog>
+
+    <view style="height: 10px" id="bottom-anchor"></view>
   </scroll-view>
+
   <view 
     class="input-area" 
-    style="bottom: {{keyboardHeight}}px">
-    <view class="input-icon left-icon">
-      <van-icon name="volume-o"></van-icon>
+    style="bottom: {{showAdditionalInput ? 0 : keyboardHeight}}px">
+
+    <view class="basic-input">
+      <view class="input-icon">
+        <van-icon name="volume-o"></van-icon>
+      </view>
+      <textarea 
+        class="input-message" 
+        adjust-position="{{false}}"
+        value="{{message}}"
+        bindfocus="onFocus"
+        placeholder-style="font-size: 10px;"
+        confirm-hold="{{true}}"
+        fixed
+        auto-height 
+        hold-keyboard="{{false}}"
+        bindinput="onMessageInput"
+        bindconfirm="sendMessage"
+        confirm-type="send"
+        show-confirm-bar="{{false}}">
+      </textarea>
+      <view class="input-icon" bindtap="openAdditionalInput">
+        <van-icon name="smile-o"></van-icon>
+      </view>
+      <button wx:if="{{message.length > 0}}" class="button-send" bindtap="sendMessage">发送</button>
+      <view wx:else class="input-icon" bindtap="openAdditionalInput">
+        <van-icon name="add-o"></van-icon>
+      </view>
     </view>
-    <textarea 
-      class="input-message" 
-      adjust-position="{{false}}"
-      bindfocus="onFocus"
-      placeholder-style="font-size: 10px;"
-      fixed
-      auto-height 
-      show-confirm-bar="{{false}}">
-    </textarea>
-    <view class="input-icon">
-      <van-icon name="smile-o"></van-icon>
-    </view>
-    <view class="input-icon">
-      <van-icon name="add-o"></van-icon>
+
+    <view class="additional-input" style="height: {{showAdditionalInput ? additionalInputHeight : '0'}}px">
+      上传图片等
     </view>
     
   </view>
+
 </view>
+
+<template name="common-message">
+  <common-message right="{{right}}" text="{{text}}"></common-message>
+</template>

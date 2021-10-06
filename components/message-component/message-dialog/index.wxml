@@ -1,9 +1,6 @@
 <view class="message-dialog {{right ? 'right' : 'left'}}">
   <image wx:if="{{avatar}}" src="{{avatar}}" mode="cover" class="avatar"></image>
   <view class="message-area">
-    <view wx:if="{{showArrow}}" class="message-arrow"></view>
-    <view class="message-display">
-      <slot></slot>
-    </view>
+    <slot></slot>
   </view>
 </view>

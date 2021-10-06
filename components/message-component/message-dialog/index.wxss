@@ -1,0 +1,26 @@
+.message-dialog{
+  --dialog-background-color: var(--vscode-light-green);
+  display: grid;
+  grid-template-columns: 65px 1fr 65px;
+  grid-template-areas: "left-avatar message right-avatar";
+}
+
+.avatar{
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  margin: 0 10px;
+  grid-area: left-avatar;
+}
+
+.message-area{
+  position: relative;
+  margin-top: 5px;
+  max-width: 100%;
+  display: inline-block;
+  grid-area: message;
+}
+
+.message-dialog.right .avatar{
+  grid-area: right-avatar;
+}

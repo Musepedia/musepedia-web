@@ -1,6 +1,7 @@
 {
   "component": true,
   "usingComponents": {
-    "message-dialog": "../message-dialog/index"
+    "message-dialog": "message-dialog/index",
+    "common-message": "common-message/index"
   }
 }

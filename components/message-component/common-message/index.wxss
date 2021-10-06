@@ -1,0 +1,28 @@
+.common-message{
+  display: inline-block;
+  background-color: var(--vscode-light-green);
+  border-radius: 8px;
+  padding: 8px 12px;
+}
+
+.message-arrow{
+  position: absolute;
+  box-sizing: border-box;
+  width: 10px;
+  height: 10px;
+  top: 10px;
+  left: -14px;
+  border-width: 8px;
+  border-color: transparent var(--dialog-background-color) transparent transparent;
+  border-style: solid;
+}
+
+.common-message.right .message-arrow{
+  left: unset;
+  right: -14px;
+  border-color: transparent transparent transparent var(--dialog-background-color);
+}
+
+.common-message.right{
+  float: right;
+}

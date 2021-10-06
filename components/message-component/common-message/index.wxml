@@ -1,0 +1,5 @@
+<view class="common-message {{right ? 'right' : 'left'}}">
+  <view wx:if="{{showArrow}}" class="message-arrow"></view>
+  <text>{{text}}</text>
+  <slot></slot>
+</view>
