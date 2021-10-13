@@ -6,14 +6,15 @@ Component({
       value: true
     },
     right: Boolean,
+    fullWidth: Boolean,
+    text: {
+      type: String,
+      value: ''
+    },
     data: {
       type: Object,
       value: {}
     },
-    text: {
-      type: String,
-      value: ''
-    }
   },
   data: {
 

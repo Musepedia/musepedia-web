@@ -1,4 +1,5 @@
 // components/message-component/index.js
+const app = getApp();
 Component({
   properties: {
     messages: {
@@ -14,9 +15,9 @@ Component({
     message: '', // 输入框中的消息,
     messageComponent: {
       'common': 'common-message',
-
     },
-    bottomAnchor: 'bottom-anchor' // 底部锚点，用于滚动到对话框最下方
+    bottomAnchor: 'bottom-anchor', // 底部锚点，用于滚动到对话框最下方
+    isiPhoneX: app.globalData.isiPhoneX
   },
   lifetimes:{
     // 键盘抬起放下监听器

@@ -25,4 +25,9 @@
 
 .common-message.right{
   float: right;
+  /* text-align: right; */
+}
+
+.common-message.full-width{
+  width: 100%;
 }

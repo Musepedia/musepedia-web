@@ -1,18 +1,23 @@
 App({
   onLaunch() {
-    // 展示本地存储能力
-    const logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
-
-    // 登录
-    wx.login({
+    // this.checkiPhoneX();
+  },
+  globalData: {
+    userInfo: null,
+    isiPhoneX: false
+  },
+  checkiPhoneX: function() {
+    wx.getSystemInfo({
       success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        // 根据 model 进行判断
+        if (res.model.search('iPhone X') != -1) {
+          this.globalData.isiPhoneX = true
+        }
+        // 或者根据 screenHeight 进行判断
+        // if (res.screenHeight == 812) {
+        //   self.globalData.isIPX = true
+        // }
       }
     })
   },
-  globalData: {
-    userInfo: null
-  }
 })

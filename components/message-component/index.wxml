@@ -19,19 +19,15 @@
         <text>使用sass,stylus可以很方便的使用变量来做样式设计，</text>
       </common-message>
     </message-dialog>
-    <message-dialog avatar="http://sornk.cn/wp-content/uploads/2020/11/cropped-IMG_5289.jpg">
-      <common-message>
-        <text>使用sass,stylus可，</text>
-      </common-message>
-    </message-dialog>
     <message-dialog avatar="http://sornk.cn/wp-content/uploads/2020/11/cropped-IMG_5289.jpg" right>
-      <common-message right>
-        <text>使用sass,stylus可，</text>
+      <common-message right text="银杏打原神吗"></common-message>
+    </message-dialog>
+    <message-dialog>
+      <common-message showArrow="{{false}}" text="是米哈游开放世界冒险游戏">
       </common-message>
     </message-dialog>
     <message-dialog>
-      <common-message showArrow="{{false}}"  style="width:100%">
-        <view>使用sass,stylus可，</view>
+      <common-message showArrow="{{false}}" full-width text="银杏可以用于制作银杏猫等武器">
       </common-message>
     </message-dialog>
 
@@ -49,43 +45,42 @@
   </scroll-view>
 
   <view 
-    class="input-area" 
+    class="input-area {{isiPhoneX ? 'iPhoneX-adapt' : ''}}" 
     style="bottom: {{showAdditionalInput ? 0 : keyboardHeight}}px">
+    <view class="input-wrapper">
+      <view class="basic-input">
+        <view class="input-icon">
+          <van-icon name="volume-o"></van-icon>
+        </view>
+        <textarea 
+          class="input-message" 
+          adjust-position="{{false}}"
+          value="{{message}}"
+          bindfocus="onFocus"
+          placeholder-style="font-size: 10px;"
+          confirm-hold="{{true}}"
+          fixed
+          auto-height 
+          hold-keyboard="{{false}}"
+          bindinput="onMessageInput"
+          bindconfirm="sendMessage"
+          confirm-type="send"
+          show-confirm-bar="{{false}}">
+        </textarea>
+        <view class="input-icon" bindtap="openAdditionalInput">
+          <van-icon name="smile-o"></van-icon>
+        </view>
+        <button wx:if="{{message.length > 0}}" class="button-send" bindtap="sendMessage">发送</button>
+        <view wx:else class="input-icon" bindtap="openAdditionalInput">
+          <van-icon name="add-o"></van-icon>
+        </view>
+      </view>
 
-    <view class="basic-input">
-      <view class="input-icon">
-        <van-icon name="volume-o"></van-icon>
-      </view>
-      <textarea 
-        class="input-message" 
-        adjust-position="{{false}}"
-        value="{{message}}"
-        bindfocus="onFocus"
-        placeholder-style="font-size: 10px;"
-        confirm-hold="{{true}}"
-        fixed
-        auto-height 
-        hold-keyboard="{{false}}"
-        bindinput="onMessageInput"
-        bindconfirm="sendMessage"
-        confirm-type="send"
-        show-confirm-bar="{{false}}">
-      </textarea>
-      <view class="input-icon" bindtap="openAdditionalInput">
-        <van-icon name="smile-o"></van-icon>
-      </view>
-      <button wx:if="{{message.length > 0}}" class="button-send" bindtap="sendMessage">发送</button>
-      <view wx:else class="input-icon" bindtap="openAdditionalInput">
-        <van-icon name="add-o"></van-icon>
+      <view class="additional-input" style="height: {{showAdditionalInput ? additionalInputHeight : '0'}}px">
+        上传图片等
       </view>
     </view>
-
-    <view class="additional-input" style="height: {{showAdditionalInput ? additionalInputHeight : '0'}}px">
-      上传图片等
-    </view>
-    
   </view>
-
 </view>
 
 <template name="common-message">

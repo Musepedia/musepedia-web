@@ -3,7 +3,7 @@
 }
 
 .dialog-area{
-  height: calc(100vh - 50px);
+  height: calc(100vh - 50px - env(safe-area-inset-bottom));
   overflow-y: scroll;
   /* padding-bottom: 60px; */
 }
@@ -14,8 +14,12 @@
   position: fixed;
   bottom: 0;
   left: 0;
-  padding: 10px;
   background-color: #eee;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.input-wrapper{
+  padding: 10px;
 }
 
 .basic-input{
