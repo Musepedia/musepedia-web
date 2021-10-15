@@ -5,31 +5,17 @@
   <scroll-view 
     class="dialog-area"  
     bindtap="closeAdditionalInput"
+    refresher-enabled
+    refresher-triggered="{{isRefreshing}}"
+    bindrefresherrefresh="onRefresh" 
     scroll-into-view="{{bottomAnchor}}"
     scroll-y>
-    <message-dialog avatar="https://www.neptu.cn/uploads/img/1623154552723-84596340_p0_master1200.jpg" right="{{true}}"> 
+    
+    <!-- <message-dialog avatar="https://www.neptu.cn/uploads/img/1623154552723-84596340_p0_master1200.jpg" right="{{true}}"> 
       <common-message right>
-        <text>使用sass,stylus可以很方便的使用变量来做样式设计，其实css也同样可以定义变量，在小程序中由于原生不支持动态css语法，so，可以使用css变量来使用开发工作变简单。</text>
+        <text>使用sass,s</text>
       </common-message>
-    </message-dialog>
-    <message-dialog avatar="http://sornk.cn/wp-content/uploads/2020/11/cropped-IMG_5289.jpg">
-      <common-message>
-        <text>使用sass,stylus可以很方便的使用变量来做样式设计，</text>
-        <image src="https://upload-bbs.mihoyo.com/upload/2021/07/09/276248688/73268b5d159c3159s27ac4c5a82571834_1729033728249102877.jpg?x-oss-process=images//resize,s_500/quality,q_80/auto-orient,0/interlace,1/format,jpg" mode="widthFix" show-menu-by-longpress></image>
-        <text>使用sass,stylus可以很方便的使用变量来做样式设计，</text>
-      </common-message>
-    </message-dialog>
-    <message-dialog avatar="http://sornk.cn/wp-content/uploads/2020/11/cropped-IMG_5289.jpg" right>
-      <common-message right text="银杏打原神吗"></common-message>
-    </message-dialog>
-    <message-dialog>
-      <common-message showArrow="{{false}}" text="是米哈游开放世界冒险游戏">
-      </common-message>
-    </message-dialog>
-    <message-dialog>
-      <common-message showArrow="{{false}}" full-width text="银杏可以用于制作银杏猫等武器">
-      </common-message>
-    </message-dialog>
+    </message-dialog> -->
 
     <message-dialog 
       wx:for="{{messages}}" 
@@ -83,6 +69,22 @@
   </view>
 </view>
 
+<!-- 普通消息框 -->
 <template name="common-message">
-  <common-message right="{{right}}" text="{{text}}"></common-message>
+  <common-message right="{{right}}" text="{{text}}" fullWidth="{{fullWidth}}"></common-message>
+</template>
+<!-- 带推荐内容的消息框 -->
+<template name="common-message-recommend">
+  <common-message right="{{right}}" text="{{text}}" fullWidth="{{fullWidth}}">
+    <view class="question-recommend" wx:if="{{recommends && recommends.length}}">
+      <view>更多推荐:</view>
+      <text 
+        class="question-recommend__text"
+        bindtap="sendMessage"
+        data-message="{{recommend}}"
+        wx:for="{{recommends}}" 
+        wx:for-item="recommend" 
+        wx:key="unique">{{recommend}}</text>
+    </view>
+  </common-message>
 </template>

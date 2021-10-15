@@ -1,3 +1,8 @@
 <view class="qa">
-  <message-component bindsendmessage="onMessage" messages="{{messages}}"></message-component>
+  <message-component 
+    id="qa-message-component"
+    bindsendmessage="onMessage" 
+    bindrefresh="onRefresh" 
+    messages="{{messages}}">
+  </message-component>
 </view>

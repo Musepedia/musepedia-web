@@ -3,6 +3,7 @@
   background-color: var(--vscode-light-green);
   border-radius: 8px;
   padding: 8px 12px;
+  overflow-wrap: anywhere;
 }
 
 .message-arrow{

@@ -1,11 +1,11 @@
 .message-component{
   position: absolute;
+  width: 100%;
 }
 
 .dialog-area{
   height: calc(100vh - 50px - env(safe-area-inset-bottom));
   overflow-y: scroll;
-  /* padding-bottom: 60px; */
 }
 
 .input-area{
@@ -59,4 +59,15 @@
   width: 70px;
   padding: 0 8px;
   line-height: 30px;
+}
+
+.question-recommend{
+  margin-top:10px;
+  color: #232323;
+  font-size: 14px;
+}
+
+.question-recommend__text{
+  color:#0a69aa; 
+  display:block
 }
