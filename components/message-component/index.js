@@ -26,9 +26,9 @@ Component({
   lifetimes:{
     attached(){
       // 初始化事件回调函数
-      bindedClearText || (bindedClearText = this.clearText.bind(this));
-      bindedCompleteRefresh || (bindedCompleteRefresh = this.completeRefresh.bind(this));
-      bindedScrollToBottom || (bindedScrollToBottom = this.scrollToBottom.bind(this));
+      bindedClearText = this.clearText.bind(this);
+      bindedCompleteRefresh = this.completeRefresh.bind(this);
+      bindedScrollToBottom = this.scrollToBottom.bind(this);
       
       // 键盘抬起放下监听器
       const handler = ((result) => {
@@ -96,6 +96,7 @@ Component({
       })
     },
     completeRefresh(){
+      // this._freshing = false;
       this.setData({
         isRefreshing: false
       });
