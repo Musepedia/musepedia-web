@@ -9,10 +9,9 @@ Page({
 
   },
   onShow: function () {
-
+    this.messageComponent.resetKeyboard();
   },
   onHide: function () {
-
   },
   onUnload: function () {
 

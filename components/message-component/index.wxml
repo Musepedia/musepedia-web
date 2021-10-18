@@ -1,6 +1,6 @@
 <view 
   style="top: {{showAdditionalInput ? -additionalInputHeight : -keyboardHeight}}px"
-  class="message-component">
+  class="message-component {{isiPhoneX ? 'ixadapt' : ''}}">
 
   <scroll-view 
     class="dialog-area"  
@@ -10,12 +10,6 @@
     bindrefresherrefresh="onRefresh" 
     scroll-into-view="{{bottomAnchor}}"
     scroll-y>
-    
-    <!-- <message-dialog avatar="https://www.neptu.cn/uploads/img/1623154552723-84596340_p0_master1200.jpg" right="{{true}}"> 
-      <common-message right>
-        <text>使用sass,s</text>
-      </common-message>
-    </message-dialog> -->
 
     <message-dialog 
       wx:for="{{messages}}" 
@@ -31,8 +25,8 @@
   </scroll-view>
 
   <view 
-    class="input-area {{isiPhoneX ? 'iPhoneX-adapt' : ''}}" 
-    style="bottom: {{showAdditionalInput ? 0 : keyboardHeight}}px">
+    class="input-area" 
+    style="bottom: {{showAdditionalInput ? 0 : keyboardHeight}}px; padding-bottom: {{keyboardHeight ? '10px' : 'env(safe-area-inset-bottom)'}}">
     <view class="input-wrapper">
       <view class="basic-input">
         <view class="input-icon">
@@ -44,7 +38,7 @@
           value="{{message}}"
           bindfocus="onFocus"
           placeholder-style="font-size: 10px;"
-          confirm-hold="{{true}}"
+          confirm-hold="{{false}}"
           fixed
           auto-height 
           hold-keyboard="{{false}}"

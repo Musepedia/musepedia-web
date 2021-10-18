@@ -21,7 +21,8 @@ Component({
       'common': 'common-message',
       'recommend': 'common-message-recommend'
     },
-    bottomAnchor: 'bottom-anchor', // 底部锚点，用于滚动到对话框最下方
+    bottomAnchor: 'bottom-anchor', // 底部锚点，用于滚动到对话框最下方,
+    isiPhoneX: app.globalData.isiPhoneX
   },
   lifetimes:{
     attached(){
@@ -105,6 +106,11 @@ Component({
       const len = this.data.messages.length;
       this.setData({
         bottomAnchor: `message-${len-1}`
+      });
+    },
+    resetKeyboard(){
+      this.setData({
+        keyboardHeight: 0
       });
     }
   },

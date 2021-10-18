@@ -1,6 +1,6 @@
 App({
   onLaunch() {
-    // this.checkiPhoneX();
+    this.checkiPhoneX();
   },
   globalData: {
     userInfo: null,

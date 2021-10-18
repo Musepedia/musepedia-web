@@ -12,15 +12,13 @@
   min-height: 50px;
   width: 100%;
   position: fixed;
-  bottom: 0;
+  bottom: env(safe-area-inset-bottom);
   left: 0;
   background-color: #eee;
+  padding: 10px;
   padding-bottom: env(safe-area-inset-bottom);
 }
 
-.input-wrapper{
-  padding: 10px;
-}
 
 .basic-input{
   display: flex;
@@ -70,4 +68,8 @@
 .question-recommend__text{
   color:#0a69aa; 
   display:block
+}
+
+.ixadapt .input-message{
+  padding: 0 10px
 }

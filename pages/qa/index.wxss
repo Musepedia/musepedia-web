@@ -1,1 +1,6 @@
 /* pages/qa/index.wxss */
+.safe-bottom{
+  width: 100%;
+  height: env(safe-area-inset-bottom);
+  background-color: #eee;
+}
