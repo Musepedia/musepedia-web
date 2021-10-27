@@ -1,6 +1,6 @@
 {
   "name": "museum-qa",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "",
   "main": "app.js",
   "scripts": {
@@ -20,6 +20,7 @@
     "@vant/weapp": "^1.9.0",
     "axios": "^0.21.1",
     "axios-miniprogram-adapter": "^0.3.2",
-    "qs": "^6.10.1"
+    "qs": "^5.0.0"
+
   }
 }

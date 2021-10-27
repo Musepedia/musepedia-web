@@ -1,3 +1,5 @@
+import {getAnswer} from '../../api/question'
+
 Page({
   data: {
     messages: [],
@@ -27,7 +29,7 @@ Page({
   },
   onMessage({detail}){
     const {text, clear} = detail;
-    let valid = text && text.length;
+    let valid = text && text.trim().length;
     if(!valid){
       return;
     }
@@ -42,20 +44,20 @@ Page({
     });
     this.messageComponent.scrollToBottom();
     // do request
-    setTimeout(() => {
-      const recommends = detail.showRecommend ? ['银杏喜欢玩原神吗', '银杏是沙拉吗'] : [];
+    getAnswer(text).then(data => {
       this.setData({
         messages: this.data.messages.concat({
           avatar: 'https://www.neptu.cn/uploads/img/1623154552723-84596340_p0_master1200.jpg',
-          text: text.substr(0, text.length - 1) + '!',
+          text: data.answer,
           right: false,
           fullWidth: true,
           type: 'recommend',
-          recommends: recommends
+          recommendHint: data.status ? '更多推荐:' : '可以试试这样问:',
+          recommends: data.recommendQuestions
         })
       });
       this.messageComponent.scrollToBottom();
-    }, 1000)
+    }).catch(ignore => {})
   },
   onRefresh({detail}){
     const done = detail.done;

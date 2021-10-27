@@ -1,23 +1,32 @@
+import Toast from '@vant/weapp/toast/toast'
+import Dialog from '@vant/weapp/dialog/dialog';
+
 App({
   onLaunch() {
     this.checkiPhoneX();
+    this.initShortcut();
   },
   globalData: {
-    userInfo: null,
+    userInfo: {},
     isiPhoneX: false
   },
   checkiPhoneX: function() {
     wx.getSystemInfo({
       success: res => {
-        // 根据 model 进行判断
         if (res.model.search('iPhone X') != -1) {
           this.globalData.isiPhoneX = true
         }
-        // 或者根据 screenHeight 进行判断
-        // if (res.screenHeight == 812) {
-        //   self.globalData.isIPX = true
-        // }
       }
     })
   },
+  /**
+   * 初始化消息提示，对话框快捷调用
+   */
+  initShortcut(){
+    wx.Toast = Toast;
+    wx.Dialog = Dialog;
+  },
+  getUserInfo(){
+    
+  }
 })

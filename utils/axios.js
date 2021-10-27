@@ -1,31 +1,33 @@
-import axios from '../miniprogram_npm/axios/index'
-import adapter from '../miniprogram_npm/axios-miniprogram-adapter/index'
-import qs from '../miniprogram_npm/qs/index'
+import axios from 'axios/index'
+import adapter from 'axios-miniprogram-adapter/index'
+import qs from 'qs/index'
 
 const _axios = axios.create({
-  baseURL: 'http://qa.neptu.cn/',
+  baseURL: 'https://www.neptu.cn/api/',
+  // baseURL: 'http://localhost/api/',
   headers: {
     'Content-Type': 'application/json'
   },
 });
 _axios.defaults.adapter = adapter;
 
+const getParamsSerializer = params => qs.stringify(params,{indices:false});
 // 请求拦截器
 _axios.interceptors.request.use(
   function success(config) {
     const token = getApp().globalData.userToken;
+    // 添加用户token
     if(token){
-      // 添加用户token
       config.headers['token'] = token;
     }
-
     // get请求格式化(具体根据后端接口参数要求)
     if(config.method.toLowerCase() === 'get'){
-      config.paramsSerializer = params => qs.stringify(params,{indices:false});
+      config.paramsSerializer = getParamsSerializer;
     }
     return config;
   },
   function fail(error) {
+    console.log(error);
     return Promise.reject(error);
   }
 );

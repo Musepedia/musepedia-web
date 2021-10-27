@@ -4,6 +4,7 @@
   border-radius: 8px;
   padding: 8px 12px;
   overflow-wrap: anywhere;
+  max-width: 520px; 
 }
 
 .message-arrow{

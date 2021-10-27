@@ -1,6 +1,5 @@
 <view 
-  style="top: {{showAdditionalInput ? -additionalInputHeight : -keyboardHeight}}px"
-  class="message-component {{isiPhoneX ? 'ixadapt' : ''}}">
+  class="message-component">
 
   <scroll-view 
     class="dialog-area"  
@@ -39,6 +38,7 @@
           bindfocus="onFocus"
           placeholder-style="font-size: 10px;"
           confirm-hold="{{false}}"
+          disable-default-padding
           fixed
           auto-height 
           hold-keyboard="{{false}}"
@@ -71,7 +71,7 @@
 <template name="common-message-recommend">
   <common-message right="{{right}}" text="{{text}}" fullWidth="{{fullWidth}}">
     <view class="question-recommend" wx:if="{{recommends && recommends.length}}">
-      <view>更多推荐:</view>
+      <view>{{recommendHint || '更多推荐:'}}</view>
       <text 
         class="question-recommend__text"
         bindtap="sendMessage"

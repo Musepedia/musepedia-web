@@ -5,5 +5,4 @@
     bindrefresh="onRefresh" 
     messages="{{messages}}">
   </message-component>
-  <!-- <view class="safe-bottom"></view> -->
 </view>
