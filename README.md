@@ -10,3 +10,6 @@
 ### 开始
 - npm install 下载依赖
 - 微信开发者工具左上角:工具->构建npm
+
+### 网络请求
+- 根据需求修改/utils/axios中的baseUrl

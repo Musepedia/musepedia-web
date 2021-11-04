@@ -1,4 +1,4 @@
-<view class="common-message {{right ? 'right' : 'left'}} {{fullWidth ? 'full-width' : ''}}">
+<view class="common-message {{right ? 'right' : 'left'}} {{fullWidth ? 'full-width' : ''}} {{transparent ? 'transparent' : ''}} {{textCenter ? 'text-center' : ''}}">
   <view wx:if="{{showArrow}}" class="message-arrow"></view>
   <text>{{text}}</text>
   <slot></slot>

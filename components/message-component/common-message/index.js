@@ -5,16 +5,26 @@ Component({
       type: Boolean,
       value: true
     },
-    right: Boolean,
-    fullWidth: Boolean,
+    right: {
+      type: Boolean,
+      value: false
+    },
+    fullWidth: {
+      type: Boolean,
+      value: false
+    },
+    transparent: {
+      type: Boolean,
+      value: false
+    },
+    textCenter: {
+      type: Boolean,
+      value: false
+    },
     text: {
       type: String,
       value: ''
-    },
-    data: {
-      type: Object,
-      value: {}
-    },
+    }
   },
   data: {
 

@@ -1,6 +1,6 @@
 .common-message{
   display: inline-block;
-  background-color: var(--vscode-light-green);
+  background-color:  var(--dialog-background-color);
   border-radius: 8px;
   padding: 8px 12px;
   overflow-wrap: anywhere;
@@ -27,9 +27,16 @@
 
 .common-message.right{
   float: right;
-  /* text-align: right; */
 }
 
 .common-message.full-width{
   width: 100%;
+}
+
+.common-message.transparent{
+  --dialog-background-color: transparent;
+}
+
+.common-message.text-center{
+  text-align: center;
 }

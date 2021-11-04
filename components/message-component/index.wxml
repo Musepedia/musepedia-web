@@ -13,7 +13,7 @@
     <message-dialog 
       wx:for="{{messages}}" 
       wx:for-item="message" 
-      wx:key="unique" 
+      wx:key="unique"
       id="message-{{index}}" 
       right="{{message.right}}"
       avatar="{{message.avatar}}">
@@ -65,11 +65,22 @@
 
 <!-- 普通消息框 -->
 <template name="common-message">
-  <common-message right="{{right}}" text="{{text}}" fullWidth="{{fullWidth}}"></common-message>
+  <common-message 
+      right="{{right}}" 
+      text="{{text}}" 
+      fullWidth="{{fullWidth}}" 
+      transparent="{{transparent}}"
+      textCenter="{{textCenter}}">
+  </common-message>
 </template>
 <!-- 带推荐内容的消息框 -->
 <template name="common-message-recommend">
-  <common-message right="{{right}}" text="{{text}}" fullWidth="{{fullWidth}}">
+  <common-message 
+      right="{{right}}" 
+      text="{{text}}" 
+      fullWidth="{{fullWidth}}" 
+      transparent="{{transparent}}"
+      textCenter="{{textCenter}}">
     <view class="question-recommend" wx:if="{{recommends && recommends.length}}">
       <view>{{recommendHint || '更多推荐:'}}</view>
       <text 
