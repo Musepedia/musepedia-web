@@ -5,9 +5,14 @@ App({
   onLaunch() {
     this.checkiPhoneX();
     this.initShortcut();
+    this.getUserInfo();
   },
   globalData: {
-    userInfo: {},
+    userInfo: {
+      username: '',
+      avatar: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png',
+      isLogin: false
+    },
     isiPhoneX: false
   },
   checkiPhoneX: function() {
@@ -19,14 +24,12 @@ App({
       }
     })
   },
-  /**
-   * 初始化消息提示，对话框快捷调用
-   */
   initShortcut(){
     wx.Toast = Toast;
     wx.Dialog = Dialog;
   },
   getUserInfo(){
-    
+    const userInfo = wx.getStorageSync('userInfo');
+    userInfo && (this.globalData.userInfo = userInfo);
   }
 })

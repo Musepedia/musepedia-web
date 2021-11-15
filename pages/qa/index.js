@@ -1,10 +1,14 @@
 import {getAnswer} from '../../api/question'
-import {TimeInfo} from '../../utils/message-builder'
+import {CommonMessage, RecommendMessage, HintMessage} from '../../utils/message-builder'
+
+const userInfo = getApp().globalData.userInfo;
 
 Page({
   data: {
     messages: [],
     lastMessageTime: 0,
+    username: userInfo.username,
+    avatar: userInfo.avatar
   },
   onLoad: function (options) {
     this.messageComponent || (this.messageComponent = this.selectComponent('#qa-message-component'));
@@ -32,7 +36,7 @@ Page({
   checkMessageInterval(messages){
     const now = new Date().getTime();
     if(now - this.data.lastMessageTime > 120000){
-      messages.unshift(TimeInfo());
+      messages.unshift(HintMessage());
     }
     this.setData({
       lastMessageTime: now
@@ -55,31 +59,17 @@ Page({
       return;
     }
     clear();
-    const messages = [{
-      avatar: 'http://sornk.cn/wp-content/uploads/2020/11/cropped-IMG_5289.jpg',
-      text: text,
-      right: true,
-      fullWidth: false,
-      transparent: false,
-      textCenter: false,
-      type: 'common'
-    }];
+    const messages = [CommonMessage(text, this.data.avatar, true)];
     this.checkMessageInterval(messages);
     this.pushMessage(...messages);
     this.messageComponent.scrollToBottom();
     // do request
     getAnswer(text).then(data => {
-      this.pushMessage({
-        avatar: 'https://www.shanghaimuseum.net/mu/site/img/favicon.ico',
-        text: data.answer,
-        right: false,
-        fullWidth: true,
-        transparent: false,
-        textCenter: false,
-        type: 'recommend',
-        recommendHint: data.status ? '更多推荐:' : '可以试试这样问:',
-        recommends: data.recommendQuestions
-      })
+      this.pushMessage(RecommendMessage(
+        data.answer, 
+        'https://www.shanghaimuseum.net/mu/site/img/favicon.ico', 
+        data.status ? '更多推荐:' : '可以试试这样问:', 
+        data.recommendQuestions))
       this.messageComponent.scrollToBottom();
     }).catch(ignore => {})
   },

@@ -93,3 +93,9 @@
     </view>
   </common-message>
 </template>
+<!-- 时间信息等提示信息 -->
+<template name="hint-message">
+  <view class="hint-message">
+    <text>{{text}}</text>
+  </view>
+</template>

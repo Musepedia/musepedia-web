@@ -19,7 +19,8 @@ Component({
     message: '', // 输入框中的消息,
     messageComponent: {
       'common': 'common-message',
-      'recommend': 'common-message-recommend'
+      'recommend': 'common-message-recommend',
+      'hint': 'hint-message'
     },
     bottomAnchor: 'bottom-anchor', // 底部锚点，用于滚动到对话框最下方,
     isiPhoneX: app.globalData.isiPhoneX
