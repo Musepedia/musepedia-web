@@ -1,0 +1,4 @@
+<!--pages/about/index.wxml-->
+<view>
+  <div class="copyright">Copyright © 2021-2022 AbstractMGS.</div>
+</view>

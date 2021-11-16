@@ -72,7 +72,8 @@ Page({
     getAnswer(text).then(data => {
       this.pushMessage(RecommendMessage(
         data.answer, 
-        'https://www.shanghaimuseum.net/mu/site/img/favicon.ico', 
+        // 'https://www.shanghaimuseum.net/mu/site/img/favicon.ico', 
+        '',  // 展馆头像暂不显示
         data.status ? '更多推荐:' : '可以试试这样问:', 
         data.recommendQuestions))
       this.messageComponent.scrollToBottom();

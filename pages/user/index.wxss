@@ -76,3 +76,12 @@ page{
   padding-top: 15px;
   border-radius: 20px;
 }
+
+.section_text {
+  position: fixed;
+  text-align: center;
+  bottom: 85px;
+  left: 0;
+  right: 0;
+  color: darkgrey;
+}
