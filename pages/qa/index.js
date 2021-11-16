@@ -1,14 +1,12 @@
 import {getAnswer} from '../../api/question'
-import {CommonMessage, RecommendMessage, HintMessage} from '../../utils/message-builder'
-
-const userInfo = getApp().globalData.userInfo;
+import {CommonMessage, RecommendMessage, TimeMessage} from '../../utils/message-builder'
 
 Page({
   data: {
     messages: [],
     lastMessageTime: 0,
-    username: userInfo.username,
-    avatar: userInfo.avatar
+    username: '',
+    avatar: ''
   },
   onLoad: function (options) {
     this.messageComponent || (this.messageComponent = this.selectComponent('#qa-message-component'));
@@ -18,6 +16,13 @@ Page({
   },
   onShow: function () {
     this.messageComponent.resetKeyboard();
+    const userInfo = getApp().globalData.userInfo;
+    if(userInfo){
+      this.setData({
+        username: userInfo.username,
+        avatar: userInfo.avatar
+      })
+    }
   },
   onHide: function () {
   },
@@ -36,7 +41,7 @@ Page({
   checkMessageInterval(messages){
     const now = new Date().getTime();
     if(now - this.data.lastMessageTime > 120000){
-      messages.unshift(HintMessage());
+      messages.unshift(TimeMessage());
     }
     this.setData({
       lastMessageTime: now

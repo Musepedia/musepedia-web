@@ -67,6 +67,7 @@
 <template name="common-message">
   <common-message 
       right="{{right}}" 
+      showArrow="{{showArrow}}"
       text="{{text}}" 
       fullWidth="{{fullWidth}}" 
       transparent="{{transparent}}"
@@ -77,6 +78,7 @@
 <template name="common-message-recommend">
   <common-message 
       right="{{right}}" 
+      showArrow="{{showArrow}}"
       text="{{text}}" 
       fullWidth="{{fullWidth}}" 
       transparent="{{transparent}}"
