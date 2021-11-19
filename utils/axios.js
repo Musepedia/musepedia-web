@@ -3,8 +3,8 @@ import adapter from 'axios-miniprogram-adapter/index'
 import qs from 'qs/index'
 
 const _axios = axios.create({
-  // baseURL: 'https://neptu.cn/api/',
-  baseURL: 'http://localhost/api/',
+  baseURL: 'https://abstractmgs.cn/api/',
+  // baseURL: 'http://localhost/api/',
   headers: {
     'Content-Type': 'application/json'
   },

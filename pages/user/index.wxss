@@ -76,3 +76,9 @@ page{
   padding-top: 15px;
   border-radius: 20px;
 }
+
+.section-text {
+  width: 100%;
+  text-align: center;
+  color: darkgrey;
+}

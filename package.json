@@ -21,6 +21,5 @@
     "axios": "^0.21.1",
     "axios-miniprogram-adapter": "^0.3.2",
     "qs": "^5.0.0"
-
   }
 }

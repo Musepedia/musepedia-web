@@ -1,11 +1,13 @@
 const app = getApp();
 const globalUserInfo = app.globalData.userInfo;
+const globalAppInfo = app.globalData.appInfo;
 
 Page({
   data: {
     isLogin: globalUserInfo.isLogin,
     username: globalUserInfo.username,
     avatar: globalUserInfo.avatar,
+    appVersion: globalAppInfo.version
   },
   onLoad: function (options) {
 

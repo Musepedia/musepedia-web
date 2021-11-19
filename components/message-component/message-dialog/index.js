@@ -2,8 +2,10 @@
 Component({
   properties: {
     right: Boolean,
-    text: String,
-    avatar: String,
+    avatar: {
+      type: String,
+      value: ''
+    },
     showArrow: {
       type: Boolean,
       value: true

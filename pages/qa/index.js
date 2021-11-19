@@ -13,10 +13,6 @@ Page({
     this.messageComponent || (this.messageComponent = this.selectComponent('#qa-message-component'));
   },
   onReady: function () {
-
-  },
-  onShow: function () {
-    this.messageComponent.resetKeyboard();
     const userInfo = getApp().globalData.userInfo;
     if(userInfo){
       this.setData({
@@ -24,6 +20,9 @@ Page({
         avatar: userInfo.avatar
       })
     }
+  },
+  onShow: function () {
+    this.messageComponent.resetKeyboard();
   },
   onHide: function () {
   },
@@ -73,9 +72,10 @@ Page({
     getAnswer(text).then(data => {
       this.pushMessage(RecommendMessage(
         data.answer, 
-        'https://www.shanghaimuseum.net/mu/site/img/favicon.ico', 
+        // 'https://www.shanghaimuseum.net/mu/site/img/favicon.ico', 
+        '',  // 展馆头像暂不显示
         data.status ? '更多推荐:' : '可以试试这样问:', 
-        data.recommendQuestions))
+        data.recommendQuestions));
       this.messageComponent.scrollToBottom();
     }).catch(ignore => {})
   },

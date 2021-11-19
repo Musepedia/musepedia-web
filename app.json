@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/community/index",
     "pages/user/index",
-    "pages/qa/index"
+    "pages/qa/index",
+    "pages/about/index"
   ],
   "usingComponents": {
     "van-button": "@vant/weapp/button/index",

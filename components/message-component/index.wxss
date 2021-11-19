@@ -1,6 +1,8 @@
 .message-component{
-  transition: all cubic-bezier(0.165, 0.84, 0.44, 1) .4s;
+  transition: all cubic-bezier(0.165, 0.84, 0.44, 1) .3s;
   position: absolute;
+  overflow: hidden;
+  height: 100vh;
   width: 100%;
 }
 
@@ -12,8 +14,9 @@
 .input-area{
   min-height: 50px;
   width: 100%;
-  position: fixed;
-  bottom: env(safe-area-inset-bottom);
+  position: absolute;
+  /* bottom: env(safe-area-inset-bottom); */
+  bottom: -100px;
   left: 0;
   background-color: #eee;
 }
@@ -32,6 +35,10 @@
 .additional-input{
   /* transition: all cubic-bezier(0.165, 0.84, 0.44, 1) .4s; */
   overflow: hidden;
+}
+
+.additional-input__wrapper{
+  padding: 20px 10px;
 }
 
 .input-message{
