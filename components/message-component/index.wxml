@@ -1,4 +1,5 @@
 <view 
+  style="top: {{showAdditionalInput ? -additionalInputHeight : -keyboardHeight}}px"
   class="message-component">
 
   <scroll-view 
@@ -20,7 +21,8 @@
       <template is="{{messageComponent[message.type]}}" data="{{...message}}"></template>
     </message-dialog>
 
-    <view style="height: 10px" id="bottom-anchor"></view>
+    <view style="height: 5px" id="bottom-anchor"></view>
+
   </scroll-view>
 
   <view 
@@ -57,8 +59,12 @@
       </view>
 
       <view class="additional-input" style="height: {{showAdditionalInput ? additionalInputHeight : '0'}}px">
-        上传图片等
+        <view style="margin-top:20px;height:50px;width:50px;border:1px solid #000;"> 上传图片等</view> 
       </view>
+    </view>
+
+    <view class="float-action">
+      
     </view>
   </view>
 </view>

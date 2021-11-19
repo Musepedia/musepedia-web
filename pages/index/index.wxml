@@ -1,4 +1,20 @@
 <!--index.wxml-->
-<view class="container">
-  <router-link to="/pages/qa/index">问答</router-link>
+<view class="index-container">
+  <view class="header">
+    <view class="header-row">
+      <text>博物馆博物馆博物馆</text>
+      <van-icon name="arrow-down"/>
+    </view>
+    <view class="header-row search-row">
+      <view class="search-button">
+        <van-icon name="search" size="18px"/>
+        <text>输入关键字搜索</text>
+      </view>
+      <van-icon name="scan" size="26px" bindtap="scanCode"/>
+    </view>
+  </view>
+
+  <view class="index-body">
+    <router-link to="/pages/qa/index">问答</router-link>
+  </view>
 </view>

@@ -15,7 +15,7 @@ Component({
     keyboardHeight: 0,
     keyboardHeightChangeHandler: null, // 处理键盘弹起时对话框的偏移
     showAdditionalInput: false,
-    additionalInputHeight: 150, // 表情等额外输入框高度，用于设置对话框偏移
+    additionalInputHeight: 100, // 表情等额外输入框高度，用于设置对话框偏移
     message: '', // 输入框中的消息,
     messageComponent: {
       'common': 'common-message',

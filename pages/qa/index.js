@@ -9,6 +9,7 @@ Page({
     avatar: ''
   },
   onLoad: function (options) {
+    console.log(options);
     this.messageComponent || (this.messageComponent = this.selectComponent('#qa-message-component'));
   },
   onReady: function () {
