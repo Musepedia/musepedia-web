@@ -4,5 +4,11 @@
     bindsendmessage="onMessage" 
     bindrefresh="onRefresh" 
     messages="{{messages}}">
+      <additional-input slot="input-icons" hint="扫一扫" icon-name="scan" bindtap="scanCode"></additional-input>
+      <additional-input slot="input-icons" hint="扫两扫" icon-name="check"></additional-input>
+      <additional-input slot="input-icons" hint="扫三扫" icon-name="close"></additional-input>
+      <additional-input slot="input-icons" hint="扫四扫" icon-name="search"></additional-input>
+      <additional-input slot="input-icons" hint="扫五扫" icon-name="fire"></additional-input>
   </message-component>
+  <van-toast id="van-toast"></van-toast>
 </view>

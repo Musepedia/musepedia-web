@@ -1,3 +1,6 @@
+import { userLogin } from '../../api/user';
+import {wxLogin} from '../../utils/util'
+
 const app = getApp();
 const globalUserInfo = app.globalData.userInfo;
 const globalAppInfo = app.globalData.appInfo;
@@ -10,7 +13,7 @@ Page({
     appVersion: globalAppInfo.version
   },
   onLoad: function (options) {
-
+    
   },
   onReady: function () {
 
@@ -21,7 +24,6 @@ Page({
         active: 2,
       });
     }
-
   },
   onHide: function () {
 
@@ -33,8 +35,20 @@ Page({
 
   },
   handleLoginTap(e){
-    wx.clearStorage();
-    
+    // wx.clearStorage();
+    wxLogin().then(res => {
+      console.log("login+profile",res);
+      // return userLogin({
+      //   code: res[0].code,
+      //   encryptedData: res[1].encryptedData,
+      //   iv: res[1].iv,
+      //   avatar: res[1].userInfo.avatarUrl,
+      //   nickname: res[1].userInfo.nickName
+      // });
+    }).then(data => {
+
+    })
+    return;
     wx.getUserProfile({
       desc: '用于完善会员资料', 
       success: res => {

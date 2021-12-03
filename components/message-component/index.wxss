@@ -35,10 +35,15 @@
 .additional-input{
   /* transition: all cubic-bezier(0.165, 0.84, 0.44, 1) .4s; */
   overflow: hidden;
+  padding: 15px 15px 5px 15px;
 }
 
 .additional-input__wrapper{
-  padding: 20px 10px;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  overflow-y: scroll;
+  align-items: center;
 }
 
 .input-message{

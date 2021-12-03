@@ -62,8 +62,7 @@
 
       <view class="additional-input" style="height: {{additionalInputHeight}}px">
         <view class="additional-input__wrapper">
-      
-          <view style="height:100%;width: 50px;border:1px solid #000;"> 上传图片等</view> 
+          <slot name="input-icons"></slot>
         </view>
       </view>
     </view>

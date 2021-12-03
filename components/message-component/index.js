@@ -4,6 +4,9 @@ let bindedClearText;
 let bindedCompleteRefresh;
 let bindedScrollToBottom;
 Component({
+  options: {
+    multipleSlots: true
+  },
   properties: {
     messages: {
       type: Array,
@@ -61,7 +64,6 @@ Component({
       query.exec(res => {
         const anchorBottom = res[0].bottom;
         const areaHeight = res[1].height;
-        console.log(anchorBottom, areaHeight);
         if(anchorBottom - areaHeight <= 10){
           // 对话框在最底部时打开额外输入框则强制将对话框滚动到最底部
           this.scrollToBottom();

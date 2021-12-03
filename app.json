@@ -17,7 +17,8 @@
     "van-toast": "@vant/weapp/toast/index",
     "van-skeleton": "@vant/weapp/skeleton/index",
     "message-component": "/components/message-component/index",
-    "router-link": "/components/router-link/index"
+    "router-link": "/components/router-link/index",
+    "additional-input": "/components/additional-input/index"
   },
   "window": {
     "backgroundTextStyle": "light",

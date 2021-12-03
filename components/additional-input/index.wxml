@@ -1,0 +1,6 @@
+<view class="additional-input__item">
+  <view class="img-area">
+    <van-icon name="{{iconName}}" size="40px"/>
+  </view>
+  <text>{{hint}}</text>
+</view>

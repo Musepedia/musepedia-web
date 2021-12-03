@@ -4,3 +4,7 @@
   height: env(safe-area-inset-bottom);
   background-color: #eee;
 }
+
+additional-input{
+  flex: 1;
+}

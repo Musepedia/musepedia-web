@@ -38,6 +38,18 @@ Page({
   onShareAppMessage: function () {
 
   },
+  scanCode(){
+    wx.scanCode({
+      onlyFromCamera: false,
+      scanType: [],
+      success: (res) => {
+        console.log(res.result);
+        wx.Toast.success('scan result: ' + res.result);
+      },
+      fail: (res) => {},
+      complete: (res) => {},
+    })
+  },
   checkMessageInterval(messages){
     const now = new Date().getTime();
     if(now - this.data.lastMessageTime > 120000){
