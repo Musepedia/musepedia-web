@@ -49,7 +49,7 @@ Page({
         nickname: res[1].userInfo.nickName
       });
     }).then(data => {
-      wx.Toast.success('登陆成功')
+      wx.Toast.success('登录成功')
       app.setGlobalUserInfo(data);
       this.setData({
         isLogin: globalUserInfo.isLogin,
