@@ -8,8 +8,8 @@
       </view>
 
       <view class="info-container">
-        <view class="username" wx:if="{{false}}">
-          <text>{{username}}</text>
+        <view class="username" wx:if="{{isLogin}}">
+          <text>{{nickname}}</text>
         </view>
         <view class="info-hint" bindtap="handleLoginTap" wx:else>
           <text>点击授权</text>

@@ -2,14 +2,13 @@ import { userLogin } from '../../api/user';
 import {wxLogin} from '../../utils/util'
 
 const app = getApp();
-const globalUserInfo = app.globalData.userInfo;
 const globalAppInfo = app.globalData.appInfo;
 
 Page({
   data: {
-    isLogin: globalUserInfo.isLogin,
-    username: globalUserInfo.username,
-    avatar: globalUserInfo.avatar,
+    isLogin: false,
+    nickname: '',
+    avatar: '',
     appVersion: globalAppInfo.version
   },
   onLoad: function (options) {
@@ -23,7 +22,13 @@ Page({
       this.getTabBar().setData({
         active: 2,
       });
-    }
+    };
+    const globalUserInfo = app.globalData.userInfo; 
+    this.setData({
+      isLogin: globalUserInfo.isLogin,
+      nickname: globalUserInfo.nickname,
+      avatar: globalUserInfo.avatar,
+    })
   },
   onHide: function () {
 
@@ -35,39 +40,22 @@ Page({
 
   },
   handleLoginTap(e){
-    // wx.clearStorage();
     wxLogin().then(res => {
-      console.log("login+profile",res);
-      // return userLogin({
-      //   code: res[0].code,
-      //   encryptedData: res[1].encryptedData,
-      //   iv: res[1].iv,
-      //   avatar: res[1].userInfo.avatarUrl,
-      //   nickname: res[1].userInfo.nickName
-      // });
+      return userLogin({
+        code: res[0].code,
+        encryptedData: res[1].encryptedData,
+        iv: res[1].iv,
+        avatarUrl: res[1].userInfo.avatarUrl,
+        nickname: res[1].userInfo.nickName
+      });
     }).then(data => {
-
+      wx.Toast.success('登陆成功')
+      app.setGlobalUserInfo(data);
+      this.setData({
+        isLogin: globalUserInfo.isLogin,
+        nickname: globalUserInfo.nickname,
+        avatar: globalUserInfo.avatar,
+      })
     })
-    return;
-    wx.getUserProfile({
-      desc: '用于完善会员资料', 
-      success: res => {
-        console.log(res);
-        const wxUserInfo = JSON.parse(res.rawData);
-        // 设置信息
-        const userInfo = {
-          isLogin: true,
-          username: wxUserInfo.nickName,
-          avatar: wxUserInfo.avatarUrl
-        }
-        app.globalData.userInfo = userInfo;
-        this.setData(userInfo);
-        wx.setStorage({
-          key: 'userInfo',
-          data: userInfo
-        })
-        wx.Toast.success('登录成功');
-      },
-    });
   }
 })

@@ -5,7 +5,7 @@ Page({
   data: {
     messages: [],
     lastMessageTime: 0,
-    username: '',
+    nickname: '',
     avatar: ''
   },
   onLoad: function (options) {
@@ -13,16 +13,15 @@ Page({
     this.messageComponent || (this.messageComponent = this.selectComponent('#qa-message-component'));
   },
   onReady: function () {
-    const userInfo = getApp().globalData.userInfo;
-    if(userInfo){
-      this.setData({
-        username: userInfo.username,
-        avatar: userInfo.avatar
-      })
-    }
+    
   },
   onShow: function () {
     this.messageComponent.resetKeyboard();
+    const userInfo = getApp().globalData.userInfo;
+    this.setData({
+      nickname: userInfo.nickname,
+      avatar: userInfo.avatar
+    })
   },
   onHide: function () {
   },

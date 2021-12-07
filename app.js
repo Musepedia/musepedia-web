@@ -1,5 +1,6 @@
 import Toast from '@vant/weapp/toast/toast'
-import Dialog from '@vant/weapp/dialog/dialog';
+import Dialog from '@vant/weapp/dialog/dialog'
+import {getUserInfo, userLogin} from './api/user'
 
 App({
   onLaunch() {
@@ -10,13 +11,13 @@ App({
   },
   globalData: {
     userInfo: {
-      username: '',
+      nickname: '',
       avatar: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png',
       isLogin: false
     },
     isiPhoneX: false,
     appInfo: {
-      version: 'Beta 0.2.3'
+      version: 'Beta 0.2.4'
     }
   },
   checkiPhoneX: function() {
@@ -30,9 +31,40 @@ App({
     wx.Toast = Toast;
     wx.Dialog = Dialog;
   },
+  /**
+   * @param {*} data data包含nickname, avatarUrl
+   */
+  setGlobalUserInfo(data){
+    this.globalData.userInfo = {
+      nickname: data.nickname,
+      avatar: data.avatarUrl,
+      isLogin: true
+    };
+  },
   getUserInfo(){
-    const userInfo = wx.getStorageSync('userInfo');
-    userInfo && (this.globalData.userInfo = userInfo);
+    const token = wx.getStorageSync('token');
+    if(token){
+      getUserInfo().then(data => {
+        if(data && data.nickname){
+          this.setGlobalUserInfo(data);
+        } else {
+          // token过期，重新获取code并登陆
+          // 如果本地存储有token默认用户已经注册
+          // 此时没有发送username,avatar不考虑用户未注册的情况
+          wx.login({
+            success: (res) => {
+              userLogin({
+                code: res.code
+              }).then(data => this.setGlobalUserInfo(data))
+            }
+          })
+        }
+      }).catch(err => {
+        
+      })
+    } else {
+      // 没登录
+    }
   },
   checkUpdate() {
     if (!wx.canIUse('getUpdateManager')) {
