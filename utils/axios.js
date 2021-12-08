@@ -49,8 +49,8 @@ _axios.interceptors.response.use(
     return data.data || data;
   },
   function fail(error) {
-    checkToken(response);
     const resp = error.response;
+    checkToken(resp);
     if(!resp){
       wx.Toast.fail('网络请求失败');
       return Promise.reject(error);

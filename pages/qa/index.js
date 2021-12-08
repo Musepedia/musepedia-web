@@ -1,8 +1,12 @@
 import {getAnswer} from '../../api/question'
 import {CommonMessage, RecommendMessage, TimeMessage} from '../../utils/message-builder'
 
+const app = getApp();
+const globalUserInfo = app.globalData.userInfo;
+
 Page({
   data: {
+    isLogin: false,
     messages: [],
     lastMessageTime: 0,
     nickname: '',
@@ -19,6 +23,7 @@ Page({
     this.messageComponent.resetKeyboard();
     const userInfo = getApp().globalData.userInfo;
     this.setData({
+      isLogin: userInfo.isLogin,
       nickname: userInfo.nickname,
       avatar: userInfo.avatar
     })
@@ -80,6 +85,16 @@ Page({
     this.pushMessage(...messages);
     this.messageComponent.scrollToBottom();
     // do request
+    console.log(this.data.isLogin);
+    if (!this.data.isLogin) {
+      wx.switchTab({
+        url: '../user/index',
+      })
+      wx.showToast({
+        title: '请先登录',
+        icon: 'error'
+      })
+    }
     getAnswer(text).then(data => {
       this.pushMessage(RecommendMessage(
         data.answer, 

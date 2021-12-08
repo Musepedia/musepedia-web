@@ -1,9 +1,7 @@
 <view 
-  style="transform: translateY({{-keyboardHeight}}px)"
   class="message-component">
+
   <scroll-view 
-    style="height: calc(100vh - {{showAdditionalInput ? 150 : 50}}px - env(safe-area-inset-bottom));"
-    id="dialog-area"
     class="dialog-area"  
     bindtap="closeAdditionalInput"
     refresher-enabled
@@ -11,8 +9,8 @@
     bindrefresherrefresh="onRefresh" 
     scroll-into-view="{{bottomAnchor}}"
     scroll-y>
-    
-      <message-dialog 
+
+    <message-dialog 
       wx:for="{{messages}}" 
       wx:for-item="message" 
       wx:key="unique"
@@ -22,14 +20,12 @@
       <template is="{{messageComponent[message.type]}}" data="{{...message}}"></template>
     </message-dialog>
 
-    <view style="height: 5px" id="bottom-anchor"></view>
+    <view style="height: 10px" id="bottom-anchor"></view>
   </scroll-view>
-
-  <view style="height:env(safe-area-inset-bottom);position:fixed;width:100%;bottom:0;background-color:#eee;z-index:1;"></view>
 
   <view 
     class="input-area" 
-    style="padding-bottom: env(safe-area-inset-bottom);bottom: {{showAdditionalInput ? 0 : -100}}px;">
+    style="bottom: {{showAdditionalInput ? 0 : keyboardHeight}}px; padding-bottom: {{keyboardHeight ? '10px' : 'env(safe-area-inset-bottom)'}}">
     <view class="input-wrapper">
       <view class="basic-input">
         <view class="input-icon">
@@ -60,15 +56,11 @@
         </view>
       </view>
 
-      <view class="additional-input" style="height: {{additionalInputHeight}}px">
+      <view class="additional-input" style="height: {{showAdditionalInput ? additionalInputHeight : '0'}}px">
         <view class="additional-input__wrapper">
           <slot name="input-icons"></slot>
         </view>
       </view>
-    </view>
-
-    <view class="float-action">
-      
     </view>
   </view>
 </view>
