@@ -52,9 +52,9 @@ Page({
       wx.Toast.success('登录成功')
       app.setGlobalUserInfo(data);
       this.setData({
-        isLogin: globalUserInfo.isLogin,
-        nickname: globalUserInfo.nickname,
-        avatar: globalUserInfo.avatar,
+        isLogin: true,
+        nickname: data.nickname,
+        avatar: data.avatarUrl,
       })
     })
   }

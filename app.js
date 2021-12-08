@@ -17,7 +17,7 @@ App({
     },
     isiPhoneX: false,
     appInfo: {
-      version: 'Beta 0.2.4'
+      version: 'Beta 0.2.5'
     }
   },
   checkiPhoneX: function() {
@@ -48,7 +48,7 @@ App({
         if(data && data.nickname){
           this.setGlobalUserInfo(data);
         } else {
-          // token过期，重新获取code并登陆
+          // token过期，重新获取code并登录
           // 如果本地存储有token默认用户已经注册
           // 此时没有发送username,avatar不考虑用户未注册的情况
           wx.login({

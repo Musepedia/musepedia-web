@@ -1,8 +1,5 @@
 .message-component{
-  transition: all cubic-bezier(0.165, 0.84, 0.44, 1) .3s;
   position: absolute;
-  overflow: hidden;
-  height: 100vh;
   width: 100%;
 }
 
@@ -14,36 +11,22 @@
 .input-area{
   min-height: 50px;
   width: 100%;
-  position: absolute;
-  /* bottom: env(safe-area-inset-bottom); */
-  bottom: -100px;
+  position: fixed;
+  bottom: env(safe-area-inset-bottom);
   left: 0;
   background-color: #eee;
-}
-
-.input-wrapper{
   padding: 10px;
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
 .basic-input{
-  position: relative;
   display: flex;
   flex-direction: row;
   align-items: flex-end;
 }
 
 .additional-input{
-  /* transition: all cubic-bezier(0.165, 0.84, 0.44, 1) .4s; */
   overflow: hidden;
-  padding: 15px 15px 5px 15px;
-}
-
-.additional-input__wrapper{
-  height: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  overflow-y: scroll;
-  align-items: center;
 }
 
 .input-message{
@@ -95,14 +78,4 @@
   text-align: center;
   font-size: 12px;
   color: #888;
-}
-
-.float-action{
-  display: none;
-  position: absolute;
-  padding: 5px 20px;
-  border: 1px solid #bbb;
-  border-radius: 0 1000px 1000px 0;
-  top: -30px;
-  left: -20px
 }

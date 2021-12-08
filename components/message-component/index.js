@@ -14,6 +14,9 @@ Component({
     }
   },
   data: {
+    textareaConfig: {
+      maxHeight: 60,
+    },
     isRefreshing: false,
     keyboardHeight: 0,
     keyboardHeightChangeHandler: null, // 处理键盘弹起时对话框的偏移
@@ -72,6 +75,7 @@ Component({
 
       this.setData({
         showAdditionalInput: true,
+        // keyboardHeight: 0
       });
     },
     closeAdditionalInput(){
@@ -89,10 +93,23 @@ Component({
         done: bindedCompleteRefresh
       })
     },
+    scanCode(){
+      wx.scanCode({
+        onlyFromCamera: false,
+        scanType: [],
+        success: (res) => {
+          console.log(res.result);
+          wx.Toast.success('scan result: ' + res.result);
+        },
+        fail: (res) => {},
+        complete: (res) => {},
+      })
+    },
     sendMessage(event){
       const dataset = event.target.dataset;
 
       let text = this.data.message;
+      console.log(text);
       let showRecommend = true;
       if(dataset.message){
         // 通过DOM点击事件调用时使用点击事件的参数，默认使用输入框中文字
@@ -126,6 +143,12 @@ Component({
       this.setData({
         keyboardHeight: 0
       });
+    },
+    onMessageInputBlur(){
+      console.log('blue');
+      // this.setData({
+      //   keyboardHeight: 0
+      // })
     }
   },
   observers: {
