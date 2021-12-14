@@ -10,7 +10,8 @@ Page({
     messages: [],
     lastMessageTime: 0,
     nickname: '',
-    avatar: ''
+    avatar: '',
+    displayInfo: false,
   },
   onLoad: function (options) {
     console.log(options);
@@ -94,6 +95,7 @@ Page({
         title: '请先登录',
         icon: 'error'
       })
+      return ;
     }
     getAnswer(text).then(data => {
       this.pushMessage(RecommendMessage(
@@ -120,5 +122,10 @@ Page({
       this.unshiftMessage(oldMsg);
       done();
     }, 1000)
+  },
+  test() {
+    this.setData({
+      displayInfo: true
+    })
   }
 })

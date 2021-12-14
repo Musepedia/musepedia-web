@@ -16,6 +16,9 @@
     "van-cell-group": "@vant/weapp/cell-group/index",
     "van-toast": "@vant/weapp/toast/index",
     "van-skeleton": "@vant/weapp/skeleton/index",
+    "van-popup": "@vant/weapp/popup/index",
+    "van-row": "@vant/weapp/row/index",
+    "van-col": "@vant/weapp/col/index",
     "message-component": "/components/message-component/index",
     "router-link": "/components/router-link/index",
     "additional-input": "/components/additional-input/index"
