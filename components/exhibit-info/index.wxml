@@ -13,7 +13,7 @@
   <text>\n\n\n</text>
   <view class="info-button">
     <van-row>
-    <van-col span="8" offset="2"><van-button round size="large" bindclick="getMoreMediaInfo">了解更多</van-button></van-col>
+    <van-col span="8" offset="2"><van-button round size="large" bindclick="switchToWebPage">了解更多</van-button></van-col>
     <van-col span="8" offset="4"><van-button round size="large" bindclick="inferQuestion">针对提问</van-button></van-col>
     </van-row>
   </view>

@@ -1,4 +1,5 @@
 import {getAnswer} from '../../api/question'
+import {getExhibitInfo} from '../../api/exhibition'
 import {CommonMessage, RecommendMessage, TimeMessage} from '../../utils/message-builder'
 
 const app = getApp();
@@ -12,6 +13,9 @@ Page({
     nickname: '',
     avatar: '',
     displayInfo: false,
+    exhibitLabel: '',
+    exhibitDescription: '',
+    exhibitUrl: ''
   },
   onLoad: function (options) {
     console.log(options);
@@ -43,13 +47,38 @@ Page({
   onShareAppMessage: function () {
 
   },
+  checkLogin() {
+    // 判断用户是否登录
+    return this.data.isLogin;
+  },
+  forceLogin() {
+    // 跳转到登录页面
+    wx.switchTab({
+      url: '../user/index',
+    })
+    wx.showToast({
+      title: '请先登录',
+      icon: 'error'
+    })
+  },
   scanCode(){
+    if (!this.checkLogin()) {
+      this.forceLogin();
+      return ;
+    }
     wx.scanCode({
       onlyFromCamera: false,
       scanType: [],
       success: (res) => {
-        console.log(res.result);
-        wx.Toast.success('scan result: ' + res.result);
+        getExhibitInfo(res.result).then(data => {
+          console.log(data);
+          this.setData({
+            exhibitLabel: data.label,
+            exhibitDescription: data.description,
+            exhibitUrl: data.url
+          });
+          this.display();
+        })
       },
       fail: (res) => {},
       complete: (res) => {},
@@ -86,15 +115,8 @@ Page({
     this.pushMessage(...messages);
     this.messageComponent.scrollToBottom();
     // do request
-    console.log(this.data.isLogin);
-    if (!this.data.isLogin) {
-      wx.switchTab({
-        url: '../user/index',
-      })
-      wx.showToast({
-        title: '请先登录',
-        icon: 'error'
-      })
+    if (!this.checkLogin()) {
+      this.forceLogin();
       return ;
     }
     getAnswer(text).then(data => {
@@ -123,7 +145,7 @@ Page({
       done();
     }, 1000)
   },
-  test() {
+  display() {
     this.setData({
       displayInfo: true
     })

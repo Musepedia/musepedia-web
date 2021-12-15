@@ -14,6 +14,10 @@ Component({
       type: String,
       value: 'default content',
     },
+    url: {
+      tyoe: String,
+      value: 'default url',
+    },
     show: {
       type: Boolean,
       value: false
@@ -30,8 +34,7 @@ Component({
   data: {
     show: false,
     focusOnKeyboard: false,
-    playing: false,
-    audio: wx.createInnerAudioContext()
+    playing: false
   },
 
   /**
@@ -67,6 +70,11 @@ Component({
       audio.src = "https://www.snhm.org.cn:/museum/uploadFiles/exhibit/d72e2194-30b8-4ece-b28f-a727a72c97de.mp3";
       console.log(audio.paused);
       audio.paused ? audio.play() : audio.pause();
+    },
+    switchToWebPage() {
+      wx.navigateTo({
+        url: '../../pages/webpage/index?url=' + this.properties.url
+      })
     }
   }
 })
