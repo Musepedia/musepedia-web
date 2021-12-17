@@ -9,6 +9,9 @@ App({
     this.initShortcut();
     this.getUserInfo();
   },
+  onShow(){
+    this.getInitPreference();
+  },
   globalData: {
     userInfo: {
       nickname: '',
@@ -18,6 +21,18 @@ App({
     isiPhoneX: false,
     appInfo: {
       version: 'Beta 0.2.5'
+    }
+  },
+  /**
+   * 用户首次使用小程序，获取用户偏好
+   */
+  getInitPreference(){
+    const isInit = !wx.getStorageSync('initPreference');
+    if(isInit){
+      wx.setStorageSync('initPreference', true);
+      wx.navigateTo({
+        url: '/pages/setting/preference/index',
+      })
     }
   },
   checkiPhoneX: function() {

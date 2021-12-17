@@ -6,8 +6,12 @@ view, textarea, input, text{
   box-sizing: border-box;
 }
 
-page{
+.safe-bottom{
+  padding-bottom: env(safe-area-inset-bottom);
+}
 
+page{
+  background-color: #f8f8f8;
   --text-color-lightest: #e7e9ec;
   --text-color-darker: #2e2e2e;
   --text-color-dark:#494949;

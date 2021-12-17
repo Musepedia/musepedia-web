@@ -1,4 +1,8 @@
 /**index.wxss**/
+page{
+  background-color: #f8f8f8;
+}
+
 .index-container {
   padding: 10px 20px;
 } 

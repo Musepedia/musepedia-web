@@ -1,0 +1,28 @@
+<!--用户对展览偏好设置-->
+<view class="preference-setting">
+  <view class="setting-header">
+    <van-button wx-if="{{!hideSkipButton}}" class="btn-skip" round bindtap="completeSetting">跳过</van-button>
+  </view>
+  <view class="setting-body">
+    <swiper class="body-swiper" current="{{currentIndex}}" duration="400" bindchange="settingPageChange">
+        <block wx:for="{{preferenceSettings}}" wx:key="preference">
+          <swiper-item class="body-swiper-item">
+            <view class="setting-item" wx:for="{{16}}">
+              <image class="setting-item__image" mode="aspectFill" src="https://supernahrung.com/wp-content/uploads/2020/07/supernahrung-beitrag-ginkgo-biloba.jpg">
+                <van-icon wx:if="{{index < 3}}" class="hot-tag" color="#ee0a24" dot size="30px"/>
+              </image>
+              <text class="setting-item__text">很长很长很长很长很超超超超超超超超的展品</text>
+              <text class="setting-item__text">（很长很长很长很长的栈区）</text>
+            </view>
+          </swiper-item>
+        </block>
+    </swiper>
+  </view>
+  <view class="setting-footer">
+    <van-button class="btn-prev" round bind:click="previousPage">上一页</van-button>
+    <view class="page-indicator">{{currentIndex+1}}/{{preferenceSettings.length}}</view>
+    <van-button wx:if="{{(currentIndex < preferenceSettings.length -1)}}" class="btn-next" round bind:click="nextPage">下一页</van-button>
+    <van-button wx:else class="btn-next" type="info" round bind:click="completeSetting">完成</van-button>
+  </view>
+  <view class="safe-bottom"></view>
+</view>
