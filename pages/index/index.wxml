@@ -2,7 +2,7 @@
 <view class="index-container">
   <view class="header">
     <view class="header-row">
-      <text>博物馆博物馆博物馆</text>
+      <text>选择博物馆</text>
       <van-icon name="arrow-down"/>
     </view>
     <view class="header-row search-row">
@@ -16,5 +16,8 @@
 
   <view class="index-body">
     <router-link to="/pages/qa/index">问答</router-link>
+  </view>
+  <view class="index-body">
+    <router-link to="/pages/setting/preference/index?">偏好</router-link>
   </view>
 </view>

@@ -1,8 +1,5 @@
 /* pages/user/index.wxss */
 /* miniprogram/pages/mine/mine.wxss */
-page{
-  background-color: #eeeeee;
-}
 
 .user-page{
   padding: 15px;

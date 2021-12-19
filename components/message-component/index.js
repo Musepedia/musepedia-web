@@ -61,18 +61,6 @@ Component({
       })
     },
     openAdditionalInput(){
-      const query = this.createSelectorQuery();
-      query.select('#bottom-anchor').boundingClientRect()
-      query.select('#dialog-area').boundingClientRect()
-      query.exec(res => {
-        const anchorBottom = res[0].bottom;
-        const areaHeight = res[1].height;
-        if(anchorBottom - areaHeight <= 10){
-          // 对话框在最底部时打开额外输入框则强制将对话框滚动到最底部
-          this.scrollToBottom();
-        }
-      })
-
       this.setData({
         showAdditionalInput: true,
         // keyboardHeight: 0

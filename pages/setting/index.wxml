@@ -1,0 +1,5 @@
+<view class="setting-main">
+  <van-cell-group>
+    <van-cell class="top-cell" center icon="contact" size="large" title="展区偏好" is-link="true" url="preference/index?hideSkipButton" bindtap=""></van-cell>
+  </van-cell-group>
+</view>

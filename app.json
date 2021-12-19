@@ -5,7 +5,9 @@
     "pages/user/index",
     "pages/qa/index",
     "pages/about/index",
-    "pages/webpage/index"
+    "pages/webpage/index",
+    "pages/setting/preference/index",
+    "pages/setting/index"
   ],
   "usingComponents": {
     "van-button": "@vant/weapp/button/index",
