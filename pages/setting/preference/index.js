@@ -1,39 +1,52 @@
 // pages/preference/index.js
+import {getUserPreference,updateUserPreference} from '../../../api/setting'
+import {getExhibitionHallByMuseumId} from '../../../api/exhibition-hall'
+
 Page({
   data: {
-    preferenceSettings: [
-      {},{},{},{}
-    ],
-    currentIndex: 0,
-    hideSkipButton: false
+    result: [],
+    exhibitionHalls: [],
+    exhibitionHallChecked: {}
   },
-  onLoad: function (options) {
-    this.setData({
-      hideSkipButton: !!options.hideSkipButton
-    })
-  },
+  onLoad: function (options) {},
   onReady: function () {},
-  onShow: function () {},
+  onShow: function () {
+    Promise.all([
+      getUserPreference(), 
+      getExhibitionHallByMuseumId()
+    ]).then(data => {
+      const checked = {};
+      data[0] = data[0].map(e => e+"");
+      data[0].forEach(e => (checked[e] = true));
+      this.setData({
+        exhibitionHallChecked: checked,
+        result: data[0],
+        exhibitionHalls: data[1]
+      })
+    }).catch(ignore => {})
+  },
   onHide: function () {},
   onUnload: function () {},
   onPullDownRefresh: function () {},
   onReachBottom: function () {},
   onShareAppMessage: function () {},
-  previousPage(){
-    const idx = this.data.currentIndex;
-    idx > 0 && this.setData({currentIndex: idx - 1});
+  completeSetting(){
+    updateUserPreference(this.data.result).then(data => {
+      wx.Toast.success('设置已保存');
+      setTimeout(() => wx.navigateBack(), 700);
+    }).catch(ignore => {});
   },
-  nextPage(){
-    const data = this.data;
-    const idx = data.currentIndex;
-    idx < data.preferenceSettings.length - 1 && this.setData({currentIndex: idx + 1});
-  },
-  settingPageChange({detail}){
+  onSettingChange({detail}){
+    const checked = {};
+    detail.forEach(e => (checked[e] = true));
     this.setData({
-      currentIndex: detail.current
+      result: detail,
+      exhibitionHallChecked: checked
     })
   },
-  completeSetting(){
-    wx.navigateBack();
+  navigateToQuestionnaire(){
+    wx.navigateTo({
+      url: '/pages/questionnaire/index',
+    })
   }
 })

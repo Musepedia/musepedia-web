@@ -1,0 +1,54 @@
+/* components/setting-layout/index.wxss */
+.setting-layout{
+  padding: 10px 20px;
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas: 'header' 'body' 'footer';
+  gap: 8px;
+  grid-gap: 8px;
+
+  --button-default-height: 36px;
+  --button-default-border-color: #ddd;
+}
+
+.setting-layout ::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+  color:#000;
+}
+
+/*定义滑块 内阴影+圆角*/
+.setting-layout ::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  background-color: #ddd;
+}
+
+.setting-header{
+  grid-area: 'header';
+}
+
+.setting-body{
+  grid-area: 'body';
+  padding: 10px 0;
+  overflow-y: scroll;
+}
+
+.setting-footer{
+  grid-area: 'footer';
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+
+.setting-footer.single-page .btn-prev,
+.setting-footer.single-page .page-indicator{
+  visibility: hidden;
+}
+
+.setting-footer .van-button{
+  width: 74px;
+}

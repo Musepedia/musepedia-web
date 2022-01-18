@@ -50,10 +50,11 @@ _axios.interceptors.response.use(
   },
   function fail(error) {
     const resp = error.response;
-    checkToken(resp);
     if(!resp){
       wx.Toast.fail('网络请求失败');
       return Promise.reject(error);
+    } else {
+      checkToken(resp);
     }
     if(resp.status === 401){
       // todo login

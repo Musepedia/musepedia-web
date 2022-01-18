@@ -1,0 +1,14 @@
+<!--components/setting-layout/index.wxml-->
+<view class="setting-layout">
+  <view class="setting-header">
+    <slot name="header"></slot>
+  </view>
+  <view class="setting-body">
+    <slot name="body"></slot>
+  </view>
+  <view class="setting-footer {{settingSetLength > 1 ? '' : 'single-page'}}">
+    <van-button class="btn-next" type="info" round bind:click="completeSetting">完成</van-button>
+    <slot name="footer"></slot>
+  </view>
+  <view class="safe-bottom"></view>
+</view>

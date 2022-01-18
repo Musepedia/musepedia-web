@@ -18,6 +18,6 @@
     <router-link to="/pages/qa/index">问答</router-link>
   </view>
   <view class="index-body">
-    <router-link to="/pages/setting/preference/index?">偏好</router-link>
+    <router-link to="/pages/questionnaire/index?">偏好</router-link>
   </view>
 </view>

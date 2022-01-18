@@ -1,5 +1,5 @@
 import { userLogin } from '../../api/user';
-import {wxLogin} from '../../utils/util'
+import {wxLoginWithBackend} from '../../utils/util'
 
 const app = getApp();
 const globalAppInfo = app.globalData.appInfo;
@@ -40,22 +40,17 @@ Page({
 
   },
   handleLoginTap(e){
-    wxLogin().then(res => {
-      return userLogin({
-        code: res[0].code,
-        encryptedData: res[1].encryptedData,
-        iv: res[1].iv,
-        avatarUrl: res[1].userInfo.avatarUrl,
-        nickname: res[1].userInfo.nickName
-      });
-    }).then(data => {
-      wx.Toast.success('登录成功')
+    wxLoginWithBackend().then(data => {
+      wx.Toast.success('登录成功');
       app.setGlobalUserInfo(data);
       this.setData({
         isLogin: true,
         nickname: data.nickname,
         avatar: data.avatarUrl,
-      })
-    })
+      });
+      // 记录用户是否曾经授权登录过
+      // 如果授权过会在小程序启动时尝试获取用户信息
+      wx.setStorageSync('registered', true);
+    }).catch(ignore => {})
   }
 })

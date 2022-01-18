@@ -43,28 +43,28 @@ App({
   },
   getUserInfo(){
     const token = wx.getStorageSync('token');
-    if(token){
-      getUserInfo().then(data => {
-        if(data && data.nickname){
-          this.setGlobalUserInfo(data);
-        } else {
-          // token过期，重新获取code并登录
-          // 如果本地存储有token默认用户已经注册
-          // 此时没有发送username,avatar不考虑用户未注册的情况
-          wx.login({
-            success: (res) => {
-              userLogin({
-                code: res.code
-              }).then(data => this.setGlobalUserInfo(data))
-            }
-          })
-        }
-      }).catch(err => {
-        
-      })
-    } else {
-      // 没登录
+    const registered = wx.getStorageSync('registered');
+    if(!token || !registered){
+      return;
     }
+    getUserInfo().then(data => {
+      if(data && data.nickname){
+        this.setGlobalUserInfo(data);
+      } else {
+        // token过期，重新获取code并登录
+        wx.login({
+          success: (res) => {
+            console.log(res);
+            userLogin({
+              code: res.code
+            }).then(data => this.setGlobalUserInfo(data))
+            .catch(err => console.log(err))
+          }
+        })
+      }
+    }).catch(err => {
+      console.log("failed to getUserInfo()");
+    })
   },
   checkUpdate() {
     if (!wx.canIUse('getUpdateManager')) {

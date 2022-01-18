@@ -10,7 +10,7 @@ export function getUserPreference(){
 export function updateUserPreference(data){
   return axios({
     url: 'setting/preference',
-    method: 'post',
+    method: 'put',
     data: data
   })
 }

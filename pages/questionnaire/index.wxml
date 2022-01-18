@@ -1,0 +1,41 @@
+<!--用户对展览偏好设置-->
+<view class="preference-setting">
+  <view class="setting-header">
+    <van-button wx-if="{{!hideSkipButton}}" class="btn-skip" round bindtap="completeSetting">跳过</van-button>
+  </view>
+  <view class="setting-body">
+    <swiper class="body-swiper" current="{{currentIndex}}" duration="400" bindchange="settingPageChange">
+
+      <block wx:for="{{preferenceSettings}}" wx:key="index" wx:for-item="settingPage">
+          <swiper-item class="body-swiper-item">
+            <view wx:for="{{settingPage}}" 
+                  wx:key="index" 
+                  wx:for-item="exhibit" 
+                  class="setting-item {{currentPreferences[exhibit.exhibitionHall.id]  ? 'selected' : ''}}" 
+                  bindtap="settingItemTap" 
+                  data-name="{{exhibit.exhibitionHall.id}}">
+                  <!-- use data-name as the identifier of the checkbox -->
+              <image class="setting-item__image" mode="aspectFill" src="{{exhibit.figureUrl}}">
+                <van-tag wx:if="{{exhibit.hot}}" class="hot-tag" round color="#ee0a24">Hot</van-tag>
+              </image>
+              <text class="setting-item__text">{{exhibit.label}}</text>
+              <text class="setting-item__text">{{exhibit.exhibitionHall.name}}</text>
+            </view>
+          </swiper-item>
+      </block>
+
+    </swiper>
+  </view>
+  <view class="setting-footer {{preferenceSettings.length > 1 ? '' : 'single-page'}}">
+    <!-- show only when > 1 pages -->
+    <van-button class="btn-prev" round bind:click="previousPage">上一页</van-button>
+    <view class="page-indicator">{{currentIndex+1}}/{{preferenceSettings.length}}</view>
+
+    <van-button wx:if="{{(currentIndex < preferenceSettings.length -1)}}" class="btn-next" round bind:click="nextPage">下一页</van-button>
+    <van-button wx:else class="btn-next" type="info" round bind:click="completeSetting">完成</van-button>
+  </view>
+  <view class="safe-bottom"></view>
+</view>
+
+
+<van-toast id="van-toast"></van-toast>

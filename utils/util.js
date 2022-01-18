@@ -1,3 +1,5 @@
+import {userLogin} from '../api/user'
+
 export const formatTime = date => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
@@ -39,7 +41,20 @@ export function wxLogin(){
   return Promise.all([p1, p2]);
 }
 
+export function wxLoginWithBackend(){
+  return wxLogin().then(res => {
+    return userLogin({
+      code: res[0].code,
+      encryptedData: res[1].encryptedData,
+      iv: res[1].iv,
+      avatarUrl: res[1].userInfo.avatarUrl,
+      nickname: res[1].userInfo.nickName
+    });
+  })
+}
+
 export default {
   formatTime,
-  wxLogin
+  wxLogin,
+  wxLoginWithBackend
 }

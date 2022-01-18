@@ -1,5 +1,5 @@
 import {getAnswer} from '../../api/question'
-import {getExhibitInfo} from '../../api/exhibition'
+import {getExhibitInfoById} from '../../api/exhibit'
 import {CommonMessage, RecommendMessage, TimeMessage} from '../../utils/message-builder'
 
 const app = getApp();
@@ -69,7 +69,7 @@ Page({
       onlyFromCamera: false,
       scanType: [],
       success: (res) => {
-        getExhibitInfo(res.result).then(data => {
+        getExhibitInfoById(res.result).then(data => {
           console.log(data);
           this.setData({
             exhibitLabel: data.label,

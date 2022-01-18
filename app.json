@@ -7,7 +7,8 @@
     "pages/about/index",
     "pages/webpage/index",
     "pages/setting/preference/index",
-    "pages/setting/index"
+    "pages/setting/index",
+    "pages/questionnaire/index"
   ],
   "usingComponents": {
     "van-button": "@vant/weapp/button/index",
@@ -22,6 +23,8 @@
     "van-popup": "@vant/weapp/popup/index",
     "van-row": "@vant/weapp/row/index",
     "van-col": "@vant/weapp/col/index",
+    "van-loading": "@vant/weapp/loading/index",
+    "van-tag": "@vant/weapp/tag/index",
     "message-component": "/components/message-component/index",
     "router-link": "/components/router-link/index",
     "additional-input": "/components/additional-input/index"
