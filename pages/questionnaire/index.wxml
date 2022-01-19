@@ -6,15 +6,16 @@
   <view class="setting-body">
     <swiper class="body-swiper" current="{{currentIndex}}" duration="400" bindchange="settingPageChange">
 
-      <block wx:for="{{preferenceSettings}}" wx:key="index" wx:for-item="settingPage">
+      <block wx:for="{{preferenceSettings}}" wx:key="pageIndex" wx:for-item="settingPage" wx:for-index="pageIndex">
           <swiper-item class="body-swiper-item">
             <view wx:for="{{settingPage}}" 
-                  wx:key="index" 
+                  wx:key="exhibitIndex" 
+                  wx:for-index="exhibitIndex"
                   wx:for-item="exhibit" 
-                  class="setting-item {{currentPreferences[exhibit.exhibitionHall.id]  ? 'selected' : ''}}" 
+                  class="setting-item {{selectedExhibits[exhibit.id]  ? 'selected' : ''}}" 
                   bindtap="settingItemTap" 
-                  data-name="{{exhibit.exhibitionHall.id}}">
-                  <!-- use data-name as the identifier of the checkbox -->
+                  data-hall-id="{{exhibit.exhibitionHall.id}}"
+                  data-name="{{exhibit.id}}">
               <image class="setting-item__image" mode="aspectFill" src="{{exhibit.figureUrl}}">
                 <van-tag wx:if="{{exhibit.hot}}" class="hot-tag" round color="#ee0a24">Hot</van-tag>
               </image>

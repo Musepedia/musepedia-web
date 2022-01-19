@@ -52,7 +52,7 @@
 .setting-item{
   width: 42%;
   padding: 0 6px;
-  min-height: 33.33%;
+  min-height: 32%;
   display: flex;
   flex-direction: column;
   align-items: center;

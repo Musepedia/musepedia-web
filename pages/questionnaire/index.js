@@ -5,8 +5,8 @@ import {updateUserPreference} from '../../api/setting'
 Page({
   data: {
     preferenceSettings: [[]],
-    // note: multiple page checkbox currently is not support
-    currentPreferences: {},
+    selectedExhibits: {}, // 勾选的展品，用于class
+    selectedExhibitionHalls: {}, // 实际选择的展厅id
     currentIndex: 0, // page index
     hideSkipButton: false
   },
@@ -18,8 +18,17 @@ Page({
   onReady: function () {},
   onShow: function () {
     getRandomExhibits().then(data => {
+      // init hall ids
+      data.forEach(e => this.data.selectedExhibitionHalls[e.exhibitionHall.id] = 0);
+
+      const itemPerPage = 6;
+      const pages = [];
+      const pageAmount = data.length / itemPerPage;
+      for(let i = 0; i < pageAmount; i++){
+        pages.push(data.splice(0, itemPerPage));
+      }
       this.setData({
-        preferenceSettings: [data]
+        preferenceSettings: pages
       })
     }).catch(ignore => {});
   },
@@ -45,7 +54,8 @@ Page({
     }
   },
   completeSetting(){
-    const selectedHallIds = Object.entries(this.data.currentPreferences).filter(e => e[1]).map(e => e[0]);
+    const selectedHallIds = Object.entries(this.data.selectedExhibitionHalls).filter(e => e[1]).map(e => e[0]);
+    console.log(selectedHallIds);
     updateUserPreference(selectedHallIds).then(data => {
       wx.Toast.success('设置已保存');
       setTimeout(() => wx.navigateBack(), 700);
@@ -53,9 +63,10 @@ Page({
   },
   settingItemTap(e){
     const data = e.currentTarget.dataset;
-    this.data.currentPreferences[data.name] = !this.data.currentPreferences[data.name];
+    this.data.selectedExhibitionHalls[data.hallId] += 
+      (this.data.selectedExhibits[data.name] = !this.data.selectedExhibits[data.name]) ? 1 : -1;
     this.setData({
-      currentPreferences: this.data.currentPreferences
+      selectedExhibits: this.data.selectedExhibits
     })
   }
 })

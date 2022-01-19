@@ -52,3 +52,7 @@
 .setting-footer .van-button{
   width: 74px;
 }
+
+.safe-bottom{
+  height: env(safe-area-inset-bottom);
+}
