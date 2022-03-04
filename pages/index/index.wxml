@@ -1,6 +1,6 @@
 <!--index.wxml-->
 <view class="index-container">
-  <view class="header">
+  <view class="header no-display">
     <view class="header-row">
       <text>选择博物馆</text>
       <van-icon name="arrow-down"/>
@@ -14,10 +14,10 @@
     </view>
   </view>
 
-  <view class="index-body">
-    <router-link to="/pages/qa/index">问答</router-link>
+  <view class="index-body" style="display:flex; justify-content: space-around;">
+    <router-link to="/pages/qa/index"><additional-input icon-name="comment-o" hint="问答"></additional-input></router-link>
   </view>
   <view class="index-body">
-    <router-link to="/pages/questionnaire/index?">偏好</router-link>
+    <router-link class="no-display" to="/pages/questionnaire/index?">偏好</router-link>
   </view>
 </view>

@@ -10,6 +10,10 @@ view, textarea, input, text{
   padding-bottom: env(safe-area-inset-bottom);
 }
 
+.no-display{
+  display: none;
+}
+
 page{
   background-color: #f8f8f8;
   --text-color-lightest: #e7e9ec;

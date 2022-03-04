@@ -133,17 +133,15 @@ Component({
       });
     },
     onMessageInputBlur(){
-      console.log('blue');
       // this.setData({
       //   keyboardHeight: 0
       // })
-    }
-  },
-  observers: {
-    messages(v){
-      // this.setData({
-      //   bottomAnchor: `message-${v.length-1}`
-      // })
+    },
+    onDetailTap(event){
+      const dataset = event.target.dataset;
+      this.triggerEvent('detailtap', {
+        data: dataset.data,
+      });
     }
   }
 })

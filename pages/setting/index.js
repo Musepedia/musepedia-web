@@ -62,5 +62,18 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  clearStorage(){
+    wx.clearStorage({
+      success: (res) => {
+        wx.showToast({
+          title: '清除存储成功',
+        })
+      },
+    })
+  },
+  printStorage(){
+    const s = wx.getStorageInfoSync();
+    s.keys.forEach(e => console.log(e, ":", wx.getStorageSync(e)))
   }
 })

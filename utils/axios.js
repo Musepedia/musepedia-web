@@ -5,8 +5,8 @@ import qs from 'qs/index'
 const TOKEN_HEADER = 'x-auth-token';
 
 const _axios = axios.create({
-  // baseURL: 'https://abstractmgs.cn/api/',
-  baseURL: 'http://localhost/api/',
+  baseURL: 'https://abstractmgs.cn/api/',
+  // baseURL: 'http://localhost/api/',
   headers: {
     'Content-Type': 'application/json'
   },
@@ -35,6 +35,7 @@ _axios.interceptors.request.use(
 function checkToken(response){
   const token = response.headers[TOKEN_HEADER];
   // 不过期
+  token && console.log('Token from server:', token);
   token && wx.setStorage({
     key: 'token',
     data: token

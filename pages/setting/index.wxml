@@ -2,4 +2,10 @@
   <van-cell-group>
     <van-cell class="top-cell" center icon="contact" size="large" title="展区偏好" is-link="true" url="preference/index" bindtap=""></van-cell>
   </van-cell-group>
+
+  
+  <van-cell-group style="margin-top:20px">
+    <van-cell class="top-cell" center size="large" title="打印本地存储" bindtap="printStorage"></van-cell>
+    <van-cell center size="large" title="清除本地存储" bindtap="clearStorage"></van-cell>
+  </van-cell-group>
 </view>

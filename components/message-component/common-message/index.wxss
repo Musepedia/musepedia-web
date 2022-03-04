@@ -1,4 +1,5 @@
 .common-message{
+  position: relative;
   display: inline-block;
   background-color:  var(--dialog-background-color);
   border-radius: 8px;

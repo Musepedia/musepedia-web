@@ -85,6 +85,10 @@
       fullWidth="{{fullWidth}}" 
       transparent="{{transparent}}"
       textCenter="{{textCenter}}">
+    
+    <view class="show-full-text" style="color:#0a69aa;font-size:14px">
+      <text bindtap="onDetailTap" data-data="{{data}}">详细信息...</text>
+    </view>
     <view class="question-recommend" wx:if="{{recommends && recommends.length}}">
       <view>{{recommendHint || '更多推荐:'}}</view>
       <text 
@@ -95,6 +99,7 @@
         wx:for-item="recommend" 
         wx:key="unique">{{recommend}}</text>
     </view>
+    <!-- <view class="show-full-text" style="position:absolute;right:10px;bottom:8px"><van-icon name="question-o" size="14px"></van-icon></view> -->
   </common-message>
 </template>
 <!-- 时间信息等提示信息 -->

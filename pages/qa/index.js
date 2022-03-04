@@ -12,10 +12,14 @@ Page({
     lastMessageTime: 0,
     nickname: '',
     avatar: '',
+
     displayInfo: false,
     exhibitLabel: '',
     exhibitDescription: '',
-    exhibitUrl: ''
+    exhibitUrl: '',
+    /**回答的详细介绍 */
+    showDetailText: false,
+    detialText: ''
   },
   onLoad: function (options) {
     this.messageComponent || (this.messageComponent = this.selectComponent('#qa-message-component'));
@@ -108,23 +112,24 @@ Page({
     if(!valid){
       return;
     }
+    // if (!this.checkLogin()) {
+    //   this.forceLogin();
+    //   return ;
+    // }
     clear();
     const messages = [CommonMessage(text, this.data.avatar, true)];
     this.checkMessageInterval(messages);
     this.pushMessage(...messages);
     this.messageComponent.scrollToBottom();
     // do request
-    if (!this.checkLogin()) {
-      this.forceLogin();
-      return ;
-    }
     getAnswer(text).then(data => {
       this.pushMessage(RecommendMessage(
         data.answer, 
         // 'https://www.shanghaimuseum.net/mu/site/img/favicon.ico', 
         '',  // 展馆头像暂不显示
         data.status ? '更多推荐:' : '可以试试这样问:', 
-        data.recommendQuestions));
+        data.recommendQuestions, 
+        data));
       this.messageComponent.scrollToBottom();
     }).catch(ignore => {})
   },
@@ -147,6 +152,18 @@ Page({
   display() {
     this.setData({
       displayInfo: true
+    })
+  },
+  closeDetailTextPopup(){
+    this.setData({
+      showDetailText:false
+    })
+  },
+  showDetailTextPopup(event){
+    const data = event.detail.data;
+    this.setData({
+      showDetailText: true,
+      detailText: data.answer
     })
   }
 })

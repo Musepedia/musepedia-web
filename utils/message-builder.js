@@ -26,7 +26,7 @@ export function CommonMessage(text, avatar, right = true){
  * @param {*} recommendHint 推荐提示
  * @param {*} recommends 推荐信息
  */
-export function RecommendMessage(text, avatar, recommendHint, recommends){
+export function RecommendMessage(text, avatar, recommendHint, recommends, data){
   return {
     avatar: avatar,
     text: text,
@@ -37,7 +37,8 @@ export function RecommendMessage(text, avatar, recommendHint, recommends){
     textCenter: false,
     type: 'recommend',
     recommendHint: recommendHint,
-    recommends: recommends
+    recommends: recommends,
+    data: data
   }
 }
 
