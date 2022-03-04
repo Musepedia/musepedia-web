@@ -27,6 +27,6 @@ url="{{exhibitUrl}}"/>
     round 
     close-on-click-overlay>
   <view class="detail-text">
-    <text>{{detailText}}</text>
+    <rich-text nodes="{{detailText}}"></rich-text>
   </view>
 </van-popup>

@@ -161,9 +161,10 @@ Page({
   },
   showDetailTextPopup(event){
     const data = event.detail.data;
+    const detailText = data.text.replace(data.answer, `<span style="background-color:yellow;">${data.answer}</span>`)
     this.setData({
       showDetailText: true,
-      detailText: data.answer
+      detailText: detailText
     })
   }
 })

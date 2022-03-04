@@ -86,7 +86,7 @@
       transparent="{{transparent}}"
       textCenter="{{textCenter}}">
     
-    <view class="show-full-text" style="color:#0a69aa;font-size:14px">
+    <view wx:if="{{data.text}}" class="show-full-text" style="color:#0a69aa;font-size:14px">
       <text bindtap="onDetailTap" data-data="{{data}}">详细信息...</text>
     </view>
     <view class="question-recommend" wx:if="{{recommends && recommends.length}}">
