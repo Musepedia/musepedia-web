@@ -11,21 +11,6 @@ Page({
     canIUseGetUserProfile: false,
     canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl') && wx.canIUse('open-data.type.userNickName') // 如需尝试获取用户信息可改为false
   },
-  onReady(){
-    this.getInitPreference();
-  },
-  /**
-   * 用户首次使用小程序，获取用户偏好
-   */
-  getInitPreference(){
-    const isInit = !wx.getStorageSync('initPreference');
-    if(isInit){
-      wx.setStorageSync('initPreference', true);
-      wx.navigateTo({
-        url: '/pages/setting/preference/index',
-      })
-    }
-  },
   scanCode(){
     wx.scanCode({
       onlyFromCamera: true,

@@ -112,10 +112,10 @@ Page({
     if(!valid){
       return;
     }
-    // if (!this.checkLogin()) {
-    //   this.forceLogin();
-    //   return ;
-    // }
+    if (!this.checkLogin()) {
+      this.forceLogin();
+      return ;
+    }
     clear();
     const messages = [CommonMessage(text, this.data.avatar, true)];
     this.checkMessageInterval(messages);

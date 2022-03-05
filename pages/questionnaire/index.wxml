@@ -1,7 +1,7 @@
 <!--用户对展览偏好设置-->
 <view class="preference-setting">
   <view class="setting-header">
-    <van-button wx-if="{{!hideSkipButton}}" class="btn-skip" round bindtap="completeSetting">跳过</van-button>
+    <van-button wx-if="{{!hideSkipButton}}" class="btn-skip" round bindtap="completeSetting">保存</van-button>
   </view>
   <view class="setting-body">
     <swiper class="body-swiper" current="{{currentIndex}}" duration="400" bindchange="settingPageChange">

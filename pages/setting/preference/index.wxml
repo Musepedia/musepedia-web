@@ -4,9 +4,9 @@
     <text>
       展区偏好选择
     </text>
-    <text class="hint">你也可以</text>
+    <text class="hint">了解详细展区内的展品信息你可以</text>
     <text class="hint" style="color: rgb(25,137,250)" bindtap="navigateToQuestionnaire">点此</text>
-    <text class="hint">重新填写问卷</text>
+    <text class="hint">填写问卷</text>
   </view>
   <view class="preference-setting" slot="body">
     <van-checkbox-group value="{{result}}" bind:change="onSettingChange">

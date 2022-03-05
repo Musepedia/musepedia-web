@@ -48,6 +48,13 @@ Page({
         nickname: data.nickname,
         avatar: data.avatarUrl,
       });
+      // 初次登陆设置偏好
+      if(!wx.getStorageSync('initPreference')){
+        wx.setStorageSync('initPreference', true);
+        wx.navigateTo({
+          url: '/pages/setting/preference/index',
+        })
+      }
       // 记录用户是否曾经授权登录过
       // 如果授权过会在小程序启动时尝试获取用户信息
       wx.setStorageSync('registered', true);
