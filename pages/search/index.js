@@ -1,4 +1,4 @@
-// pages/community/index.js
+// pages/search/index.js
 Page({
   data: {
 
@@ -10,11 +10,7 @@ Page({
 
   },
   onShow: function () {
-    if (typeof this.getTabBar === 'function' && this.getTabBar()) {
-      this.getTabBar().setData({
-        active: 2,
-      });
-    }
+
   },
   onHide: function () {
 
@@ -28,7 +24,7 @@ Page({
   onReachBottom: function () {
 
   },
-  onShareAppMessage: function () {
-
+  onSearchBarConfirm({detail}){
+    console.log(detail);
   }
 })

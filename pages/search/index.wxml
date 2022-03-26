@@ -1,0 +1,9 @@
+<!--pages/search/index.wxml-->
+<view class="page-wrapper">
+  <view style="height:32px" class="search-row">
+    <search-bar bindconfirm="onSearchBarConfirm"></search-bar>
+  </view>
+  <view class="search-history">
+    
+  </view>
+</view>

@@ -3,6 +3,7 @@ Page({
     active: 0,
     paths: [
       '/pages/index/index',
+      '/pages/explore/index',
       '/pages/community/index',
       '/pages/user/index'
     ]

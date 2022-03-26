@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/explore/index",
     "pages/community/index",
     "pages/user/index",
     "pages/qa/index",
@@ -8,7 +9,8 @@
     "pages/webpage/index",
     "pages/setting/preference/index",
     "pages/setting/index",
-    "pages/questionnaire/index"
+    "pages/questionnaire/index",
+    "pages/search/index"
   ],
   "usingComponents": {
     "van-button": "@vant/weapp/button/index",
@@ -27,7 +29,8 @@
     "van-tag": "@vant/weapp/tag/index",
     "message-component": "/components/message-component/index",
     "router-link": "/components/router-link/index",
-    "additional-input": "/components/additional-input/index"
+    "additional-input": "/components/additional-input/index",
+    "search-bar": "/components/search-bar/index"
   },
   "window": {
     "backgroundTextStyle": "light",
@@ -43,6 +46,10 @@
       {
         "pagePath": "pages/index/index",
         "text": "首页"
+      },
+      {
+        "pagePath": "pages/explore/index",
+        "text": "发现"
       },
       {
         "pagePath": "pages/community/index",

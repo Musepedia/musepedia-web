@@ -20,7 +20,7 @@ Page({
   onShow: function () {
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
       this.getTabBar().setData({
-        active: 2,
+        active: 3,
       });
     };
     const globalUserInfo = app.globalData.userInfo; 

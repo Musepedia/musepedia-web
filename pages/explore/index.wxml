@@ -1,0 +1,20 @@
+<!--pages/explore/index.wxml-->
+<view class="page-wrapper explore-container">
+  <view class="search-bar-wrapper">
+    <search-bar value="{{keyword}}" bindtap="onSearchTap" redirect="/pages/search/index"></search-bar>
+  </view>
+  <scroll-view class="recommendation-section" 
+      refresher-enabled="{{refresherEnabled}}"
+      refresher-triggered="{{refreshing}}"
+      refresher-default-style="none"
+      bindrefresherrefresh="onRefresh" 
+      bindscrolltolower="onScrollToLower" 
+      scroll-y>
+    <view slot="refresher" class="refresher-section"><van-loading color="rgb(0, 148, 255)"/></view>
+    <view wx:for="{{recommendations}}" wx:key="index" class="recommendation">
+      {{index}}
+    </view>
+    <view class="loading-section"><van-loading color="rgb(0, 148, 255)"/></view>
+  </scroll-view>
+</view>
+

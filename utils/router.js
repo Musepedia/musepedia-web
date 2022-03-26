@@ -1,11 +1,11 @@
-const qa = '/pages/qa/index'
 const index = '/pages/index/index'
+const explore = '/pages/explore/index'
 const community = '/pages/community/index'
 const user = '/pages/user/index'
 
 export default {
-  qa,
   index,
+  explore,
   community,
   user
 }

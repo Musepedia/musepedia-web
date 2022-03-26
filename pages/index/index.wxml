@@ -1,15 +1,12 @@
 <!--index.wxml-->
-<view class="index-container">
-  <view class="header no-display">
-    <view class="header-row">
+<view class="index-container page-wrapper">
+  <view class="header">
+    <view style="display:none" class="header-row">
       <text>选择博物馆</text>
       <van-icon name="arrow-down"/>
     </view>
     <view class="header-row search-row">
-      <view class="search-button">
-        <van-icon name="search" size="18px"/>
-        <text>输入关键字搜索</text>
-      </view>
+      <search-bar style="width:100%; height:100%; margin-right:10px;" redirect="/pages/search/index" ></search-bar>
       <van-icon name="scan" size="26px" bindtap="scanCode"/>
     </view>
   </view>

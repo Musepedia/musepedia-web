@@ -35,7 +35,6 @@ _axios.interceptors.request.use(
 function checkToken(response){
   const token = response.headers[TOKEN_HEADER];
   // 不过期
-  token && console.log('Token from server:', token);
   token && wx.setStorage({
     key: 'token',
     data: token

@@ -1,0 +1,13 @@
+<!--components/search-bar/index.wxml-->
+<view class="search-bar" bindtap="onSearchBarTap">
+  <van-icon name="search" size="18px"/>
+  <input wx:if="{{!redirect}}" 
+      class="search-input" 
+      model:value="{{value}}" 
+      bindinput="onSearchBarInput"
+      bindconfirm="onSearchBarConfirm" 
+      placeholder="输入关键字搜索"
+      type="text"/>
+  <text wx:else>输入关键字搜索</text>
+  <van-icon wx:if="{{value}}" name="clear" bindtap="clearText"></van-icon>
+</view>
