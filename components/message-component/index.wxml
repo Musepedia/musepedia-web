@@ -81,12 +81,12 @@
   <common-message 
       right="{{right}}" 
       showArrow="{{showArrow}}"
-      text="{{text}}" 
+      text="{{data.isImage ? '' : text}}" 
       fullWidth="{{fullWidth}}" 
       transparent="{{transparent}}"
       textCenter="{{textCenter}}">
-    
-    <view wx:if="{{data.text}}" class="show-full-text" style="color:#0a69aa;font-size:14px">
+    <image wx:if="{{data.isImage || data.status===2 || data.status === 3}}" bindtap="previewImage" data-src="{{text}}" src="{{text}}" mode="aspectFill"></image>
+    <view wx:if="{{data.status===1 && data.text}}" class="show-full-text" style="color:#0a69aa;font-size:14px">
       <text bindtap="onDetailTap" data-data="{{data}}">详细信息...</text>
     </view>
     <view class="question-recommend" wx:if="{{recommends && recommends.length}}">

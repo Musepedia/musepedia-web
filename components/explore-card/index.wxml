@@ -1,10 +1,10 @@
 <!--components/explore-card/index.wxml-->
 <view class="explore-card">
-  <view class="explore-title">TITLONgEEEEEEELE</view>
+  <view class="explore-title">{{title}}</view>
   <view class="explore-content">
     <view class="explore-text">
-      <text>CONTSDASDDDDSADDDDDDDDDDDDDDDDasd暗示ENT</text>
+      <text>{{content}}</text>
     </view>
-    <image class="explore-img" src="http://mooc-image.nosdn.127.net/344d2cc862c94cca9bd20bb905bf1239.png?imageView&quality=100&thumbnail=1552y720" mode="aspectFill"></image>
+    <image class="explore-img" src="{{src || 'http://mooc-image.nosdn.127.net/344d2cc862c94cca9bd20bb905bf1239.png?imageView&quality=100&thumbnail=1552y720'}}" mode="aspectFill"></image>
   </view>
 </view>

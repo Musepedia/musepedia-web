@@ -14,10 +14,7 @@
 }
 .recommendation{
   margin-top: 10px;
-  height: 100px;
-  width: 100%;
   background-color: #fff;
-  /* box-shadow: 13px 0px 8px 0px #ebedf0; */
 
 }
 

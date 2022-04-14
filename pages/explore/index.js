@@ -1,4 +1,6 @@
 // pages/explore/index.js
+import {getRecommendation} from '../../api/recommendation'
+
 Page({
   data: {
     keyword: '',
@@ -38,25 +40,22 @@ Page({
         loading: true,
         refresherEnabled: false
       })
-      setTimeout(() => {
+      getRecommendation(4).then(data => {
         this.setData({
-          recommendations: this.data.recommendations.concat('FFF'),
+          recommendations: this.data.recommendations.concat(data),
           loading: false,
           refresherEnabled: true
         })
-      }, 2000)
+      }).catch(ignore => {})
     }
   },
   onRefresh(){
-    setTimeout(() => {
-      let a = [];
-      for(let i =0;i<16;i++) a.push('asd');
+    getRecommendation(16).then(data => {
       this.setData({
-        recommendations: a,
+        recommendations: data,
         refreshing: false,
         refresherEnabled: true
       })
-    }, 2000)
+    }).catch(ignore => {})
   }
-
 })

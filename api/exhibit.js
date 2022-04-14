@@ -2,7 +2,7 @@ import axios from '../utils/axios'
 
 export function getExhibitInfoById(id){
   return axios({
-    url: 'exhibit',
+    url: 'exhibit/info',
     method: 'get',
     params: {
       id: id

@@ -142,6 +142,11 @@ Component({
       this.triggerEvent('detailtap', {
         data: dataset.data,
       });
+    },
+    previewImage(event){
+      wx.previewImage({
+        urls: [event.target.dataset.src],
+      })
     }
   }
 })

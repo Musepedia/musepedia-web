@@ -5,7 +5,7 @@
       <text>选择博物馆</text>
       <van-icon name="arrow-down"/>
     </view>
-    <view class="header-row search-row">
+    <view style="display:none" class="header-row search-row">
       <search-bar style="width:100%; height:100%; margin-right:10px;" redirect="/pages/search/index" ></search-bar>
       <van-icon name="scan" size="26px" bindtap="scanCode"/>
     </view>
@@ -13,8 +13,10 @@
 
   <view class="index-body" style="display:flex; justify-content: space-around;">
     <router-link to="/pages/qa/index"><additional-input icon-name="comment-o" hint="问答"></additional-input></router-link>
+    <router-link  style="display:none" to="/pages/explore/index"><additional-input icon-name="notes-o" hint="发现"></additional-input></router-link>
   </view>
   <view class="index-body">
     <router-link class="no-display" to="/pages/questionnaire/index?">偏好</router-link>
   </view>
 </view>
+

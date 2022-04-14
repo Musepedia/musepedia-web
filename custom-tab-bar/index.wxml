@@ -6,8 +6,11 @@
   inactive-color="#000"
   bind:change="onChange"
 >
-  <van-tabbar-item safe-area-inset-bottom="false" icon="home-o">首页</van-tabbar-item>
-  <van-tabbar-item safe-area-inset-bottom="false" icon="notes-o">发现</van-tabbar-item>
-  <van-tabbar-item safe-area-inset-bottom="false" icon="calendar-o">社区</van-tabbar-item>
-  <van-tabbar-item safe-area-inset-bottom="false" icon="friends-o">个人</van-tabbar-item>
+  <van-tabbar-item icon="home-o">首页</van-tabbar-item>
+  <van-tabbar-item icon="notes-o">发现</van-tabbar-item>
+    <!-- <view class="mid-tabbar-item">
+      <van-icon name="scan" size="26px">asd</van-icon>
+    </view> -->
+  <van-tabbar-item icon="calendar-o">社区</van-tabbar-item>
+  <van-tabbar-item icon="friends-o">个人</van-tabbar-item>
 </van-tabbar>

@@ -11,8 +11,8 @@
       bindscrolltolower="onScrollToLower" 
       scroll-y>
     <view slot="refresher" class="refresher-section"><van-loading color="rgb(0, 148, 255)"/></view>
-    <view wx:for="{{recommendations}}" wx:key="index" class="recommendation">
-      {{index}}
+    <view wx:for="{{recommendations}}" wx:for-item="recom" wx:key="index" class="recommendation">
+      <explore-card title="{{recom.questionText}}" content="{{recom.answerText}}" src="{{recom.exhibitFigureUrl}}"></explore-card>
     </view>
     <view class="loading-section"><van-loading color="rgb(0, 148, 255)"/></view>
   </scroll-view>

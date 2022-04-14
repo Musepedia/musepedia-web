@@ -123,6 +123,10 @@ Page({
     this.messageComponent.scrollToBottom();
     // do request
     getAnswer(text).then(data => {
+      if(data.status === 2 || data.status === 3 
+        || data.answer.startsWith('https://') || data.answer.startsWith('http://')){
+        data.isImage = true;
+      }
       this.pushMessage(RecommendMessage(
         data.answer, 
         // 'https://www.shanghaimuseum.net/mu/site/img/favicon.ico', 
@@ -131,7 +135,9 @@ Page({
         data.recommendQuestions, 
         data));
       this.messageComponent.scrollToBottom();
-    }).catch(ignore => {})
+    }).catch(err => {
+      wx.Toast.fail('请求失败')
+    })
   },
   onRefresh({detail}){
     const done = detail.done;

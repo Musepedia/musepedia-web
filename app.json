@@ -30,7 +30,8 @@
     "message-component": "/components/message-component/index",
     "router-link": "/components/router-link/index",
     "additional-input": "/components/additional-input/index",
-    "search-bar": "/components/search-bar/index"
+    "search-bar": "/components/search-bar/index",
+    "explore-card": "/components/explore-card/index"
   },
   "window": {
     "backgroundTextStyle": "light",

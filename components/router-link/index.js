@@ -11,6 +11,11 @@ Component({
     navigateTo(){
       wx.navigateTo({
         url: this.data.to,
+        fail: () => {
+          wx.switchTab({
+            url: this.data.to,
+          })
+        }
       })
     }
   }

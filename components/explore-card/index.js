@@ -1,22 +1,13 @@
 // components/explore-card/index.js
 Component({
-  /**
-   * Component properties
-   */
   properties: {
-
+    title: String,
+    content: String,
+    src: String
   },
-
-  /**
-   * Component initial data
-   */
   data: {
 
   },
-
-  /**
-   * Component methods
-   */
   methods: {
 
   }
