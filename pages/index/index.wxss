@@ -5,6 +5,7 @@ page{
 
 .index-container {
   padding: 10px 20px;
+  height: calc(100vh - var(--tabbar-height, 50px) - env(safe-area-inset-bottom))
 } 
 
 .header-row{
@@ -13,7 +14,23 @@ page{
   margin-bottom: 10px;
 }
 
+.museum-row{
+  border-radius: 10px;
+  width: 100%;
+  overflow: hidden;
+  height: 26vh;
+  position: relative;
+}
+
+.museum-name{
+  position: absolute;
+  font-size: 22px;
+  left: 10px;
+  top: 10px;
+}
+
 .search-row{
+  margin-top: 10px;
   height: 32px;
 }
 

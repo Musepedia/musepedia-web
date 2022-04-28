@@ -5,18 +5,24 @@
       <text>选择博物馆</text>
       <van-icon name="arrow-down"/>
     </view>
-    <view style="display:none" class="header-row search-row">
-      <search-bar style="width:100%; height:100%; margin-right:10px;" redirect="/pages/search/index" ></search-bar>
-      <van-icon name="scan" size="26px" bindtap="scanCode"/>
+    <view class="museum-row">
+      <image src="https://s1.328888.xyz/2022/04/14/iA8Vd.jpg" mode="aspectFill"></image>
+      <text class="museum-name">上海自然博物馆 的地图</text>
+    </view>
+    <view class="header-row search-row">
+      <search-bar style="width:100%; height:100%;" redirect="/pages/qa/index" placeholder="在此输入问题"></search-bar>
+      <!-- <van-icon name="scan" size="26px" bindtap="scanCode"/> -->
     </view>
   </view>
 
   <view class="index-body" style="display:flex; justify-content: space-around;">
-    <router-link to="/pages/qa/index"><additional-input icon-name="comment-o" hint="问答"></additional-input></router-link>
+    <router-link style="display:none" to="/pages/qa/index"><additional-input icon-name="comment-o" hint="问答"></additional-input></router-link>
     <router-link  style="display:none" to="/pages/explore/index"><additional-input icon-name="notes-o" hint="发现"></additional-input></router-link>
   </view>
-  <view class="index-body">
+
+  <view class="recommend-section"></view>
+  <!-- <view class="index-body">
     <router-link class="no-display" to="/pages/questionnaire/index?">偏好</router-link>
-  </view>
+  </view> -->
 </view>
 

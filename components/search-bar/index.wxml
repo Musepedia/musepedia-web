@@ -6,8 +6,8 @@
       model:value="{{value}}" 
       bindinput="onSearchBarInput"
       bindconfirm="onSearchBarConfirm" 
-      placeholder="输入关键字搜索"
+      placeholder="{{placeholder || '输入关键字搜索'}}"
       type="text"/>
-  <text wx:else>输入关键字搜索</text>
+  <text wx:else>{{placeholder || '输入关键字搜索'}}</text>
   <van-icon wx:if="{{value}}" name="clear" bindtap="clearText"></van-icon>
 </view>

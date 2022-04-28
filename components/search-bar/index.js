@@ -5,6 +5,10 @@ Component({
       type: String,
       value: ''
     },
+    placeholder: {
+      type: String,
+      value: '输入关键字搜索'
+    }
   },
   data: {
     value: ''
