@@ -6,10 +6,14 @@ const globalAppInfo = app.globalData.appInfo;
 
 Page({
   data: {
+    // 用户信息相关
     isLogin: false,
     nickname: '',
     avatar: '',
-    appVersion: globalAppInfo.version
+    // 用户个人收藏相关
+    data: [],
+    // ui相关
+    scrollViewHeight: 0
   },
   onLoad: function (options) {
     
@@ -17,12 +21,24 @@ Page({
   onReady: function () {
 
   },
+  setScrollViewHeight(){
+    setTimeout(() => {
+      this.createSelectorQuery().select('.display-scroll-view').boundingClientRect().exec(e => {
+        this.setData({
+          scrollViewHeight: e[0].height
+        })
+        console.log('sv:',e[0]);
+      });
+    }, 0)
+    
+  },
   onShow: function () {
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
       this.getTabBar().setData({
         active: 3,
       });
     };
+    this.setScrollViewHeight();
     const globalUserInfo = app.globalData.userInfo; 
     this.setData({
       isLogin: globalUserInfo.isLogin,
@@ -59,5 +75,10 @@ Page({
       // 如果授权过会在小程序启动时尝试获取用户信息
       wx.setStorageSync('registered', true);
     }).catch(ignore => {})
+  },
+  fetchData(){
+    this.setData({
+      data: this.data.data.concat('asd')
+    })
   }
 })

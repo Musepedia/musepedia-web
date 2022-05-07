@@ -1,33 +1,63 @@
 <!--pages/user/index.wxml-->
+
 <view class="user-page">
   <view class="header-card">
-    <view class="header-row">
+    <view class="setting-btn">
+      <van-icon name="setting-o" size="20px" bindtap="fetchData"></van-icon>
+    </view>
+  </view>
 
+  <view class="body-card">
+    <view class="user-info-container">
       <view class="avatar-container">
         <image class="user-avatar" src="{{avatar}}"></image>
+        <view class="avatar-radius avatar-radius-left">
+          <view class="avatar-radius-inner"></view>
+        </view>
+        <view class="avatar-radius avatar-radius-right">
+          <view class="avatar-radius-inner"></view>
+        </view>
       </view>
-
       <view class="info-container">
-        <view class="username" wx:if="{{isLogin}}">
-          <text>{{nickname}}</text>
+        <view class="info-username" wx:if="{{isLogin}}">
+          <view class="username-text">{{nickname}}</view>
+          <view class="extra-user-info">abstractmgs.cn</view>
+          <view class="extra-user-info">东中国正常大学</view>
         </view>
         <view class="info-hint" bindtap="handleLoginTap" wx:else>
           <text>点击授权</text>
         </view>
       </view>
     </view>
+
+    <view class="user-tabbar">
+      <view class="user-tabbar-item" wx:for="{{3}}">
+        <view class="{{index === 1 ? 'tabbar-item-selected' : ''}}">日常</view>
+        <view style="margin-top:4px;font-size:20px" class="item2">{{index * 20}}</view>
+      </view>
+    </view>
+
+    <scroll-view 
+        style="height: {{scrollViewHeight}}px;"
+        class="display-scroll-view"
+        refresher-disabled
+        refresher-triggered="{{isRefreshing}}"
+        bindrefresherrefresh="onRefresh" 
+        scroll-y>
+      <view class="ASD" wx:for="{{data}}" wx:key="index">asd</view>
+    </scroll-view>
+
+
   </view>
 
+</view>
 
-  <view class="body-card">
+  <!-- <view class="body-card">
     <van-cell-group custom-class="select-cell-group">
         <van-cell class="top-cell" center icon="contact" size="large" title="个人信息" is-link="true" url="" bindtap=""></van-cell>
         <van-cell center icon="setting-o" size="large" title="设置" is-link="true" url="/pages/setting/index" bindtap=""></van-cell>
         <van-cell center icon="smile-comment-o" size="large" title="关于我们" is-link="true" url="../about/index" bindtap="" border="{{ false }}"></van-cell>
     </van-cell-group>
-  </view>
-</view>
-
-<view class="section-text">Version {{appVersion}}</view>
+  </view> -->
 
 <van-toast id="van-toast" />
