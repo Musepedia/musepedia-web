@@ -27,7 +27,7 @@
 }
 
 .refresher-section{
-  margin-top:10px;
+  margin: 5px 0;
   width:100%;
   display:flex;
   justify-content: center;

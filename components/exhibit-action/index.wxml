@@ -1,0 +1,12 @@
+<!-- 对展品信息的操作（点赞，评论，不感兴趣...） -->
+<view class="exhibit-action">
+  <view class="exhibit-action-btn" bindtap="onActionTap" data-action="Like">
+    <van-icon name="{{likeIcon}}" size="{{iconSize}}" color="{{likeColor}}"></van-icon>
+  </view>
+  <view class="exhibit-action-btn" bindtap="onActionTap" data-action="Comment">
+    <van-icon name="comment-o" size="{{iconSize}}"></van-icon>
+  </view>
+  <view class="exhibit-action-btn" bindtap="onActionTap" data-action="More">
+    <van-icon name="ellipsis" size="{{iconSize}}"></van-icon>
+  </view>
+</view>

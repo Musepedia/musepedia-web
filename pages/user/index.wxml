@@ -40,11 +40,49 @@
     <scroll-view 
         style="height: {{scrollViewHeight}}px;"
         class="display-scroll-view"
-        refresher-disabled
+        refresher-enabled
         refresher-triggered="{{isRefreshing}}"
+        refresher-default-style="none"
         bindrefresherrefresh="onRefresh" 
+        bindscrolltolower="onScrollToLower" 
         scroll-y>
-      <view class="ASD" wx:for="{{data}}" wx:key="index">asd</view>
+      <view slot="refresher" class="loading-section"><van-loading color="rgb(0, 148, 255)"/></view>
+      <view class="masonry">
+        <exhibit-card 
+            class="display-item" 
+            wx:for="{{data}}" 
+            wx:key="index" 
+            src="{{item}}"
+            mode="widthFix" 
+            question="小鼹鼠在哪里？"
+            show-divider
+            answer="在__里">
+        </exhibit-card>
+      </view>
+      <!-- <view class="column-container">
+        <view class="display-column">
+          <exhibit-card 
+            class="display-item" 
+            wx:for="{{data}}" 
+            wx:key="index" 
+            src="{{item}}"  wx:if="{{!(index % 2)}}"
+            mode="widthFix">
+          </exhibit-card>
+        </view>
+        <view class="display-column">
+          <exhibit-card 
+            class="display-item" 
+            wx:for="{{data}}" 
+            wx:key="index" 
+            src="{{item}}"  wx:if="{{(index % 2)}}"
+            mode="widthFix">
+          </exhibit-card>
+        </view>
+      </view> -->
+      <view class="loading-section">
+        <!-- <van-loading color="rgb(0, 148, 255)"/> -->
+        <text>已经没有更多了...</text>
+      </view>
     </scroll-view>
 
 

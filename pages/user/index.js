@@ -13,7 +13,9 @@ Page({
     // 用户个人收藏相关
     data: [],
     // ui相关
-    scrollViewHeight: 0
+    isRefreshing: false,
+    scrollViewHeight: 0,
+    noMoreData: false
   },
   onLoad: function (options) {
     
@@ -27,10 +29,8 @@ Page({
         this.setData({
           scrollViewHeight: e[0].height
         })
-        console.log('sv:',e[0]);
       });
     }, 0)
-    
   },
   onShow: function () {
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
@@ -46,15 +46,9 @@ Page({
       avatar: globalUserInfo.avatar,
     })
   },
-  onHide: function () {
-
-  },
-  onUnload: function () {
-
-  },
-  onShareAppMessage: function () {
-
-  },
+  onHide: function () {},
+  onUnload: function () {},
+  onShareAppMessage: function () {},
   handleLoginTap(e){
     wxLoginWithBackend().then(data => {
       wx.Toast.success('登录成功');
@@ -77,8 +71,25 @@ Page({
     }).catch(ignore => {})
   },
   fetchData(){
+    const imgs = [
+      'https://images.unsplash.com/photo-1652794878130-d7274e14e244?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=60&raw_url=true&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500',
+      'https://images.unsplash.com/photo-1652819192956-5f2177496bbd?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=60&raw_url=true&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500',
+      'https://images.unsplash.com/photo-1652819707035-2008e682a64f?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=60&raw_url=true&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw0fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500',
+      'https://img.zcool.cn/community/01212c5d3811a9a80120695caad9b6.jpg@1280w_1l_2o_100sh.jpg',
+      'https://up.2baobao.com/kejian/ppt/images/24484/%E5%B9%BB%E7%81%AF%E7%89%8710.jpg',
+      'https://tse1-mm.cn.bing.net/th/id/R-C.10a07d008655eaad2facbdac0148d23c?rik=ZfyMm%2btLOQMfGw&riu=http%3a%2f%2fimg1.gtimg.com%2fkid%2fpics%2fhv1%2f173%2f204%2f1982%2f128931743.png&ehk=%2bRGSG6nsKzkAu9tZKqb8BBNNiqMs0H3JKIM2sRJ%2f0ws%3d&risl=&pid=ImgRaw&r=0'
+    ];
     this.setData({
-      data: this.data.data.concat('asd')
+      data: this.data.data.concat(...imgs),
+      isRefreshing: false
     })
+  },
+  onRefresh(){
+    setTimeout(() => {
+      this.fetchData();
+    }, 1000)
+  },
+  onScrollToLower(){
+
   }
 })

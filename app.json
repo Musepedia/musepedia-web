@@ -31,7 +31,8 @@
     "router-link": "/components/router-link/index",
     "additional-input": "/components/additional-input/index",
     "search-bar": "/components/search-bar/index",
-    "explore-card": "/components/explore-card/index"
+    "explore-card": "/components/explore-card/index",
+    "exhibit-card": "/components/exhibit-card/index"
   },
   "window": {
     "backgroundTextStyle": "light",

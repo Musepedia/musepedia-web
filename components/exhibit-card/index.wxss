@@ -1,0 +1,19 @@
+.exhibit-card{
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px 2px rgba(0,0,0,.12);
+}
+
+.exhibit-text-section{
+  padding: 8px 16px 10px;
+  font-weight: 600;
+}
+
+.divider{
+  width: 100%;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.exhibit-card-action{
+  float: right;
+}

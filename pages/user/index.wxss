@@ -131,7 +131,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 12px;
+  margin-top: 6px;
+  padding: 6px 0;
 }
 
 .user-tabbar-item{
@@ -154,20 +155,41 @@
   border-bottom: 1px var(--primary-orange) solid;
 }
 
+/* 收藏/喜欢 展示 */
 .display-scroll-view{
   width: 100%;
   flex-grow: 1;
-  /* overflow: scroll; */
 }
 
-
-.select-cell-group{
-  padding-top: 15px;
-  border-radius: 20px;
-}
-
-.section-text {
+.masonry{
   width: 100%;
-  text-align: center;
-  color: darkgrey;
+  column-count: 2;
+  column-gap: 10px;
+  padding: 6px 10px;
+}
+
+.display-item{
+  break-inside: avoid;
+  height: 100%;
+  display: block;
+  margin-bottom: 4px;
+  padding: 6px 6px 10px 6px;
+}
+
+.loading-section{
+  margin: 5px 0;
+  width:100%;
+  display:flex;
+  justify-content: center;
+}
+
+.column-container{
+  display:flex;
+  width:100%;
+  padding-right: 10px;
+}
+
+.display-column{
+  width: 50%;
+  padding: 0 4px;
 }
