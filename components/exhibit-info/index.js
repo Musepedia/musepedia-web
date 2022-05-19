@@ -15,7 +15,7 @@ Component({
       value: 'default content',
     },
     url: {
-      tyoe: String,
+      type: String,
       value: 'default url',
     },
     show: {

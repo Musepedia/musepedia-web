@@ -42,6 +42,8 @@ page{
   --primary-green: #4996a2;
   --secondary-green: #71c2cc;
 
+  --primary-theme-color: var(--primary-orange);
+
   --vscode-class: #4ec9b0;
   --vscode-function: #DCD2A1;
   --vscode-light-green: #b8d7a3;

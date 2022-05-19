@@ -46,7 +46,7 @@
         bindrefresherrefresh="onRefresh" 
         bindscrolltolower="onScrollToLower" 
         scroll-y>
-      <view slot="refresher" class="loading-section"><van-loading color="rgb(0, 148, 255)"/></view>
+      <view slot="refresher" class="loading-section"><van-loading color="var(--primary-theme-color)"/></view>
       <view class="masonry">
         <exhibit-card 
             class="display-item" 
@@ -80,7 +80,7 @@
         </view>
       </view> -->
       <view class="loading-section">
-        <!-- <van-loading color="rgb(0, 148, 255)"/> -->
+        <!-- <van-loading color="var(--primary-theme-color)"/> -->
         <text>已经没有更多了...</text>
       </view>
     </scroll-view>

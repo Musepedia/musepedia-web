@@ -20,8 +20,14 @@ Component({
       type: String,
       value: ''
     },
-    showDivider: false,
-    showActionBar: false
+    showDivider: {
+      type: Boolean,
+      value: false
+    },
+    showActionBar: {
+      type: Boolean,
+      value: false
+    }
   },
   data: {
 

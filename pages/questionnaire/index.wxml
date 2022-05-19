@@ -16,24 +16,34 @@
                   bindtap="settingItemTap" 
                   data-hall-id="{{exhibit.exhibitionHall.id}}"
                   data-name="{{exhibit.id}}">
+              <modal opacity="{{.5}}"></modal>
               <image class="setting-item__image" mode="aspectFill" src="{{exhibit.figureUrl}}">
                 <van-tag wx:if="{{exhibit.hot}}" class="hot-tag" round color="#ee0a24">Hot</van-tag>
               </image>
-              <text class="setting-item__text">{{exhibit.label}}</text>
-              <text class="setting-item__text">{{exhibit.exhibitionHall.name}}</text>
+              <view class="absolute-wrapper">
+                <text class="setting-item__text">{{exhibit.label}}</text>
+                <text class="setting-item__text">{{exhibit.exhibitionHall.name}}</text>
+              </view>
             </view>
           </swiper-item>
       </block>
 
     </swiper>
   </view>
-  <view class="setting-footer {{preferenceSettings.length > 1 ? '' : 'single-page'}}">
+  <view class="setting-footer">
+    <view class="page-indicator">
+      <view class="page-indicator-dot {{index === currentIndex ? 'current-page' : ''}}" 
+            wx:for="{{preferenceSettings.length}}" 
+            wx:key="{{index}}">
+        
+      </view>
+    </view>
     <!-- show only when > 1 pages -->
-    <van-button class="btn-prev" round bind:click="previousPage">上一页</van-button>
+    <!-- <van-button class="btn-prev" round bind:click="previousPage">上一页</van-button>
     <view class="page-indicator">{{currentIndex+1}}/{{preferenceSettings.length}}</view>
 
     <van-button wx:if="{{(currentIndex < preferenceSettings.length -1)}}" class="btn-next" round bind:click="nextPage">下一页</van-button>
-    <van-button wx:else class="btn-next" type="info" round bind:click="completeSetting">完成</van-button>
+    <van-button wx:else class="btn-next" type="info" round bind:click="completeSetting">完成</van-button> -->
   </view>
   <view class="safe-bottom"></view>
 </view>

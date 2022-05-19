@@ -32,7 +32,8 @@
     "additional-input": "/components/additional-input/index",
     "search-bar": "/components/search-bar/index",
     "explore-card": "/components/explore-card/index",
-    "exhibit-card": "/components/exhibit-card/index"
+    "exhibit-card": "/components/exhibit-card/index",
+    "modal": "/components/modal/index"
   },
   "window": {
     "backgroundTextStyle": "light",
