@@ -1,0 +1,49 @@
+<!--登录页面-->
+<view class="login-page">
+  <view class="login-avatar-section"> 
+    <image class="login-avatar" src="https://www.neptu.cn/uploads/img/1623154552723-84596340_p0_master1200.jpg"></image>
+  </view>
+  <view class="login-input-section">
+    <view class="input-cell input-phone">
+      <input
+        class="text-field" 
+        model:value="{{phone}}"  
+        bindinput="onPhoneInput"
+        placeholder="请输入手机号"
+        type="text"/>
+    </view>
+    <view class="input-cell input-sms">
+      <input
+        class="text-field" 
+        model:value="{{sms}}"  
+        bindinput="onSMSInput"
+        bindconfirm="onSMSConfirm" 
+        placeholder="请输入验证码"
+        type="text"/>
+      <van-button 
+        class="btn-send-sms" 
+        type="primary" 
+        disabled="{{smsInterval > 0}}"
+        border="{{false}}"
+        round
+        bind:click="onSendSMSClick">
+        {{smsInterval > 0 ? '重新发送(' + smsInterval + ')' : '发送短信'}}
+      </van-button>
+    </view>
+    <view class="input-cell">
+      <label class="agreement-label">
+        <checkbox class="agreement-checkbox">同意用户协议</checkbox>
+      </label>
+    </view>
+    <view class="input-cell">
+      <van-button 
+        class="btn-login" 
+        type="primary" 
+        border="{{false}}"
+        custom-style="width:100%;"
+        round>
+        登录
+      </van-button>
+    </view>
+  </view>
+</view>

@@ -60,13 +60,18 @@
 
 .question-recommend{
   margin-top:10px;
-  color: #232323;
+  color: var(--dialog-recommend-font-color, #232323);
   font-size: 14px;
 }
 
 .question-recommend__text{
-  color:#0a69aa; 
+  color: #0a69aa; 
   display:block
+}
+
+.message-reply{
+  --dialog-background-color: #f2f2f2;
+  --dialog-font-color: #000;
 }
 
 .ixadapt .input-message{

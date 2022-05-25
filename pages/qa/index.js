@@ -123,6 +123,7 @@ Page({
     this.messageComponent.scrollToBottom();
     // do request
     getAnswer(text).then(data => {
+      data.isReply = true;
       if(data.status === 2 || data.status === 3 
         || data.answer.startsWith('https://') || data.answer.startsWith('http://')){
         data.isImage = true;

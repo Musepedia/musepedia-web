@@ -79,6 +79,7 @@
 <!-- 带推荐内容的消息框 -->
 <template name="common-message-recommend">
   <common-message 
+      class="{{data.isReply ? 'message-reply' : ''}}"
       right="{{right}}" 
       showArrow="{{showArrow}}"
       text="{{data.isImage ? '' : text}}" 
