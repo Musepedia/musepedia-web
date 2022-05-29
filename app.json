@@ -11,7 +11,8 @@
     "pages/setting/index",
     "pages/questionnaire/index",
     "pages/search/index",
-    "pages/user/login/index"
+    "pages/user/login/index",
+    "pages/exhibit-detail/index"
   ],
   "usingComponents": {
     "van-button": "@vant/weapp/button/index",
@@ -33,7 +34,7 @@
     "additional-input": "/components/additional-input/index",
     "search-bar": "/components/search-bar/index",
     "explore-card": "/components/explore-card/index",
-    "exhibit-card": "/components/exhibit-card/index",
+    "question-card": "/components/question-card/index",
     "modal": "/components/modal/index"
   },
   "window": {

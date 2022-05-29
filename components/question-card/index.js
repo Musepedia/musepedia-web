@@ -1,4 +1,3 @@
-// components/exhibit-card/index.js
 Component({
   options: {
     multipleSlots: true
@@ -21,6 +20,10 @@ Component({
       value: ''
     },
     showDivider: {
+      type: Boolean,
+      value: false
+    },
+    showDividerDown: {
       type: Boolean,
       value: false
     },

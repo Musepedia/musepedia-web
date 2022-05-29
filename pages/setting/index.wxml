@@ -5,7 +5,15 @@
 
   
   <van-cell-group style="margin-top:20px">
-    <van-cell class="top-cell" center size="large" title="打印本地存储" bindtap="printStorage"></van-cell>
     <van-cell center size="large" title="清除本地存储" bindtap="clearStorage"></van-cell>
   </van-cell-group>
+  
+  <!-- <view class="body-card">
+    <van-cell-group custom-class="select-cell-group">
+        <van-cell class="top-cell" center icon="contact" size="large" title="个人信息" is-link="true" url="" bindtap=""></van-cell>
+        <van-cell center icon="setting-o" size="large" title="设置" is-link="true" url="/pages/setting/index" bindtap=""></van-cell>
+        <van-cell center icon="smile-comment-o" size="large" title="关于我们" is-link="true" url="../about/index" bindtap="" border="{{ false }}"></van-cell>
+    </van-cell-group>
+  </view> -->
+
 </view>

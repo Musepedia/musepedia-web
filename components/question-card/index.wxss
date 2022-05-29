@@ -1,7 +1,8 @@
-.exhibit-card{
+.question-card{
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 6px 2px rgba(0,0,0,.12);
+  background-color: #fff;
 }
 
 .exhibit-text-section{
@@ -11,9 +12,13 @@
 
 .divider{
   width: 100%;
-  border-bottom: 1px solid #e8e8e8;
+  border-top: 1px solid #e8e8e8;
 }
 
-.exhibit-card-action{
-  float: right;
+.divider-down{
+  text-align: center;
+}
+
+.question-card-action{
+  width: 100%;
 }

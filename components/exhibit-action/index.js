@@ -3,7 +3,7 @@ Component({
   properties: {
     iconSize: {
       type: String,
-      value: '16px'
+      value: '20px'
     },
   },
   data: {

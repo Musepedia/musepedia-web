@@ -1,0 +1,20 @@
+.exhibit-detail-page{
+  height: calc(100vh - env(safe-area-inset-bottom));
+  overflow-y: scroll;
+  padding-bottom: 10px;
+
+  --overlay-background-color: rgba(0,0,0,.5);
+}
+
+.detail-card{
+  background-color: #fff;
+  margin-top: 14px;
+}
+
+.question-section{
+  margin-top: 20px;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

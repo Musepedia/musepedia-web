@@ -1,8 +1,14 @@
 .exhibit-action{
   display: flex;
   align-items: center;
+  justify-content: flex-end;
+  padding: 0 10px 10px;
 }
 
 .exhibit-action-btn{
-  padding: 4px;
+  padding: 0 6px;
+}
+
+.exhibit-action-btn.left{
+  margin-right: auto;
 }

@@ -3,7 +3,9 @@
 <view class="user-page">
   <view class="header-card">
     <view class="setting-btn">
-      <van-icon name="setting-o" size="20px" bindtap="fetchData"></van-icon>
+      <router-link to="../setting/index">
+        <van-icon name="setting-o" size="20px" bindtap=""></van-icon>
+      </router-link>
     </view>
   </view>
 
@@ -48,7 +50,7 @@
         scroll-y>
       <view slot="refresher" class="loading-section"><van-loading color="var(--primary-theme-color)"/></view>
       <view class="masonry">
-        <exhibit-card 
+        <question-card 
             class="display-item" 
             wx:for="{{data}}" 
             wx:key="index" 
@@ -57,28 +59,8 @@
             question="小鼹鼠在哪里？"
             show-divider
             answer="在__里">
-        </exhibit-card>
+        </question-card>
       </view>
-      <!-- <view class="column-container">
-        <view class="display-column">
-          <exhibit-card 
-            class="display-item" 
-            wx:for="{{data}}" 
-            wx:key="index" 
-            src="{{item}}"  wx:if="{{!(index % 2)}}"
-            mode="widthFix">
-          </exhibit-card>
-        </view>
-        <view class="display-column">
-          <exhibit-card 
-            class="display-item" 
-            wx:for="{{data}}" 
-            wx:key="index" 
-            src="{{item}}"  wx:if="{{(index % 2)}}"
-            mode="widthFix">
-          </exhibit-card>
-        </view>
-      </view> -->
       <view class="loading-section">
         <!-- <van-loading color="var(--primary-theme-color)"/> -->
         <text>已经没有更多了...</text>
@@ -89,13 +71,5 @@
   </view>
 
 </view>
-
-  <!-- <view class="body-card">
-    <van-cell-group custom-class="select-cell-group">
-        <van-cell class="top-cell" center icon="contact" size="large" title="个人信息" is-link="true" url="" bindtap=""></van-cell>
-        <van-cell center icon="setting-o" size="large" title="设置" is-link="true" url="/pages/setting/index" bindtap=""></van-cell>
-        <van-cell center icon="smile-comment-o" size="large" title="关于我们" is-link="true" url="../about/index" bindtap="" border="{{ false }}"></van-cell>
-    </van-cell-group>
-  </view> -->
 
 <van-toast id="van-toast" />
