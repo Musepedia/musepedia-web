@@ -1,7 +1,7 @@
 <!--用户对展览偏好设置-->
 <view class="preference-setting">
   <view class="setting-header">
-    <van-button wx-if="{{!hideSkipButton}}" class="btn-skip" round bindtap="completeSetting">保存</van-button>
+    <text>偏好问卷</text>
   </view>
   <view class="setting-body">
     <swiper class="body-swiper" current="{{currentIndex}}" duration="400" bindchange="settingPageChange">
@@ -34,16 +34,12 @@
     <view class="page-indicator">
       <view class="page-indicator-dot {{index === currentIndex ? 'current-page' : ''}}" 
             wx:for="{{preferenceSettings.length}}" 
-            wx:key="{{index}}">
+            wx:key="index">
         
       </view>
     </view>
-    <!-- show only when > 1 pages -->
-    <!-- <van-button class="btn-prev" round bind:click="previousPage">上一页</van-button>
-    <view class="page-indicator">{{currentIndex+1}}/{{preferenceSettings.length}}</view>
-
-    <van-button wx:if="{{(currentIndex < preferenceSettings.length -1)}}" class="btn-next" round bind:click="nextPage">下一页</van-button>
-    <van-button wx:else class="btn-next" type="info" round bind:click="completeSetting">完成</van-button> -->
+    
+    <van-button wx-if="{{!hideSkipButton}}" class="btn-complete" type="primary" round bindtap="completeSetting">保存</van-button>
   </view>
   <view class="safe-bottom"></view>
 </view>

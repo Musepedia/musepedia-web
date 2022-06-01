@@ -7,7 +7,7 @@
     <slot name="body"></slot>
   </view>
   <view class="setting-footer {{settingSetLength > 1 ? '' : 'single-page'}}">
-    <van-button class="btn-next" type="info" round bind:click="completeSetting">完成</van-button>
+    <van-button class="btn-complete" custom-style="width:100%" type="primary" round bind:click="completeSetting">完成</van-button>
     <slot name="footer"></slot>
   </view>
   <view class="safe-bottom"></view>

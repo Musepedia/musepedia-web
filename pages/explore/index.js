@@ -44,14 +44,17 @@ Page({
       this.setData({
         loading: true,
         refresherEnabled: false
-      })
+      });
       getRecommendation(4).then(data => {
         this.setData({
           recommendations: this.data.recommendations.concat(data),
+        })
+      }).catch(ignore => {}).finally(() => {
+        this.setData({
           loading: false,
           refresherEnabled: true
         })
-      }).catch(ignore => {})
+      })
     }
   },
   onRefresh(){

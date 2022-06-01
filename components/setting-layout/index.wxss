@@ -1,6 +1,6 @@
 /* components/setting-layout/index.wxss */
 .setting-layout{
-  padding: 10px 20px;
+  padding: 10px 24px;
   width: 100%;
   height: 100vh;
   display: grid;
@@ -8,9 +8,6 @@
   grid-template-areas: 'header' 'body' 'footer';
   gap: 8px;
   grid-gap: 8px;
-
-  --button-default-height: 36px;
-  --button-default-border-color: #ddd;
 }
 
 .setting-layout ::-webkit-scrollbar {
@@ -40,17 +37,18 @@
 .setting-footer{
   grid-area: 'footer';
   display: flex;
-  flex-direction: row-reverse;
+  justify-content: center;
   align-items: center;
 }
 
-.setting-footer.single-page .btn-prev,
-.setting-footer.single-page .page-indicator{
-  visibility: hidden;
+.btn-complete{
+  width: 80%;
+  --button-default-height: 36px;
+  --button-default-border-color: #ddd;
 }
 
-.setting-footer .van-button{
-  width: 74px;
+.btn-complete .van-button{
+  width: 100%;
 }
 
 .safe-bottom{

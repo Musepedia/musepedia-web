@@ -24,7 +24,7 @@
 
 .museum-card{
   border-radius: 20px;
-  padding: 20px;
+  padding: 16px 20px;
   overflow: hidden;
   background-color: #fff;
 }

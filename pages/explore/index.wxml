@@ -1,20 +1,11 @@
 <!--pages/explore/index.wxml-->
 <view class="explore-page">
-  <view class="search-bar-wrapper">
+  <!-- <view class="search-bar-wrapper">
     <search-bar value="{{keyword}}" bindtap="onSearchTap" redirect="/pages/search/index"></search-bar>
-  </view>
-  <scroll-view class="recommendation-section"
-      refresher-enabled="{{refresherEnabled}}"
-      refresher-triggered="{{refreshing}}"
-      refresher-default-style="none"
-      bindrefresherrefresh="onRefresh" 
-      bindscrolltolower="onScrollToLower" 
-      bindscroll="onRecommendScroll"
-      scroll-y>
-    <view slot="refresher" class="refresher-section"><van-loading color="var(--primary-theme-color)"/></view>
-    
-    <view class="header-section">
-      <view class="museum-card" bindtap="toggleCardDescriptionHidden">
+  </view> -->
+  
+  <view class="header-section">
+    <view class="museum-card" bindtap="toggleCardDescriptionHidden">
         <view class="museum-card-header">
           <van-icon name="location-o" size="28px" color="var(--primary-theme-color)"></van-icon>
           <image class="museum-logo" src="https://www.snhm.org.cn/webpc/images/logo.png" mode="heightFix"></image>
@@ -27,6 +18,17 @@
       </view>
     </view>
 
+  <scroll-view class="recommendation-section"
+      refresher-enabled="{{refresherEnabled}}"
+      refresher-triggered="{{refreshing}}"
+      refresher-default-style="none"
+      bindrefresherrefresh="onRefresh" 
+      bindscrolltolower="onScrollToLower" 
+      bindscroll="onRecommendScroll"
+      scroll-y>
+    <view slot="refresher" class="refresher-section"><van-loading color="var(--primary-theme-color)"/></view>
+    
+
     <view wx:for="{{recommendations}}" wx:for-item="recom" wx:key="index" class="recommendation">
       <router-link to="/pages/exhibit-detail/index?{{recom.id || 23}}">
         <explore-card 
@@ -35,7 +37,10 @@
         </explore-card>
       </router-link>
     </view>
-    <view class="loading-section"><van-loading color="var(--primary-theme-color)"/></view>
+    <view class="loading-section">
+      <van-loading wx:if="{{loading}}" color="var(--primary-theme-color)"/>
+      <text wx:else>已经没有更多了...</text>
+    </view>
   </scroll-view>
 </view>
 
