@@ -22,3 +22,7 @@
 .question-card-action{
   width: 100%;
 }
+
+.content-text{
+  overflow-wrap: anywhere;
+}

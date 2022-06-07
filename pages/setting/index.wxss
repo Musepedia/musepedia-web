@@ -1,3 +1,30 @@
 .setting-main{
   padding: 10px 0;
+
+  --cell-background-color: transparent;
+  --cell-border-color: #ddd;
+}
+
+.setting-title{
+  padding: var(--cell-vertical-padding,10px) var(--cell-horizontal-padding,16px);
+  color: var(--vscode-keyword);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.setting-main .van-cell:after{
+  border-color: var(--cell-border-color);
+}
+
+.setting-main .top-cell .van-cell:before{
+    border-bottom: 1px solid var(--cell-border-color);
+    top: 0;
+    box-sizing: border-box;
+    content: " ";
+    left: 16px;
+    pointer-events: none;
+    position: absolute;
+    right: 16px;
+    transform: scaleY(.5);
+    transform-origin: center;
 }

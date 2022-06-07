@@ -52,13 +52,13 @@
       <view class="masonry">
         <question-card 
             class="display-item" 
-            wx:for="{{data}}" 
-            wx:key="index" 
-            src="{{item}}"
+            bindtap="onQuestionCardTap"
+            wx:for="{{questions}}" 
+            wx:key="index"
+            data-question="{{item}}"
+            src="{{item.src}}"
             mode="widthFix" 
-            question="小鼹鼠在哪里？"
-            show-divider
-            answer="在__里">
+            question="{{item.question}}">
         </question-card>
       </view>
       <view class="loading-section">
@@ -67,9 +67,19 @@
       </view>
     </scroll-view>
 
-
   </view>
 
 </view>
 
 <van-toast id="van-toast" />
+<van-popup
+    show="{{showPopup}}"
+    custom-style="width: 80%;"
+    round
+    bind:close="closePopup">
+    <question-card
+      question="{{popupQuestion.question}}"
+      answer="{{popupQuestion.answer}}"
+      src="{{popupQuestion.src}}"
+      show-action-bar></question-card>
+  </van-popup>
