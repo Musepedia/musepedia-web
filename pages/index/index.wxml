@@ -6,11 +6,11 @@
       <van-icon name="arrow-down"/>
     </view>
     <view class="museum-row">
-      <image src="https://s1.328888.xyz/2022/06/07/zTAOi.jpg" mode="aspectFill"></image>
+      <image src="https://s1.328888.xyz/2022/06/20/06Qoe.png" mode="aspectFit"></image>
       <text class="museum-name"></text>
     </view>
     <view class="header-row search-row">
-      <search-bar style="width:100%; height:100%;" redirect="/pages/qa/index" placeholder="在此输入问题"></search-bar>
+      <search-bar style="width:100%; height:100%;" redirect="/pages/qa/index" placeholder="输入您的提问"></search-bar>
       <!-- <van-icon name="scan" size="26px" bindtap="scanCode"/> -->
     </view>
   </view>

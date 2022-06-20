@@ -26,10 +26,10 @@ Component({
     },
     onActionTap(e){
       const action = e.currentTarget.dataset.action;
-      if(action === 'Like'){
+      if(action === 'like'){
         this.toggleLikeStatus();
       }
-      this.triggerEvent(`exhibitAction${action}`, {}, {bubbles: true, composed:true})
+      this.triggerEvent(`exhibitaction${action}`, {}, {bubbles: true, composed:true})
     }
   }
 })

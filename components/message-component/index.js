@@ -26,10 +26,14 @@ Component({
     messageComponent: {
       'common': 'common-message',
       'recommend': 'common-message-recommend',
-      'hint': 'hint-message'
+      'hint': 'hint-message',
+      'imgReply': 'reply-img-message'
     },
+    // ui
     bottomAnchor: 'bottom-anchor', // 底部锚点，用于滚动到对话框最下方,
-    isiPhoneX: app.globalData.isiPhoneX
+    isiPhoneX: app.globalData.isiPhoneX,
+    showQuestionCard: false,
+    popupQuestion: {}
   },
   lifetimes:{
     attached(){
@@ -146,6 +150,21 @@ Component({
     previewImage(event){
       wx.previewImage({
         urls: [event.target.dataset.src],
+      })
+    },
+    showQuestionCardPopup(e){
+      const data = e.target.dataset.data;
+      this.setData({
+        popupQuestion: {
+          src: data.answer,
+          recommendQuestions: data.recommendQuestions
+        },
+        showQuestionCard: true
+      })
+    },
+    closePopup(){
+      this.setData({
+        showQuestionCard: false
       })
     }
   }

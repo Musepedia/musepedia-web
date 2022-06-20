@@ -1,15 +1,15 @@
 <!-- 对展品信息的操作（点赞，评论，不感兴趣...） -->
 <view class="exhibit-action">
-  <view class="exhibit-action-btn left" bindtap="onActionTap" data-action="Info">
+  <view class="exhibit-action-btn left" bindtap="onActionTap" data-action="info">
     <van-icon name="question" size="{{iconSize}}" color="var(--primary-theme-color)"></van-icon>
   </view>
-  <view class="exhibit-action-btn" bindtap="onActionTap" data-action="Like">
+  <view class="exhibit-action-btn" bindtap="onActionTap" data-action="like">
     <van-icon name="{{likeIcon}}" size="{{iconSize}}" color="{{likeColor}}"></van-icon>
   </view>
-  <view class="exhibit-action-btn" bindtap="onActionTap" data-action="Comment">
+  <view class="exhibit-action-btn" bindtap="onActionTap" data-action="comment">
     <van-icon name="comment-o" size="{{iconSize}}"></van-icon>
   </view>
-  <view class="exhibit-action-btn" bindtap="onActionTap" data-action="More">
+  <view class="exhibit-action-btn" bindtap="onActionTap" data-action="more">
     <van-icon name="ellipsis" size="{{iconSize}}"></van-icon>
   </view>
 </view>

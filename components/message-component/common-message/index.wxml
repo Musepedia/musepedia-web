@@ -1,5 +1,7 @@
-<view class="common-message {{right ? 'right' : 'left'}} {{fullWidth ? 'full-width' : ''}} {{transparent ? 'transparent' : ''}} {{textCenter ? 'text-center' : ''}}">
+<view class="common-message {{customClass}} {{right ? 'right' : 'left'}} {{fullWidth ? 'full-width' : ''}} {{transparent ? 'transparent' : ''}} {{textCenter ? 'text-center' : ''}} {{showMore ? 'with-more-btn' : ''}}">
   <view wx:if="{{showArrow}}" class="message-arrow"></view>
-  <text>{{text}}</text>
+  <view wx:if="{{showMore}}" class="more-btn" bindtap="onMoreTap">
+    <van-icon class="ellipsis-icon" name="ellipsis" size="14px" color="#eaeaea"></van-icon>
+  </view>
   <slot></slot>
 </view>

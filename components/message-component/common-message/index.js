@@ -5,6 +5,10 @@ Component({
       type: Boolean,
       value: true
     },
+    showMore: {
+      type: Boolean,
+      value: false
+    },
     right: {
       type: Boolean,
       value: false
@@ -24,12 +28,18 @@ Component({
     text: {
       type: String,
       value: ''
+    },
+    customClass: {
+      type: String,
+      value: ''
     }
   },
   data: {
 
   },
   methods: {
-
+    onMoreTap(){
+      this.triggerEvent('moretap', {}, {bubbles: true, composed:true})
+    }
   }
 })

@@ -1,6 +1,6 @@
 import {getAnswer} from '../../api/question'
 import {getExhibitInfoById} from '../../api/exhibit'
-import {CommonMessage, RecommendMessage, TimeMessage} from '../../utils/message-builder'
+import {CommonMessage, RecommendMessage, ImageReplyMessage, TimeMessage} from '../../utils/message-builder'
 
 const app = getApp();
 const globalUserInfo = app.globalData.userInfo;
@@ -124,17 +124,19 @@ Page({
     // do request
     getAnswer(text).then(data => {
       data.isReply = true;
-      if(data.status === 2 || data.status === 3 
-        || data.answer.startsWith('https://') || data.answer.startsWith('http://')){
-        data.isImage = true;
-      }
-      this.pushMessage(RecommendMessage(
+
+      const isImgReply = data.status === 2 || data.status === 3 
+        || data.answer.startsWith('https://') 
+        || data.answer.startsWith('http://');
+
+      const msg = isImgReply ? ImageReplyMessage(data) : RecommendMessage(
         data.answer, 
         // 'https://www.shanghaimuseum.net/mu/site/img/favicon.ico', 
         '',  // 展馆头像暂不显示
         data.status ? '更多推荐:' : '可以试试这样问:', 
         data.recommendQuestions, 
-        data));
+        data);
+      this.pushMessage(msg);
       this.messageComponent.scrollToBottom();
     }).catch(err => {
       wx.Toast.fail('请求失败')

@@ -19,6 +19,17 @@ export function CommonMessage(text, avatar, right = true){
   }
 }
 
+export function ImageReplyMessage(data){
+  return {
+    right: false,
+    fullWidth: true,
+    transparent: false,
+    textCenter: false,
+    type: 'imgReply',
+    data: data
+  }
+}
+
 /**
  * 
  * @param {*} text 文本

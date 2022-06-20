@@ -9,9 +9,9 @@
   <view class="exhibit-text-section" wx:if="{{answer}}">
     <text class="content-text">{{answer}}</text>
   </view>
+  <slot></slot>
   <exhibit-action class="question-card-action" wx:if="{{showActionBar}}"></exhibit-action>
   <view wx:if="{{showDividerDown}}" class="divider divider-down">
     <van-icon name="arrow-down" size="16px" color="#ccc"></van-icon>
   </view>
-  <slot></slot>
 </view>
