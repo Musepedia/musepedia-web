@@ -6,10 +6,22 @@
   <view class="exhibit-action-btn" bindtap="onActionTap" data-action="like">
     <van-icon name="{{likeIcon}}" size="{{iconSize}}" color="{{likeColor}}"></van-icon>
   </view>
-  <view class="exhibit-action-btn" bindtap="onActionTap" data-action="comment">
+  <view wx:if="{{false}}" class="exhibit-action-btn" bindtap="onActionTap" data-action="comment">
     <van-icon name="comment-o" size="{{iconSize}}"></van-icon>
   </view>
   <view class="exhibit-action-btn" bindtap="onActionTap" data-action="more">
-    <van-icon name="ellipsis" size="{{iconSize}}"></van-icon>
+    <popover visible="{{ showPopover }}"
+        controlled
+        mask
+        mask-closable
+        placement="top"
+        bind:change="onChange">
+        <view slot="content">
+          <view class="feedback-act" catchtap="hide">有帮助</view>
+          <view class="feedback-act" catchtap="hide">没帮助</view> 
+        </view>
+        
+      <van-icon name="ellipsis" size="{{iconSize}}"></van-icon>
+    </popover>
   </view>
 </view>

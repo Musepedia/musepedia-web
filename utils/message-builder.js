@@ -19,6 +19,23 @@ export function CommonMessage(text, avatar, right = true){
   }
 }
 
+/**
+ * 推荐展馆消息
+ * @param {*} data 
+ */
+export function HallMessage(data){
+  return {
+    right: false,
+    fullWidth: true,
+    type: 'hallMessage',
+    data: data
+  }
+}
+
+/**
+ * 带图片的回复
+ * @param {*} data 
+ */
 export function ImageReplyMessage(data){
   return {
     right: false,
@@ -54,8 +71,13 @@ export function RecommendMessage(text, avatar, recommendHint, recommends, data){
 }
 
 export function TimeMessage(){
+  return HintMessage(formatTime(new Date()));
+}
+
+export function HintMessage(text, divider = false){
   return {
-    text: formatTime(new Date()),
+    text: text,
+    divider: divider,
     type: 'hint'
   }
 }

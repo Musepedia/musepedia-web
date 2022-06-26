@@ -1,7 +1,7 @@
 <!-- 展示展品/动物/植物卡片 -->
 <!-- 上下布局，图片+文字 -->
 <view class="question-card">
-  <image wx:if="{{src}}" src="{{src}}" mode="{{mode}}"></image>
+  <image class="question-card-image" wx:if="{{src}}" src="{{src}}" mode="{{mode}}"></image>
   <view class="exhibit-text-section" wx:if="{{question}}">
     <text class="content-text">{{question}}</text>
   </view>
@@ -10,7 +10,9 @@
     <text class="content-text">{{answer}}</text>
   </view>
   <slot></slot>
+  
   <exhibit-action class="question-card-action" wx:if="{{showActionBar}}"></exhibit-action>
+
   <view wx:if="{{showDividerDown}}" class="divider divider-down">
     <van-icon name="arrow-down" size="16px" color="#ccc"></van-icon>
   </view>

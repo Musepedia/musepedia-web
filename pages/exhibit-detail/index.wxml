@@ -21,6 +21,7 @@
   </view>
 
   <van-popup
+    class="popup-enable-overflow"
     show="{{showPopup}}"
     custom-style="width: 80%;"
     round

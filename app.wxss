@@ -22,6 +22,10 @@ view, textarea, input, text{
   height: 32px;
 }
 
+.popup-enable-overflow .van-popup{
+  overflow-y: inherit;
+}
+
 page{
   --vscode-class: #4ec9b0;
   --vscode-function: #DCD2A1;

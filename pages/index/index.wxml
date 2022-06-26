@@ -24,7 +24,7 @@
           wx:for="{{20}}" 
           wx:key="index" 
           show-divider-down
-          question="asdawddddddddddddddddddddddd"></question-card>
+          question="问题"></question-card>
     </view>
   </view>
 

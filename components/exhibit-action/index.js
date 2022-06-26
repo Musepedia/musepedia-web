@@ -8,7 +8,8 @@ Component({
   },
   data: {
     likeIcon: 'like-o',
-    likeColor: ''
+    likeColor: '',
+    showPopover: false
   },
   methods: {
     toggleLikeStatus(){
@@ -28,8 +29,22 @@ Component({
       const action = e.currentTarget.dataset.action;
       if(action === 'like'){
         this.toggleLikeStatus();
+      } else if(action === 'more'){
+        // this.setData({
+        //   showPopover: true
+        // })
       }
       this.triggerEvent(`exhibitaction${action}`, {}, {bubbles: true, composed:true})
-    }
+    },
+    onChange(e){
+      this.setData({
+        showPopover: e.detail.visible,
+      })
+    },
+    hide(e) {
+      this.setData({
+        showPopover: false,
+      })
+    },
   }
 })

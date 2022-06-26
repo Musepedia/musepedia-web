@@ -1,7 +1,7 @@
 <!--登录页面-->
 <view class="login-page">
   <view class="login-avatar-section"> 
-    <image class="login-avatar" src="https://www.neptu.cn/uploads/img/1623154552723-84596340_p0_master1200.jpg"></image>
+    <image class="login-avatar" src="https://tse3-mm.cn.bing.net/th/id/OIP-C.ffanePxGit2grTcR8wrJ4QAAAA?pid=ImgDet&rs=1"></image>
   </view>
   <view class="login-input-section">
     <view class="input-cell input-phone">

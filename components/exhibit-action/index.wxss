@@ -12,3 +12,8 @@
 .exhibit-action-btn.left{
   margin-right: auto;
 }
+
+.feedback-act{
+  padding: 4px;
+  width: 52px;
+}
