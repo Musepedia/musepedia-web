@@ -17,7 +17,7 @@ App({
     },
     isiPhoneX: false,
     appInfo: {
-      version: 'Beta 0.2.9'
+      version: 'Beta 0.3.4'
     }
   },
   checkiPhoneX: function() {

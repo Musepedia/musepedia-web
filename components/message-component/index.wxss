@@ -105,8 +105,8 @@
 }
 
 .question-recommend__text{
-  color: #0a69aa; 
-  display:block
+  color: var(--primary-theme-color); 
+  display: block;
 }
 
 .message-reply{

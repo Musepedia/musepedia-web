@@ -84,13 +84,17 @@
   round
   bind:close="closePopup">
   <question-card
-    question="{{popupQuestion.question}}"
-    answer="{{popupQuestion.answer}}"
-    src="{{popupQuestion.src}}"
+    question="{{popupQuestion.question || ''}}"
+    answer="{{popupQuestion.answer || ''}}"
+    src="{{popupQuestion.src || ''}}"
     show-action-bar>
     <view wx:if="{{popupQuestion.recommendQuestions}}" style="padding:var(--padding-horizontal)">
       <view>推荐问题：</view>
-      <view class="question-recommend__text" wx:for="{{popupQuestion.recommendQuestions}}" wx:key="unique">
+      <view class="question-recommend__text" 
+            wx:for="{{popupQuestion.recommendQuestions}}" 
+            wx:key="unique"
+            data-message="{{item}}"
+            bindtap="sendRecMessage">
         {{item}}
       </view>
     </view>  
@@ -101,11 +105,11 @@
 <template name="reply-img-message">
   <common-message 
       class="message-reply with-image"
-      right="{{right}}" 
+      right="{{false}}" 
       show-arrow="{{showArrow}}"
       show-more="{{data.isReply && data.status}}"
       full-width
-      transparent="{{transparent}}"
+      transparent="{{false}}"
       data-data="{{data}}"
       bindmoretap="showQuestionCardPopup">
     <image style="width:100%;border-radius:12px;" src="{{data.answer}}" mode="widthFix"></image>
@@ -119,12 +123,12 @@
       right="{{false}}" 
       show-arrow="{{showArrow}}"
       show-more
-      full-width="{{fullWidth}}" 
-      transparent="{{transparent}}"
-      text-center="{{textCenter}}"
+      full-width="{{false}}"
+      transparent="{{false}}"
+      text-center="{{false}}"
       data-data="{{data}}"
       bindmoretap="showQuestionCardPopup">
-    <text style="display:inline-block;padding:8px 20px 8px 12px;width:100%;">{{text}}</text>
+    <text style="display:inline-block;padding:8px 28px 8px 12px;width:100%;">{{data.answer}}</text>
   </common-message>
 </template>
 

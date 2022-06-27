@@ -27,9 +27,9 @@
     round
     bind:close="closePopup">
     <question-card
-      question="{{popupQuestion.question}}"
-      answer="{{popupQuestion.answer}}"
-      src="{{popupQuestion.src}}"
+      question="{{popupQuestion.question || ''}}"
+      answer="{{popupQuestion.answer || ''}}"
+      src="{{popupQuestion.src || ''}}"
       show-action-bar></question-card>
   </van-popup>
 </view>

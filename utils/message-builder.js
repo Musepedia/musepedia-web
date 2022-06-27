@@ -10,7 +10,7 @@ export function CommonMessage(text, avatar, right = true){
   return {
     avatar: avatar,
     text: text,
-    showArrow: avatar && avatar.length,
+    showArrow: false,
     right: right,
     fullWidth: false,
     transparent: false,
@@ -49,29 +49,18 @@ export function ImageReplyMessage(data){
 
 /**
  * 
- * @param {*} text 文本
  * @param {*} avatar 头像，如果为空则不显示箭头
- * @param {*} recommendHint 推荐提示
- * @param {*} recommends 推荐信息
  */
-export function RecommendMessage(text, avatar, recommendHint, recommends, data){
+export function RecommendMessage(avatar, data){
   return {
-    avatar: avatar,
-    text: text,
-    showArrow: avatar && avatar.length,
-    right: false,
-    fullWidth: true,
-    transparent: false,
-    textCenter: false,
+    showArrow: !!(avatar && avatar.length),
     type: 'recommend',
-    recommendHint: recommendHint,
-    recommends: recommends,
     data: data
   }
 }
 
-export function TimeMessage(){
-  return HintMessage(formatTime(new Date()));
+export function TimeMessage(time){
+  return HintMessage(time || formatTime(new Date()));
 }
 
 export function HintMessage(text, divider = false){

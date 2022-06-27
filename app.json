@@ -31,7 +31,6 @@
     "van-tag": "@vant/weapp/tag/index",
     "message-component": "/components/message-component/index",
     "router-link": "/components/router-link/index",
-    "additional-input": "/components/additional-input/index",
     "search-bar": "/components/search-bar/index",
     "explore-card": "/components/explore-card/index",
     "question-card": "/components/question-card/index",

@@ -39,17 +39,26 @@ Page({
   },
   onHide: function () {},
   onUnload: function () {},
+  fetchData(count = 8){
+    return getRecommendation(count).then(data => {
+      data.forEach(e => {
+        e.isImage = (e.answerType === 2 || e.answerText.startsWith("htto://") || e.answerText.startsWith("https://"))
+      })
+      return data;
+    }).catch(ignore => {});
+  },
   onScrollToLower(){
     if(!this.data.loading){
       this.setData({
         loading: true,
         refresherEnabled: false
       });
-      getRecommendation(4).then(data => {
+      this.fetchData(4).then(data => {
+        console.log(data);
         this.setData({
           recommendations: this.data.recommendations.concat(data),
         })
-      }).catch(ignore => {}).finally(() => {
+      }).finally(() => {
         this.setData({
           loading: false,
           refresherEnabled: true
@@ -58,13 +67,16 @@ Page({
     }
   },
   onRefresh(){
-    getRecommendation(16).then(data => {
+    this.fetchData(16).then(data => {
       this.setData({
-        recommendations: data,
+        recommendations: data
+      })
+    }).finally(() => {
+      this.setData({
         refreshing: false,
         refresherEnabled: true
       })
-    }).catch(ignore => {})
+    })
   },
   // ui related
   onRecommendScroll(e){

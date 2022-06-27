@@ -48,6 +48,9 @@ Page({
   },
   onUnload: function () {
   },
+  questionMessage(question){
+    return CommonMessage(question, this.data.avatar, true);
+  },
   checkLogin() {
     // 判断用户是否登录
     return this.data.isLogin;
@@ -87,10 +90,9 @@ Page({
   },
   checkMessageInterval(){
     const now = new Date().getTime();
-    this.setData({
-      lastMessageTime: now
-    });
-    return now - this.data.lastMessageTime > 120000;
+    const last = this.data.lastMessageTime;
+    this.data.lastMessageTime = now;
+    return now - last > 120000;
   },
   pushMessage(...messages){
     this.setData({
@@ -103,8 +105,8 @@ Page({
     });
   },
   onMessage({detail}){
-    const {text, clear} = detail;
-    if(!(text && text.trim().length)){
+    const {text: question, clear} = detail;
+    if(!(question && question.trim().length)){
       // empty string
       return;
     }
@@ -113,31 +115,39 @@ Page({
       return;
     }
     clear();
-    const messages = [CommonMessage(text, this.data.avatar, true)];
-    if(this.checkMessageInterval(messages)){
+    const messages = [this.questionMessage(question)];
+    if(this.checkMessageInterval()){
+      console.log('d');
       messages.unshift(TimeMessage());
     }
     this.pushMessage(...messages);
     this.messageComponent.scrollToBottom();
-    // do request
-    getAnswer(text).then(data => {
+    // get answer
+    getAnswer(question).then(data => {
       data.isReply = true;
+      data.question = question;
 
       const isImgReply = data.status === 2 || data.status === 3 
         || data.answer.startsWith('https://') 
         || data.answer.startsWith('http://');
+      isImgReply && (data.status = 2);
 
       const answerMsg = isImgReply ? ImageReplyMessage(data) : RecommendMessage(
-        data.answer, 
         // 'https://www.shanghaimuseum.net/mu/site/img/favicon.ico', 
         '',  // 展馆头像暂不显示
-        data.status ? '更多推荐:' : '可以试试这样问:', 
-        data.recommendQuestions, 
         data
       );
 
       // save history
-      this.data.history.push([...messages, answerMsg]);
+      // TODO 优化存储方式
+      if(messages.length > 1){
+        // 记录时间消息
+        answerMsg.time = messages[0].text;
+      }
+      this.data.history.push([answerMsg]);
+      if(this.data.history.length >= 512){
+        this.data.history.shift();
+      }
       wx.setStorage({
         key: 'qaHistory',
         data: this.data.history
@@ -147,8 +157,8 @@ Page({
       this.messageComponent.scrollToBottom();
 
       // 推荐展区信息
-      this.pushMessage(HintMessage('推荐展区', true));
-      this.pushMessage(HallMessage({src: 'https://abstractmgs.cn/figs/驼鹿.jpg', text: '生命CHANG和'}));
+      // this.pushMessage(HintMessage('推荐展区', true));
+      // this.pushMessage(HallMessage({src: 'https://abstractmgs.cn/figs/驼鹿.jpg', text: '生命CHANG和'}));
     }).catch(err => {
       wx.Toast.fail('请求失败')
     })
@@ -156,10 +166,20 @@ Page({
   fetchHistory({detail}){
     const done = detail.done;
 
-    const data = this.data.history;
     const hi = this.data.historyIndex;
     const fetchCount = 3, fromIndex = Math.max(hi - fetchCount, 0);
-    const historySlice = data.slice(fromIndex, hi).flat();
+    // 截取三条记录
+    const data = this.data.history.slice(fromIndex, hi);
+    data.forEach(h => {
+      const his = h[0];
+      if(his.data && his.data.question){
+        h.unshift(this.questionMessage(his.data.question));
+      }
+      if(his.time){
+        h.unshift(TimeMessage(his.time));
+      }
+    })
+    const historySlice = data.flat();
 
     if(!this.data.showHistoryHint && historySlice.length > 0){
       historySlice.push(HintMessage('以上为历史消息', true))
