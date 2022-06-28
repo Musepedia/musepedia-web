@@ -1,0 +1,2 @@
+<!-- 遮罩 -->
+<view style="z-index: {{z}}; opacity: {{opacity}}" class="modal"></view>

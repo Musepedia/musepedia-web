@@ -1,0 +1,34 @@
+.question-card{
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 6px 2px rgba(255, 215, 215, 0.12);
+  background-color: #fff;
+
+  --padding-horizontal: 16px;
+  --border-radius: 12px;
+}
+
+.question-card-image{
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+
+.exhibit-text-section{
+  padding: 8px var(--padding-horizontal) 10px;
+  font-weight: 600;
+}
+
+.divider{
+  width: 100%;
+  border-top: 1px solid #e8e8e8;
+}
+
+.divider-down{
+  text-align: center;
+}
+
+.question-card-action{
+  width: 100%;
+}
+
+.content-text{
+  overflow-wrap: anywhere;
+}

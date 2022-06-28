@@ -1,0 +1,19 @@
+.exhibit-action{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 10px 10px;
+}
+
+.exhibit-action-btn{
+  padding: 0 6px;
+}
+
+.exhibit-action-btn.left{
+  margin-right: auto;
+}
+
+.feedback-act{
+  padding: 4px;
+  width: 52px;
+}

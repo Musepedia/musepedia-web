@@ -6,9 +6,11 @@
     bindtap="closeAdditionalInput"
     refresher-enabled
     refresher-triggered="{{isRefreshing}}"
+    refresher-default-style="none"
     bindrefresherrefresh="onRefresh" 
     scroll-into-view="{{bottomAnchor}}"
     scroll-y>
+    <view slot="refresher" class="loading-section"><van-loading color="var(--primary-theme-color)"/></view>
 
     <message-dialog 
       wx:for="{{messages}}" 
@@ -20,7 +22,7 @@
       <template is="{{messageComponent[message.type]}}" data="{{...message}}"></template>
     </message-dialog>
 
-    <view style="height: 10px" id="bottom-anchor"></view>
+    <view style="height: 6px" id="bottom-anchor"></view>
   </scroll-view>
 
   <view 
@@ -28,9 +30,6 @@
     style="bottom: {{showAdditionalInput ? 0 : keyboardHeight}}px; padding-bottom: {{keyboardHeight ? '10px' : 'env(safe-area-inset-bottom)'}}">
     <view class="input-wrapper">
       <view class="basic-input">
-        <view class="input-icon">
-          <van-icon name="volume-o"></van-icon>
-        </view>
         <textarea 
           class="input-message" 
           adjust-position="{{false}}"
@@ -46,65 +45,106 @@
           bindconfirm="sendMessage"
           confirm-type="send"
           show-confirm-bar="{{false}}">
+          <view class="input-cencel">
+            <van-icon class="scan-btn" name="scan" size="18px" bindtap="scanCode"></van-icon>
+            <van-icon wx:if="{{message}}" name="clear" size="16px" bindtap="clearText"></van-icon>
+          </view>
         </textarea>
-        <view class="input-icon" bindtap="openAdditionalInput">
-          <van-icon name="smile-o"></van-icon>
-        </view>
-        <button wx:if="{{message.length > 0}}" class="button-send" bindtap="sendMessage">发送</button>
-        <view wx:else class="input-icon" bindtap="openAdditionalInput">
-          <van-icon name="add-o"></van-icon>
-        </view>
+        
+        <button class="button-send {{message ? 'expand' : ''}}" bindtap="sendMessage">发送</button>
       </view>
 
-      <view class="additional-input" style="height: {{showAdditionalInput ? additionalInputHeight : '0'}}px">
-        <view class="additional-input__wrapper">
-          <slot name="input-icons"></slot>
-        </view>
-      </view>
+    </view>
+    <view class="float-input" wx:if="{{false}}">
+      <text class="hint-question-btn" wx:for="{{['RECOMM','大熊猫','小熊猫','中熊猫分布']}}" wx:key="unique">{{item}}</text>
+      <van-icon name="clear" size="16px" bindtap="clearText"></van-icon>
     </view>
   </view>
 </view>
 
-<!-- 普通消息框 -->
+
+
+<!-- 普通消息框(纯文字)，主要为发送消息 -->
 <template name="common-message">
   <common-message 
       right="{{right}}" 
-      showArrow="{{showArrow}}"
-      text="{{text}}" 
-      fullWidth="{{fullWidth}}" 
+      show-arrow="{{showArrow}}"
+      full-width="{{fullWidth}}" 
       transparent="{{transparent}}"
-      textCenter="{{textCenter}}">
+      text-center="{{textCenter}}">
+      <text style="display:inline-block;padding:8px 12px;">{{text}}</text>
   </common-message>
 </template>
-<!-- 带推荐内容的消息框 -->
+
+<!-- 弹出回答详细信息 -->
+<van-popup
+  class="popup-enable-overflow"
+  show="{{showQuestionCard}}"
+  custom-style="width: 80%;"
+  round
+  bind:close="closePopup">
+  <question-card
+    question="{{popupQuestion.question}}"
+    answer="{{popupQuestion.answer}}"
+    src="{{popupQuestion.src}}"
+    show-action-bar>
+    <view wx:if="{{popupQuestion.recommendQuestions}}" style="padding:var(--padding-horizontal)">
+      <view>推荐问题：</view>
+      <view class="question-recommend__text" wx:for="{{popupQuestion.recommendQuestions}}" wx:key="unique">
+        {{item}}
+      </view>
+    </view>  
+  </question-card>
+</van-popup>
+
+<!-- 图片回复-->
+<template name="reply-img-message">
+  <common-message 
+      class="message-reply with-image"
+      right="{{right}}" 
+      show-arrow="{{showArrow}}"
+      show-more="{{data.isReply && data.status}}"
+      full-width
+      transparent="{{transparent}}"
+      data-data="{{data}}"
+      bindmoretap="showQuestionCardPopup">
+    <image style="width:100%;border-radius:12px;" src="{{data.answer}}" mode="widthFix"></image>
+  </common-message>
+</template>
+
+<!-- 文字回复 -->
 <template name="common-message-recommend">
   <common-message 
-      right="{{right}}" 
-      showArrow="{{showArrow}}"
-      text="{{data.isImage ? '' : text}}" 
-      fullWidth="{{fullWidth}}" 
+      class="message-reply'"
+      right="{{false}}" 
+      show-arrow="{{showArrow}}"
+      show-more
+      full-width="{{fullWidth}}" 
       transparent="{{transparent}}"
-      textCenter="{{textCenter}}">
-    <image wx:if="{{data.isImage || data.status===2 || data.status === 3}}" bindtap="previewImage" data-src="{{text}}" src="{{text}}" mode="aspectFill"></image>
-    <view wx:if="{{data.status===1 && data.text}}" class="show-full-text" style="color:#0a69aa;font-size:14px">
-      <text bindtap="onDetailTap" data-data="{{data}}">详细信息...</text>
-    </view>
-    <view class="question-recommend" wx:if="{{recommends && recommends.length}}">
-      <view>{{recommendHint || '更多推荐:'}}</view>
-      <text 
-        class="question-recommend__text"
-        bindtap="sendMessage"
-        data-message="{{recommend}}"
-        wx:for="{{recommends}}" 
-        wx:for-item="recommend" 
-        wx:key="unique">{{recommend}}</text>
-    </view>
-    <!-- <view class="show-full-text" style="position:absolute;right:10px;bottom:8px"><van-icon name="question-o" size="14px"></van-icon></view> -->
+      text-center="{{textCenter}}"
+      data-data="{{data}}"
+      bindmoretap="showQuestionCardPopup">
+    <text style="display:inline-block;padding:8px 20px 8px 12px;width:100%;">{{text}}</text>
   </common-message>
 </template>
+
+<template name="hall-message">
+  <common-message 
+      class="message-reply with-image"
+      right="{{right}}" 
+      show-arrow="{{showArrow}}"
+      full-width
+      data-data="{{data}}">
+    <image style="width:100%;border-radius:12px;position:relative;" src="{{data.src}}" mode="widthFix">
+      <modal opacity=".5"></modal>
+      <view class="absolute-wrapper">{{data.text}}</view>
+    </image>
+  </common-message>
+</template>
+
 <!-- 时间信息等提示信息 -->
 <template name="hint-message">
-  <view class="hint-message">
+  <view class="hint-message {{divider ? 'with-divider' : ''}}">
     <text>{{text}}</text>
   </view>
 </template>

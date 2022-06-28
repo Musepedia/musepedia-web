@@ -1,10 +1,9 @@
 <!--components/explore-card/index.wxml-->
 <view class="explore-card">
   <view class="explore-title">{{title}}</view>
-  <view class="explore-content">
-    <view class="explore-text">
-      <text>{{content}}</text>
-    </view>
-    <image class="explore-img" src="{{src}}" mode="aspectFill"></image>
+  <view class="explore-content">{{content}}</view>
+  <view class="image-section" style="height: {{imageHeight}}">
+    <image class="explore-image" wx:for="{{images}}" wx:key="index" src="{{item}}" mode="aspectFill"></image>
   </view>
+  <view class="explore-content explore-detail" wx:if="{{detail}}">{{detail}}</view>
 </view>

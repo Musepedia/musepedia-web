@@ -3,7 +3,7 @@
     id="qa-message-component"
     bindsendmessage="onMessage" 
     binddetailtap="showDetailTextPopup"
-    bindrefresh="onRefresh" 
+    bindrefresh="fetchHistory" 
     messages="{{messages}}">
       <additional-input slot="input-icons" hint="扫一扫" icon-name="scan" bindtap="scanCode"></additional-input>
   </message-component>

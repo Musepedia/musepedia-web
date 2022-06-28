@@ -43,6 +43,7 @@ export function wxLogin(){
 
 export function wxLoginWithBackend(){
   return wxLogin().then(res => {
+    console.log(res);
     return userLogin({
       code: res[0].code,
       encryptedData: res[1].encryptedData,

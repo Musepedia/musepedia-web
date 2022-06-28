@@ -1,11 +1,11 @@
 .common-message{
   position: relative;
   display: inline-block;
-  background-color:  var(--dialog-background-color);
-  border-radius: 8px;
-  padding: 8px 12px;
-  overflow-wrap: anywhere;
   max-width: 520px; 
+  background-color:  var(--dialog-background-color);
+  color: var(--dialog-font-color, #000);
+  border-radius: 12px;
+  overflow-wrap: anywhere;
 }
 
 .message-arrow{
@@ -18,6 +18,13 @@
   border-width: 8px;
   border-color: transparent var(--dialog-background-color) transparent transparent;
   border-style: solid;
+}
+
+.more-btn{
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  z-index: 1;
 }
 
 .common-message.right .message-arrow{
@@ -40,4 +47,10 @@
 
 .common-message.text-center{
   text-align: center;
+}
+
+.ellipsis-icon{
+  padding: 1px;
+  background-color: #aaaa;
+  border-radius: 50%;
 }

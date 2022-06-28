@@ -1,13 +1,17 @@
 <!--components/search-bar/index.wxml-->
 <view class="search-bar" bindtap="onSearchBarTap">
   <van-icon name="search" size="18px"/>
-  <input wx:if="{{!redirect}}" 
-      class="search-input" 
-      model:value="{{value}}" 
-      bindinput="onSearchBarInput"
-      bindconfirm="onSearchBarConfirm" 
-      placeholder="{{placeholder || '输入关键字搜索'}}"
-      type="text"/>
-  <text wx:else>{{placeholder || '输入关键字搜索'}}</text>
-  <van-icon wx:if="{{value}}" name="clear" bindtap="clearText"></van-icon>
+  <text wx:if="{{redirect}}">{{placeholder || '输入关键字搜索'}}</text>
+  <block wx:else>
+    <input
+        class="search-input" 
+        model:value="{{value}}" 
+        bindinput="onSearchBarInput"
+        bindconfirm="onSearchBarConfirm" 
+        placeholder="{{placeholder || '输入关键字搜索'}}"
+        type="text"/>
+    <van-icon wx:if="{{enableScan}}" class="scan-btn" name="scan" size="20px" bindtap="scanCode"></van-icon>
+    <text class="clear-btn" bindtap="clearText">取消</text>
+    <!-- <van-icon wx:if="{{value}}" name="clear"></van-icon> -->
+  </block>
 </view>

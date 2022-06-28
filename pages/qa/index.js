@@ -1,6 +1,6 @@
 import {getAnswer} from '../../api/question'
 import {getExhibitInfoById} from '../../api/exhibit'
-import {CommonMessage, RecommendMessage, TimeMessage} from '../../utils/message-builder'
+import {CommonMessage, RecommendMessage, ImageReplyMessage, TimeMessage, HintMessage, HallMessage} from '../../utils/message-builder'
 
 const app = getApp();
 const globalUserInfo = app.globalData.userInfo;
@@ -19,7 +19,12 @@ Page({
     exhibitUrl: '',
     /**回答的详细介绍 */
     showDetailText: false,
-    detialText: ''
+    detialText: '',
+    // 历史记录
+    historyIndex: 0,
+    history: [],
+    reachHistoryEnd: false,
+    showHistoryHint: false
   },
   onLoad: function (options) {
     this.messageComponent || (this.messageComponent = this.selectComponent('#qa-message-component'));
@@ -30,25 +35,18 @@ Page({
   onShow: function () {
     this.messageComponent.resetKeyboard();
     const userInfo = getApp().globalData.userInfo;
+    const history = wx.getStorageSync('qaHistory') || [];
     this.setData({
       isLogin: userInfo.isLogin,
       nickname: userInfo.nickname,
-      avatar: userInfo.avatar
-    })
+      avatar: userInfo.avatar,
+      history: history,
+      historyIndex: history.length
+    });
   },
   onHide: function () {
   },
   onUnload: function () {
-
-  },
-  onPullDownRefresh: function () {
-
-  },
-  onReachBottom: function () {
-
-  },
-  onShareAppMessage: function () {
-
   },
   checkLogin() {
     // 判断用户是否登录
@@ -87,14 +85,12 @@ Page({
       complete: (res) => {},
     })
   },
-  checkMessageInterval(messages){
+  checkMessageInterval(){
     const now = new Date().getTime();
-    if(now - this.data.lastMessageTime > 120000){
-      messages.unshift(TimeMessage());
-    }
     this.setData({
       lastMessageTime: now
-    })
+    });
+    return now - this.data.lastMessageTime > 120000;
   },
   pushMessage(...messages){
     this.setData({
@@ -108,52 +104,75 @@ Page({
   },
   onMessage({detail}){
     const {text, clear} = detail;
-    let valid = text && text.trim().length;
-    if(!valid){
+    if(!(text && text.trim().length)){
+      // empty string
       return;
     }
     if (!this.checkLogin()) {
       this.forceLogin();
-      return ;
+      return;
     }
     clear();
     const messages = [CommonMessage(text, this.data.avatar, true)];
-    this.checkMessageInterval(messages);
+    if(this.checkMessageInterval(messages)){
+      messages.unshift(TimeMessage());
+    }
     this.pushMessage(...messages);
     this.messageComponent.scrollToBottom();
     // do request
     getAnswer(text).then(data => {
-      if(data.status === 2 || data.status === 3 
-        || data.answer.startsWith('https://') || data.answer.startsWith('http://')){
-        data.isImage = true;
-      }
-      this.pushMessage(RecommendMessage(
+      data.isReply = true;
+
+      const isImgReply = data.status === 2 || data.status === 3 
+        || data.answer.startsWith('https://') 
+        || data.answer.startsWith('http://');
+
+      const answerMsg = isImgReply ? ImageReplyMessage(data) : RecommendMessage(
         data.answer, 
         // 'https://www.shanghaimuseum.net/mu/site/img/favicon.ico', 
         '',  // 展馆头像暂不显示
         data.status ? '更多推荐:' : '可以试试这样问:', 
         data.recommendQuestions, 
-        data));
+        data
+      );
+
+      // save history
+      this.data.history.push([...messages, answerMsg]);
+      wx.setStorage({
+        key: 'qaHistory',
+        data: this.data.history
+      });
+
+      this.pushMessage(answerMsg);
       this.messageComponent.scrollToBottom();
+
+      // 推荐展区信息
+      this.pushMessage(HintMessage('推荐展区', true));
+      this.pushMessage(HallMessage({src: 'https://abstractmgs.cn/figs/驼鹿.jpg', text: '生命CHANG和'}));
     }).catch(err => {
       wx.Toast.fail('请求失败')
     })
   },
-  onRefresh({detail}){
+  fetchHistory({detail}){
     const done = detail.done;
-    const oldMsg = {
-      avatar: 'https://www.neptu.cn/uploads/img/1623154552723-84596340_p0_master1200.jpg',
-      text: 'Old meSSagE',
-      right: false,
-      fullWidth: true,
-      transparent: false,
-      textCenter: false,
-      type: 'common'
-    };
-    setTimeout(() => {
-      this.unshiftMessage(oldMsg);
-      done();
-    }, 1000)
+
+    const data = this.data.history;
+    const hi = this.data.historyIndex;
+    const fetchCount = 3, fromIndex = Math.max(hi - fetchCount, 0);
+    const historySlice = data.slice(fromIndex, hi).flat();
+
+    if(!this.data.showHistoryHint && historySlice.length > 0){
+      historySlice.push(HintMessage('以上为历史消息', true))
+      this.data.showHistoryHint = true;
+    }
+    if(hi - fetchCount <= 0 && !this.data.reachHistoryEnd){
+      historySlice.unshift(HintMessage('没有更多消息了', true));
+      this.data.reachHistoryEnd = true;
+    }
+    this.unshiftMessage(...historySlice);
+    this.data.historyIndex = fromIndex;
+
+    done();
   },
   display() {
     this.setData({

@@ -10,8 +10,32 @@
   flex-wrap: wrap;
 }
 
+.tag-checkbox{
+  width: 50%;
+}
+
+.tag-checkbox .van-checkbox__icon-wrap{
+  width: 100%;
+  padding: 0 10px;
+}
+
 .hall-tag{
-  margin-right: 8px;
-  margin-bottom: 8px;
+  width: 100%;
+  height: 42px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 8px 0;
+  background-color: #eaeaea;
+  color: #555;
+  font-weight: 600;
+  border-radius: 8px;
+  overflow: hidden;
   transition: .3s;
+}
+
+.hall-tag.selected{
+  background-color: rgb(255,231,226);
+  border: 1px solid var(--primary-theme-color);
+  color: var(--primary-theme-color);
 }

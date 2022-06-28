@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "exhibit-action": "../exhibit-action/index"
+  }
+}

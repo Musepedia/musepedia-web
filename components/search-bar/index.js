@@ -8,6 +8,10 @@ Component({
     placeholder: {
       type: String,
       value: '输入关键字搜索'
+    },
+    enableScan: {
+      type: Boolean,
+      value: true
     }
   },
   data: {
@@ -31,6 +35,18 @@ Component({
     },
     onSearchBarInput(){
       this.triggerEvent('input', this.data.value);
+    },
+    scanCode(){
+      wx.scanCode({
+        onlyFromCamera: false,
+        scanType: [],
+        success: res => {
+          console.log(res.result);
+          this.triggerEvent('scan', result)
+        },
+        fail: (res) => {},
+        complete: (res) => {},
+      })
     }
   }
 })

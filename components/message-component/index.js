@@ -5,7 +5,8 @@ let bindedCompleteRefresh;
 let bindedScrollToBottom;
 Component({
   options: {
-    multipleSlots: true
+    multipleSlots: true,
+    addGlobalClass: true
   },
   properties: {
     messages: {
@@ -26,10 +27,15 @@ Component({
     messageComponent: {
       'common': 'common-message',
       'recommend': 'common-message-recommend',
-      'hint': 'hint-message'
+      'hint': 'hint-message',
+      'imgReply': 'reply-img-message',
+      'hallMessage': 'hall-message'
     },
+    // ui
     bottomAnchor: 'bottom-anchor', // 底部锚点，用于滚动到对话框最下方,
-    isiPhoneX: app.globalData.isiPhoneX
+    isiPhoneX: app.globalData.isiPhoneX,
+    showQuestionCard: false,
+    popupQuestion: {}
   },
   lifetimes:{
     attached(){
@@ -97,7 +103,7 @@ Component({
       const dataset = event.target.dataset;
 
       let text = this.data.message;
-      console.log(text);
+
       let showRecommend = true;
       if(dataset.message){
         // 通过DOM点击事件调用时使用点击事件的参数，默认使用输入框中文字
@@ -146,6 +152,21 @@ Component({
     previewImage(event){
       wx.previewImage({
         urls: [event.target.dataset.src],
+      })
+    },
+    showQuestionCardPopup(e){
+      const data = e.target.dataset.data;
+      this.setData({
+        popupQuestion: {
+          src: data.answer,
+          recommendQuestions: data.recommendQuestions
+        },
+        showQuestionCard: true
+      })
+    },
+    closePopup(){
+      this.setData({
+        showQuestionCard: false
       })
     }
   }

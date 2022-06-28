@@ -5,13 +5,19 @@ page{
 
 .index-container {
   padding: 10px 20px;
-  height: calc(100vh - var(--tabbar-height, 50px) - env(safe-area-inset-bottom))
+  height: calc(100vh - var(--tabbar-height, 50px) - env(safe-area-inset-bottom));
+  overflow-y: scroll;
 } 
 
 .header-row{
   display: flex;
   align-items: center;
   margin-bottom: 10px;
+}
+
+.recommend-header{
+  font-size: 22px;
+  font-weight: 600;
 }
 
 .museum-row{
@@ -36,4 +42,20 @@ page{
 
 .index-body{
   margin-top: 20px;
+  height: 100vh;
+}
+
+.masonry{
+  width: 100%;
+  column-count: 2;
+  column-gap: 10px;
+  padding: 6px 0;
+}
+
+.display-item{
+  break-inside: avoid;
+  height: 100%;
+  display: block;
+  margin-bottom: 4px;
+  padding: 6px 6px 10px 6px;
 }

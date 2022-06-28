@@ -25,16 +25,13 @@
   align-items: flex-end;
 }
 
-.additional-input{
-  overflow: hidden;
-}
-
 .input-message{
+  position: relative;
   box-sizing: content-box;
   min-height: 18px;
   max-height: 80px;
   background-color: #fff;
-  padding: 5px 10px;
+  padding: 5px 42px 5px 10px;
   border-radius: 15px;
   margin: 0 5px;
   width: 100%;
@@ -50,23 +47,71 @@
   margin: 0 4px;
 } 
 
+.input-cencel{
+  position: absolute;
+  display: flex;
+  align-items: center;
+  right: 6px;
+  bottom: 6px;
+}
+
+.scan-btn{
+  margin-right: 4px;
+}
+
+.loading-section{
+  width:100%;
+  display:flex;
+  justify-content: center;
+}
+
 .button-send{
   height: 30px;
   font-size: 14px;
   width: 70px;
   padding: 0 8px;
+  margin-left: 4px;
   line-height: 30px;
+  background-color: var(--primary-theme-color);
+  color: #fff;
+}
+
+.float-input{
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -34px;
+  height: 34px;
+  padding: 0 8px 4px;
+  display: flex;
+  align-items: center;
+  background-color: var(--page-background-color);
+}
+
+.hint-question-btn{
+  display: inline-block;
+  padding: 2px 8px;
+  margin: 0 2px;
+  border-radius: 26px;
+  font-size: 14px;
+  color: #aaa;
+  border: 1px solid var(--primary-theme-color);
 }
 
 .question-recommend{
   margin-top:10px;
-  color: #232323;
+  color: var(--dialog-recommend-font-color, #232323);
   font-size: 14px;
 }
 
 .question-recommend__text{
-  color:#0a69aa; 
+  color: #0a69aa; 
   display:block
+}
+
+.message-reply{
+  --dialog-background-color: #efefef;
+  --dialog-font-color: #000;
 }
 
 .ixadapt .input-message{
@@ -78,4 +123,34 @@
   text-align: center;
   font-size: 12px;
   color: #888;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hint-message.with-divider::before, .hint-message.with-divider::after{
+  content: '';
+  display: block;
+  flex: 1;
+  border-bottom: 1px solid #aaa;
+  transform: scaleY(0.5);
+  margin: 0 4px;
+}
+
+.message-reply.with-image{
+  --dialog-background-color: var(--page-background-color);
+}
+
+.absolute-wrapper{
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  color: #eee;
 }

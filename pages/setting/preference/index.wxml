@@ -1,12 +1,11 @@
 <!--用户对展览偏好设置-->
 <setting-layout bind:complete="completeSetting">
   <view slot="header">
-    <text>
+    <text style="font-weight: 600;font-size:20px">
       展区偏好选择
     </text>
-    <text class="hint">了解详细展区内的展品信息你可以</text>
-    <text class="hint" style="color: rgb(25,137,250)" bindtap="navigateToQuestionnaire">点此</text>
-    <text class="hint">填写问卷</text>
+    <text class="hint">了解详细展区内的展品信息您可以</text>
+    <text class="hint" style="color: var(--primary-theme-color)" bindtap="navigateToQuestionnaire">填写问卷</text>
   </view>
   <view class="preference-setting" slot="body">
     <van-checkbox-group value="{{result}}" bind:change="onSettingChange">
@@ -16,9 +15,9 @@
           wx:for-item="exhibitionHall"
           use-icon-slot
           name="{{exhibitionHall.id}}" 
-          class="checkbox-{{index}}">
-        <view class="hall-tag" slot="icon">
-          <van-tag round size="large" type="primary" plain="{{!exhibitionHallChecked[exhibitionHall.id]}}">{{exhibitionHall.name}}</van-tag>
+          class="tag-checkbox">
+        <view class="hall-tag {{exhibitionHallChecked[exhibitionHall.id] ? 'selected' : ''}}" slot="icon">
+          {{exhibitionHall.name}}
         </view>
       </van-checkbox>
     </van-checkbox-group>

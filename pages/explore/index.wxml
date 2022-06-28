@@ -1,20 +1,46 @@
 <!--pages/explore/index.wxml-->
-<view class="page-wrapper explore-container">
-  <view class="search-bar-wrapper">
+<view class="explore-page">
+  <!-- <view class="search-bar-wrapper">
     <search-bar value="{{keyword}}" bindtap="onSearchTap" redirect="/pages/search/index"></search-bar>
-  </view>
-  <scroll-view class="recommendation-section" 
+  </view> -->
+  
+  <view class="header-section">
+    <view class="museum-card" bindtap="toggleCardDescriptionHidden">
+        <view class="museum-card-header">
+          <van-icon name="location-o" size="28px" color="var(--primary-theme-color)"></van-icon>
+          <image class="museum-logo" src="https://www.snhm.org.cn/webpc/images/logo.png" mode="heightFix"></image>
+        </view>
+        <view class="museum-card-description {{cardDescriptionHidden ? 'hidden' : ''}}" style="height: {{cardDescriptionHeight}}">
+          <view class="description-header">场馆介绍</view>
+          <view class="description-content">上海白然博物馆(上海科技馆分馆),位于上海市静安区北京西路510号(静安罹塑公园内》,建筑面积45257平方米,展览教育服务面积32200平方米,是综合性博物馆。
+          </view>
+        </view>
+      </view>
+    </view>
+
+  <scroll-view class="recommendation-section"
       refresher-enabled="{{refresherEnabled}}"
       refresher-triggered="{{refreshing}}"
       refresher-default-style="none"
       bindrefresherrefresh="onRefresh" 
       bindscrolltolower="onScrollToLower" 
+      bindscroll="onRecommendScroll"
       scroll-y>
-    <view slot="refresher" class="refresher-section"><van-loading color="rgb(0, 148, 255)"/></view>
+    <view slot="refresher" class="refresher-section"><van-loading color="var(--primary-theme-color)"/></view>
+    
+
     <view wx:for="{{recommendations}}" wx:for-item="recom" wx:key="index" class="recommendation">
-      <explore-card title="{{recom.questionText}}" content="{{recom.answerText}}" src="{{recom.exhibitFigureUrl}}"></explore-card>
+      <router-link to="/pages/exhibit-detail/index?{{recom.id || 23}}">
+        <explore-card 
+          title="{{recom.questionText}}"
+          content="{{recom.answerText}}">
+        </explore-card>
+      </router-link>
     </view>
-    <view class="loading-section"><van-loading color="rgb(0, 148, 255)"/></view>
+    <view class="loading-section">
+      <van-loading wx:if="{{loading}}" color="var(--primary-theme-color)"/>
+      <text wx:else>已经没有更多了...</text>
+    </view>
   </scroll-view>
 </view>
 

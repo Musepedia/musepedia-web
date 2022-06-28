@@ -1,0 +1,35 @@
+<view class="exhibit-detail-page">
+  <view class="detail-card">
+    <explore-card 
+      title="Kick she mood"
+      content="Thy Life is a riddle, to bear rapture and sorrow. To listen, to suffer, to entrust unto tomorrow. In the same fleeting moment thou must live, die and know."
+      detail="ならば1・2・3で既然这样就一、二、三we go walking that's said (動き出せ)动起来吧きっとそれが 心が求めた A A A A Answerさ"
+      imageHeight="180px"
+      images="{{['https://bing.wilii.cn/OneDrive/bingimages/2020/09/05/BeaverDam_ZH-CN6855160492_640x480.jpg']}}">
+    </explore-card>
+  </view>
+
+  <view class="question-section">
+    <question-card
+        wx:for="{{questions}}"
+        wx:key="index"
+        question="{{item.question}}"
+        show-divider-down
+        data-question="{{item}}"
+        bindtap="onQuestionCardTap">
+    </question-card>
+  </view>
+
+  <van-popup
+    class="popup-enable-overflow"
+    show="{{showPopup}}"
+    custom-style="width: 80%;"
+    round
+    bind:close="closePopup">
+    <question-card
+      question="{{popupQuestion.question}}"
+      answer="{{popupQuestion.answer}}"
+      src="{{popupQuestion.src}}"
+      show-action-bar></question-card>
+  </van-popup>
+</view>

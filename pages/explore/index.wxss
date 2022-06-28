@@ -1,10 +1,53 @@
-/* pages/explore/index.wxss */
-.explore-container{
+.explore-page{
   height: 100vh;
   overflow-y: hidden;
 }
+
+.search-bar-wrapper{
+  padding: 6px;
+  height: 44px;
+}
+
+.header-section{
+  /* margin-top: 22px; */
+  padding: 10px 20px;
+}
+
+.museum-card-header{
+  display: flex;
+}
+
+.museum-logo{
+  margin-left: 10px;
+  height: 40px;
+}
+
+.museum-card{
+  border-radius: 20px;
+  padding: 16px 20px;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.museum-card-description{
+  margin-top: 12px;
+  font-size: 14px;
+  transition: .5s cubic-bezier(0.165, 0.84, 0.44, 1);
+  overflow: hidden;
+  height: 100px;
+}
+
+.museum-card-description.hidden{
+  margin-top: 0;
+  height: 0;
+}
+
+.description-header{
+  font-weight: 600;
+  padding: 4px 0;
+}
+
 .recommendation-section{
-  margin-top: 10px;
   height: calc(100% - 50px - env(safe-area-inset-bottom));
 }
 .recommendation-section ::-webkit-scrollbar {
@@ -13,7 +56,7 @@
   color: transparent;
 }
 .recommendation{
-  margin-top: 10px;
+  margin-bottom: 10px;
   background-color: #fff;
 
 }
@@ -27,7 +70,7 @@
 }
 
 .refresher-section{
-  margin-top:10px;
+  margin: 5px 0;
   width:100%;
   display:flex;
   justify-content: center;

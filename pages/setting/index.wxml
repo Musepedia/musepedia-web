@@ -1,11 +1,15 @@
 <view class="setting-main">
-  <van-cell-group>
-    <van-cell class="top-cell" center icon="contact" size="large" title="展区偏好" is-link="true" url="preference/index" bindtap=""></van-cell>
-  </van-cell-group>
 
+  <view>
+    <view class="setting-title">基本设置</view>
+    <van-cell class="top-cell" center icon="" size="large" title="展区偏好" is-link="true" url="preference/index" bindtap="" border="{{true}}"></van-cell>
+    <van-cell center icon="" size="large" title="通用" is-link="true" url="" bindtap=""></van-cell>
+    <van-cell center icon="" size="large" title="关于我们" is-link="true" url="/pages/about/index" bindtap=""></van-cell>
+  </view>
   
-  <van-cell-group style="margin-top:20px">
-    <van-cell class="top-cell" center size="large" title="打印本地存储" bindtap="printStorage"></van-cell>
-    <van-cell center size="large" title="清除本地存储" bindtap="clearStorage"></van-cell>
-  </van-cell-group>
+  <view>
+    <view class="setting-title">其他设置</view>
+    <van-cell class="top-cell" center size="large" title="清除本地存储" bindtap="clearStorage"></van-cell>
+  </view>
+
 </view>
