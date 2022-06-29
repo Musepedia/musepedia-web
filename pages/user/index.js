@@ -17,6 +17,7 @@ Page({
     scrollViewHeight: 0,
     noMoreData: false,
     showPopup: false,
+    activeTabbar: 1,
     popupQuestion: {}
   },
   onLoad: function (options) {
@@ -45,7 +46,7 @@ Page({
     this.setData({
       isLogin: globalUserInfo.isLogin,
       nickname: globalUserInfo.nickname,
-      avatar: globalUserInfo.avatar,
+      avatar: globalUserInfo.avatarUrl,
     })
   },
   onHide: function () {},
@@ -109,6 +110,11 @@ Page({
   closePopup(){
     this.setData({
       showPopup: false
+    })
+  },
+  changeUserTabbar({target}){
+    this.setData({
+      activeTabbar: target.dataset.index
     })
   }
 })

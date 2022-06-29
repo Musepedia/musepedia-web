@@ -33,9 +33,13 @@
     </view>
 
     <view class="user-tabbar">
-      <view class="user-tabbar-item" wx:for="{{3}}">
-        <view class="{{index === 1 ? 'tabbar-item-selected' : ''}}">日常</view>
-        <view style="margin-top:4px;font-size:20px" class="item2">{{index * 20}}</view>
+      <view class="user-tabbar-item" 
+            wx:for="{{['发布', '收藏']}}" 
+            wx:key="unique" 
+            bindtap="changeUserTabbar" 
+            data-index="{{index}}">
+        <view class="{{index === activeTabbar ? 'tabbar-item-selected' : ''}}">{{item}}</view>
+        <view style="margin-top:4px;font-size:20px" class="item2">{{0}}</view>
       </view>
     </view>
 
@@ -73,13 +77,14 @@
 
 <van-toast id="van-toast" />
 <van-popup
+    class="popup-enable-overflow"
     show="{{showPopup}}"
     custom-style="width: 80%;"
     round
     bind:close="closePopup">
     <question-card
-      question="{{popupQuestion.question}}"
-      answer="{{popupQuestion.answer}}"
-      src="{{popupQuestion.src}}"
+      question="{{popupQuestion.question || ''}}"
+      answer="{{popupQuestion.answer || ''}}"
+      src="{{popupQuestion.src || ''}}"
       show-action-bar></question-card>
   </van-popup>

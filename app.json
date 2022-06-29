@@ -12,7 +12,8 @@
     "pages/questionnaire/index",
     "pages/search/index",
     "pages/user/login/index",
-    "pages/exhibit-detail/index"
+    "pages/exhibit-detail/index",
+    "pages/setting/profile/index"
   ],
   "usingComponents": {
     "van-button": "@vant/weapp/button/index",

@@ -1,4 +1,4 @@
-declare enum AnswerStatus {NO_ANSWER = 0, OK = 1}
+declare enum AnswerStatus {NO_ANSWER = 0, TEXT_ANSWER = 1, IMAGE_ANSWER = 2}
 
 export interface AnswerDTO{
   status: AnswerStatus

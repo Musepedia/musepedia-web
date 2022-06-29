@@ -39,7 +39,7 @@ Page({
     this.setData({
       isLogin: userInfo.isLogin,
       nickname: userInfo.nickname,
-      avatar: userInfo.avatar,
+      avatar: userInfo.avatarUrl,
       history: history,
       historyIndex: history.length
     });

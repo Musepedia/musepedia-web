@@ -1,6 +1,6 @@
 import Toast from '@vant/weapp/toast/toast'
 import Dialog from '@vant/weapp/dialog/dialog'
-import {getUserInfo, userLogin} from './api/user'
+import {getUserInfo, userLogin, updateUserProfile} from './api/user'
 
 App({
   onLaunch() {
@@ -35,26 +35,27 @@ App({
    * @param {*} data data包含nickname, avatarUrl
    */
   setGlobalUserInfo(data){
-    this.globalData.userInfo = {
-      nickname: data.nickname,
-      avatar: data.avatarUrl,
-      isLogin: true
-    };
+    this.globalData.userInfo = data;
+  },
+  updateUserInfo(data){
+    return updateUserProfile(data).then(() => {
+      Object.assign(this.globalData.userInfo, data);
+    });
   },
   getUserInfo(){
     const token = wx.getStorageSync('token');
     const registered = wx.getStorageSync('registered');
-    if(!token || !registered){
+    if(!token && !registered){
       return;
     }
     getUserInfo().then(data => {
-      if(data && data.nickname){
+      if(data){
+        data.isLogin = true;
         this.setGlobalUserInfo(data);
       } else {
         // token过期，重新获取code并登录
         wx.login({
           success: (res) => {
-            console.log(res);
             userLogin({
               code: res.code
             }).then(data => this.setGlobalUserInfo(data))

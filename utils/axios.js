@@ -3,6 +3,7 @@ import adapter from 'axios-miniprogram-adapter/index'
 import qs from 'qs/index'
 
 const TOKEN_HEADER = 'x-auth-token';
+const MUSEUM_HEADER = 'x-museum';
 
 const _axios = axios.create({
   baseURL: 'https://abstractmgs.cn/api/',
@@ -17,9 +18,13 @@ const getParamsSerializer = params => qs.stringify(params,{indices:false});
 // 请求拦截器
 _axios.interceptors.request.use(
   function success(config) {
-    const token = wx.getStorageSync('token');
     // 添加用户token
+    const token = wx.getStorageSync('token');
     token && (config.headers[TOKEN_HEADER] = token);
+    // 添加当前博物馆信息
+    const museumId = wx.getStorageSync('currentMuseumId');
+    museumId && (config.headers[MUSEUM_HEADER] = museumId);
+
     // get请求格式化(具体根据后端接口参数要求)
     if(config.method.toLowerCase() === 'get'){
       config.paramsSerializer = getParamsSerializer;
