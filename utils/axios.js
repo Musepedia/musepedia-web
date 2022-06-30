@@ -51,7 +51,7 @@ _axios.interceptors.response.use(
   function success(response) {
     checkToken(response);
     const data = response.data;
-    return data.data || data;
+    return data.data;
   },
   function fail(error) {
     const resp = error.response;

@@ -48,18 +48,20 @@ App({
     if(!token && !registered){
       return;
     }
+    const loginSuccess = data => {
+      data.isLogin = true;
+      this.setGlobalUserInfo(data);
+    } ;
     getUserInfo().then(data => {
       if(data){
-        data.isLogin = true;
-        this.setGlobalUserInfo(data);
+        loginSuccess(data);
       } else {
         // token过期，重新获取code并登录
         wx.login({
           success: (res) => {
             userLogin({
               code: res.code
-            }).then(data => this.setGlobalUserInfo(data))
-            .catch(err => console.log(err))
+            }).then(loginSuccess).catch(err => console.log(err))
           }
         })
       }

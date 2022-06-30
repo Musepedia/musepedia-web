@@ -9,6 +9,8 @@
         <view class="museum-card-header">
           <van-icon name="location-o" size="28px" color="var(--primary-theme-color)"></van-icon>
           <image class="museum-logo" src="https://www.snhm.org.cn/webpc/images/logo.png" mode="heightFix"></image>
+          <text class="iconfont icon-gaibianfangxiang icon-switch-museum"  
+                catchtap="switchMuseum"></text>
         </view>
         <view class="museum-card-description {{cardDescriptionHidden ? 'hidden' : ''}}" style="height: {{cardDescriptionHeight}}">
           <view class="description-header">场馆介绍</view>

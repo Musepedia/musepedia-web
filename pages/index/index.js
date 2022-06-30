@@ -3,6 +3,9 @@
 const app = getApp()
 
 Page({
+  options: {
+    addGlobalClass: true
+  },
   data: {
     motto: 'Hello World',
     userInfo: {},

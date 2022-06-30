@@ -39,6 +39,11 @@ Page({
   },
   onHide: function () {},
   onUnload: function () {},
+  switchMuseum(){
+    wx.navigateTo({
+      url: '/pages/switch-museum/index',
+    })
+  },
   fetchData(count = 8){
     return getRecommendation(count).then(data => {
       data.forEach(e => {

@@ -1,0 +1,34 @@
+<!-- 切换博物馆 -->
+<view class="page-switch-museum">
+
+  <view class="switch-wrapper">
+    <van-sidebar active-key="{{activeMuseumGroup}}" bind:change="switchActiveMuseumGroup">
+      <van-sidebar-item wx:for="{{museumGroup}}" wx:key="unique">
+        <view slot="title">
+          <van-icon name="location-o"></van-icon>
+          <text style="margin-left: 6px">{{item}}</text>
+        </view>
+      </van-sidebar-item>
+    </van-sidebar>
+    <view class="museum-content">
+      <view class="content-title">按照距离排序</view>
+      <view class="museum-list">
+        <view class="museum-item {{item.active ? '' : 'inactive'}}"
+              wx:for="{{museumList}}" 
+              wx:key="unique"
+              data-item="{{item}}"
+              bindtap="switchCurrentMuseum">
+          <view class="museum-name">{{item.name}}</view>
+          <view class="museum-info">
+            <text>{{item.distance}}</text>
+            <text> · </text>
+            <text>{{item.location}}</text>
+            <text wx:if="{{item.tag}}" class="museum-tag">{{item.tag}}</text>
+          </view>
+          <view class="selected-tick" wx:if="{{currentMuseumId === item.id}}">✔</view>
+        </view>
+        <view class="cushion"></view>
+      </view>
+    </view>
+  </view>
+</view>
