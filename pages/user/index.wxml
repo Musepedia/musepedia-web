@@ -12,7 +12,7 @@
   <view class="body-card">
     <view class="user-info-container">
       <view class="avatar-container">
-        <image class="user-avatar" src="{{avatar}}"></image>
+        <image class="user-avatar" src="{{avatarUrl || 'https://tse3-mm.cn.bing.net/th/id/OIP-C.ffanePxGit2grTcR8wrJ4QAAAA?pid=ImgDet&rs=1'}}"></image>
         <view class="avatar-radius avatar-radius-left">
           <view class="avatar-radius-inner"></view>
         </view>
@@ -23,11 +23,11 @@
       <view class="info-container">
         <view class="info-username" wx:if="{{isLogin}}">
           <view class="username-text">{{nickname}}</view>
-          <view class="extra-user-info">abstractmgs.cn</view>
-          <view class="extra-user-info">东中国正常大学</view>
+          <view wx:if="{{false}}" class="extra-user-info">abstractmgs.cn</view>
+          <view wx:if="{{false}}" class="extra-user-info">东中国正常大学</view>
         </view>
         <view class="info-hint" bindtap="handleLoginTap" wx:else>
-          <text>点击授权</text>
+          <text>前往登录</text>
         </view>
       </view>
     </view>

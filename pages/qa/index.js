@@ -8,10 +8,10 @@ const globalUserInfo = app.globalData.userInfo;
 Page({
   data: {
     isLogin: false,
-    messages: [],
-    lastMessageTime: 0,
     nickname: '',
     avatar: '',
+    messages: [],
+    lastMessageTime: 0,
 
     displayInfo: false,
     exhibitLabel: '',
@@ -33,6 +33,8 @@ Page({
     
   },
   onShow: function () {
+    app.checkLogin(true);
+
     this.messageComponent.resetKeyboard();
     const userInfo = getApp().globalData.userInfo;
     const history = wx.getStorageSync('qaHistory') || [];
@@ -51,25 +53,7 @@ Page({
   questionMessage(question){
     return CommonMessage(question, this.data.avatar, true);
   },
-  checkLogin() {
-    // 判断用户是否登录
-    return this.data.isLogin;
-  },
-  forceLogin() {
-    // 跳转到登录页面
-    wx.switchTab({
-      url: '../user/index',
-    })
-    wx.showToast({
-      title: '请先登录',
-      icon: 'error'
-    })
-  },
   scanCode(){
-    if (!this.checkLogin()) {
-      this.forceLogin();
-      return ;
-    }
     wx.scanCode({
       onlyFromCamera: false,
       scanType: [],
@@ -108,10 +92,6 @@ Page({
     const {text: question, clear} = detail;
     if(!(question && question.trim().length)){
       // empty string
-      return;
-    }
-    if (!this.checkLogin()) {
-      this.forceLogin();
       return;
     }
     clear();

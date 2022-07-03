@@ -31,21 +31,23 @@
     <view slot="refresher" class="refresher-section"><van-loading color="var(--primary-theme-color)"/></view>
     
 
-    <view wx:for="{{recommendations}}" wx:for-item="recom" wx:key="index" class="recommendation">
-      <router-link to="/pages/exhibit-detail/index?{{recom.id || 23}}">
-        <explore-card 
-          title="{{recom.questionText}}"
-          content="{{recom.isImage ? '' : recom.answerText}}"
-          images="{{[recom.exhibitFigureUrl]}}"
-          image-height="120px">
-          <!-- 目前只有一张图 120px -->
-        </explore-card>
-      </router-link>
+    <view wx:for="{{recommendations}}" wx:key="index" class="recommendation">
+      <explore-card 
+        title="{{item.label}}"
+        content="{{item.description || ''}}"
+        images="{{[item.figureUrl]}}"
+        bindtap="intoDetail"
+        data-data="{{item}}"
+        image-height="120px">
+        <!-- 目前只有一张图 120px -->
+      </explore-card>
     </view>
     <view class="loading-section">
       <van-loading wx:if="{{loading}}" color="var(--primary-theme-color)"/>
       <text wx:else>已经没有更多了...</text>
     </view>
   </scroll-view>
+
+  <van-toast id="van-toast"></van-toast>
 </view>
 

@@ -6,8 +6,8 @@ const TOKEN_HEADER = 'x-auth-token';
 const MUSEUM_HEADER = 'x-museum';
 
 const _axios = axios.create({
-  baseURL: 'https://abstractmgs.cn/api/',
-  // baseURL: 'http://localhost/api/',
+  // baseURL: 'https://abstractmgs.cn/api/',
+  baseURL: 'http://localhost/api/',
   headers: {
     'Content-Type': 'application/json'
   },
@@ -32,7 +32,7 @@ _axios.interceptors.request.use(
     return config;
   },
   function fail(error) {
-    console.log(error);
+    console.error(error);
     return Promise.reject(error);
   }
 );
@@ -56,7 +56,7 @@ _axios.interceptors.response.use(
   function fail(error) {
     const resp = error.response;
     if(!resp){
-      wx.Toast.fail('网络请求失败');
+      wx.Toast.fail('请求失败');
       return Promise.reject(error);
     } else {
       checkToken(resp);
@@ -67,9 +67,7 @@ _axios.interceptors.response.use(
     } else if(resp.status === 403){
       wx.Toast.fail('对不起，你没有权限进行此操作');
     } else {
-      if(resp.data.message){
-        wx.Toast.fail(resp.data.message);
-      }
+      wx.Toast.fail(resp.data.message || '请求失败，请稍后再试');
     }
     return Promise.reject(error.response.data);
   }

@@ -1,6 +1,7 @@
 import Toast from '@vant/weapp/toast/toast'
 import Dialog from '@vant/weapp/dialog/dialog'
 import {getUserInfo, userLogin, updateUserProfile} from './api/user'
+import {wxLoginWithBackend} from './utils/util'
 
 App({
   onLaunch() {
@@ -12,7 +13,7 @@ App({
   globalData: {
     userInfo: {
       nickname: '',
-      avatar: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png',
+      avatarUrl: 'https://tse3-mm.cn.bing.net/th/id/OIP-C.ffanePxGit2grTcR8wrJ4QAAAA?pid=ImgDet&rs=1',
       isLogin: false
     },
     isiPhoneX: false,
@@ -37,6 +38,27 @@ App({
   setGlobalUserInfo(data){
     this.globalData.userInfo = data;
   },
+  checkLogin(forceLogin = false){
+    if(forceLogin && !this.globalData.userInfo.isLogin){
+      this.globalData.showLoginHint = true;
+      wx.switchTab({
+        url: '/pages/user/index',
+      })
+    }
+    return this.globalData.userInfo.isLogin;
+  },
+  userLoginWx(data){
+    return wxLoginWithBackend(data).then(data => {
+      wx.Toast.success('登录成功');
+      data.isLogin = true;
+      this.setGlobalUserInfo(data);
+      // 记录用户是否曾经授权登录过
+      // 如果授权过会在小程序启动时尝试获取用户信息
+      wx.setStorageSync('registered', true);
+
+      return data;
+    })
+  },
   updateUserInfo(data){
     return updateUserProfile(data).then(() => {
       Object.assign(this.globalData.userInfo, data);
@@ -45,7 +67,7 @@ App({
   getUserInfo(){
     const token = wx.getStorageSync('token');
     const registered = wx.getStorageSync('registered');
-    if(!token && !registered){
+    if(!token || !registered){
       return;
     }
     const loginSuccess = data => {

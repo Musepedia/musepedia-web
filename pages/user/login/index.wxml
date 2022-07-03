@@ -7,19 +7,20 @@
     <view class="input-cell input-phone">
       <input
         class="text-field" 
-        model:value="{{phone}}"  
+        type="number"
+        model:value="{{phoneNumber}}"  
         bindinput="onPhoneInput"
-        placeholder="请输入手机号"
-        type="text"/>
+        placeholder="请输入手机号"/>
     </view>
     <view class="input-cell input-sms">
       <input
         class="text-field" 
+        type="number"
+        maxlength="6"
         model:value="{{sms}}"  
         bindinput="onSMSInput"
         bindconfirm="onSMSConfirm" 
-        placeholder="请输入验证码"
-        type="text"/>
+        placeholder="请输入验证码"/>
       <van-button 
         class="btn-send-sms" 
         type="primary" 
@@ -30,7 +31,7 @@
         {{smsInterval > 0 ? '重新发送(' + smsInterval + ')' : '发送短信'}}
       </van-button>
     </view>
-    <view class="input-cell">
+    <view wx:if="{{false}}" class="input-cell">
       <label class="agreement-label">
         <checkbox class="agreement-checkbox">同意用户协议</checkbox>
       </label>
@@ -41,9 +42,12 @@
         type="primary" 
         border="{{false}}"
         custom-style="width:100%;"
+        bindtap="login"
         round>
         登录
       </van-button>
     </view>
   </view>
+
+  <van-toast id="van-toast"></van-toast>
 </view>

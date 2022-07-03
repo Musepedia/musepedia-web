@@ -1,5 +1,5 @@
 // pages/explore/index.js
-import {getRecommendation} from '../../api/recommendation'
+import {getExhibits} from '../../api/explore'
 
 Page({
   data: {
@@ -15,15 +15,22 @@ Page({
     cardDescriptionHeight: 'auto',
     descriptionOriginHeight: undefined
   },
-  onLoad: function (options) {},
+  onLoad: function (options) {
+
+  },
   onReady: function () {},
   onShow: function () {
-    this.onRefresh();
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
       this.getTabBar().setData({
         active: 1,
       });
     };
+    if(!getApp().checkLogin(true)){
+      return;
+    }
+    if(this.data.recommendations.length === 0){
+      this.onRefresh();
+    }
     // get origin height
     if(this.data.descriptionOriginHeight === undefined){
       this.createSelectorQuery()
@@ -44,13 +51,14 @@ Page({
       url: '/pages/switch-museum/index',
     })
   },
-  fetchData(count = 8){
-    return getRecommendation(count).then(data => {
-      data.forEach(e => {
-        e.isImage = (e.answerType === 2 || e.answerText.startsWith("htto://") || e.answerText.startsWith("https://"))
-      })
-      return data;
-    }).catch(ignore => {});
+  intoDetail(e){
+    const data = e.currentTarget.dataset.data;
+    wx.navigateTo({
+      url: '/pages/exhibit-detail/index',
+      success(res){
+        res.eventChannel.emit('exhibitData', data)
+      }
+    })
   },
   onScrollToLower(){
     if(!this.data.loading){
@@ -58,12 +66,12 @@ Page({
         loading: true,
         refresherEnabled: false
       });
-      this.fetchData(4).then(data => {
+      getExhibits(4).then(data => {
         console.log(data);
         this.setData({
           recommendations: this.data.recommendations.concat(data),
         })
-      }).finally(() => {
+      }).catch(ignore => {}).finally(() => {
         this.setData({
           loading: false,
           refresherEnabled: true
@@ -72,11 +80,11 @@ Page({
     }
   },
   onRefresh(){
-    this.fetchData(16).then(data => {
+    getExhibits(16).then(data => {
       this.setData({
         recommendations: data
       })
-    }).finally(() => {
+    }).catch(ignore => {}).finally(() => {
       this.setData({
         refreshing: false,
         refresherEnabled: true

@@ -1,9 +1,9 @@
 @font-face {
   font-family: "iconfont"; /* Project id 3219290 */
   src: 
-       url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAAKEAAsAAAAABkQAAAI6AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHFQGYACCcAo0TwE2AiQDCAsGAAQgBYRnBzoblQUR1YsXsh8J2SnmnTBOTSEbXWp6kMJ0Naw23sTDf2Pf7puZb952N6lmxaposmYeiiUShAb1h0ijEaJZ5WwkLzjkNADJPMbmkSXwrbXMA5VVdVTlkXxbQIV+IdnfP86lpF2lq1Gd8+lP5SygAD+zoCW2RseYtGjiBytgNUDd01oqYa8CNa7B8sqvZt/kZwSaNu1JJ2+eXqF7z2gDEwpnOMib414MBuo6rSi0Vheq6N4i3kCF9Go6vI4/H/9sh0gqmdN29sa1hw+HX90FOWPI3z1broc+llBBxioKcbG/fFoWbXzWDBfTtLMIDr8eEbri0JZQf53T2AZTVHwmyT8gQAIlHW2iN6mdVKk8nVw68+bC5YG3Y+HgYIwicMD5WX43rUAw/r1eP935r1YBP/+OHZsFFqW+bjj4EcoVkFhMhlTaJB1NmpOKCU03xxEnPvRzqj46YT3UjU4brZnMkdVNU4VbRkXLNqrqdtG04tThlpFHsigNzHtJEPrGSLreI+v7SBXuEyrsc39YOvOPA+/ROe/QRbhLIaPk0f5gdG3Dnqax12cKH5WRpsI7yRBpDvMkq9ZuqSGZY8PwGQpVRpa2xhv5GFVVi520e3Ka7FS7bZpy21sS19ZwSRBDEQ9ZP1DktBockrX8fc9I8KFiCEi9l8UgUu8ol8gA6lZuoIEHeWXwKSgoxRATrRq60bNIpdJCXfusPeKoxG5CsbOVuiRG5WT7TG3KEdBkpODjsrObJtpoGvaC4TsGFgA=') format('woff2'),
-       url('/assets/iconfont.woff') format('woff'),
-       url('/assets/iconfont.ttf') format('truetype');
+       url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAAKEAAsAAAAABkQAAAI6AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHFQGYACCcAo0TwE2AiQDCAsGAAQgBYRnBzoblQUR1YsXsh8J2SnmnTBOTSEbXWp6kMJ0Naw23sTDf2Pf7puZb952N6lmxaposmYeiiUShAb1h0ijEaJZ5WwkLzjkNADJPMbmkSXwrbXMA5VVdVTlkXxbQIV+IdnfP86lpF2lq1Gd8+lP5SygAD+zoCW2RseYtGjiBytgNUDd01oqYa8CNa7B8sqvZt/kZwSaNu1JJ2+eXqF7z2gDEwpnOMib414MBuo6rSi0Vheq6N4i3kCF9Go6vI4/H/9sh0gqmdN29sa1hw+HX90FOWPI3z1broc+llBBxioKcbG/fFoWbXzWDBfTtLMIDr8eEbri0JZQf53T2AZTVHwmyT8gQAIlHW2iN6mdVKk8nVw68+bC5YG3Y+HgYIwicMD5WX43rUAw/r1eP935r1YBP/+OHZsFFqW+bjj4EcoVkFhMhlTaJB1NmpOKCU03xxEnPvRzqj46YT3UjU4brZnMkdVNU4VbRkXLNqrqdtG04tThlpFHsigNzHtJEPrGSLreI+v7SBXuEyrsc39YOvOPA+/ROe/QRbhLIaPk0f5gdG3Dnqax12cKH5WRpsI7yRBpDvMkq9ZuqSGZY8PwGQpVRpa2xhv5GFVVi520e3Ka7FS7bZpy21sS19ZwSRBDEQ9ZP1DktBockrX8fc9I8KFiCEi9l8UgUu8ol8gA6lZuoIEHeWXwKSgoxRATrRq60bNIpdJCXfusPeKoxG5CsbOVuiRG5WT7TG3KEdBkpODjsrObJtpoGvaC4TsGFgA=') format('woff2');
+       /* url('/assets/iconfont.woff') format('woff'), */
+       /* url('/assets/iconfont.ttf') format('truetype'); */
 }
 
 .iconfont {
