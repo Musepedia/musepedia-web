@@ -2,6 +2,7 @@ import Toast from '@vant/weapp/toast/toast'
 import Dialog from '@vant/weapp/dialog/dialog'
 import {getUserInfo, userLogin, updateUserProfile} from './api/user'
 import {wxLoginWithBackend} from './utils/util'
+import {getCurrentMuseum} from './api/museum'
 
 App({
   onLaunch() {
@@ -9,6 +10,7 @@ App({
     this.checkiPhoneX();
     this.initShortcut();
     this.getUserInfo();
+    this.setDefaultMuseum();
   },
   globalData: {
     userInfo: {
@@ -16,6 +18,7 @@ App({
       avatarUrl: 'https://tse3-mm.cn.bing.net/th/id/OIP-C.ffanePxGit2grTcR8wrJ4QAAAA?pid=ImgDet&rs=1',
       isLogin: false
     },
+    currentMuseumInfo: null,
     isiPhoneX: false,
     appInfo: {
       version: 'Beta 0.3.4'
@@ -31,6 +34,34 @@ App({
   initShortcut(){
     wx.Toast = Toast;
     wx.Dialog = Dialog;
+  },
+  getCurrentMuseumId(){
+    return wx.getStorageSync('currentMuseumId') || null;
+  },
+  setCurrentMuseumId(id){
+    if(id && id !== wx.getStorageSync('currentMuseumId')){
+      wx.setStorageSync('currentMuseumId', id)
+      this.globalData.currentMuseumInfo = null;
+    }
+  },
+  getCurrentMuseumInfo(){
+    return this.globalData.currentMuseumInfo === null 
+          ? getCurrentMuseum().then(data => this.globalData.currentMuseumInfo = data)
+          : Promise.resolve(this.globalData.currentMuseumInfo);
+  },
+  setDefaultMuseum(){
+    if(wx.getStorageSync('currentMuseumId')){
+      return;
+    }
+    wx.getLocation({
+      type:'gcj02', // 使用国标坐标系
+      success: (res) => {
+        console.log(res.latitude, res.longitude);
+      },
+      fail: () => {
+        // choose default museum
+      }
+    })
   },
   /**
    * @param {*} data data包含nickname, avatarUrl

@@ -41,7 +41,8 @@ Component({
         showPopover: e.detail.visible,
       })
     },
-    hide(e) {
+    sendFeedback(e) {
+      this.triggerEvent(`exhibitactionfeedback`, e.currentTarget.dataset, {bubbles: true, composed:true})
       this.setData({
         showPopover: false,
       })

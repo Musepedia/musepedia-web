@@ -1,23 +1,23 @@
 // pages/explore/index.js
 import {getExhibits} from '../../api/explore'
 
+const app = getApp();
+
 Page({
   data: {
     keyword: '',
     loading: false,
     refreshing: false,
     refresherEnabled: false,
-    recommendations: [
-
-    ],
+    recommendations: [],
+    currentMuseumId: null,
+    currentMuseumInfo: {},
     // ui
     cardDescriptionHidden: false, 
     cardDescriptionHeight: 'auto',
     descriptionOriginHeight: undefined
   },
-  onLoad: function (options) {
-
-  },
+  onLoad: function (options) {},
   onReady: function () {},
   onShow: function () {
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
@@ -28,24 +28,35 @@ Page({
     if(!getApp().checkLogin(true)){
       return;
     }
-    if(this.data.recommendations.length === 0){
+    // set current museum info
+    const newMuseumId = app.getCurrentMuseumId();
+    if(newMuseumId !== this.data.currentMuseumId){
+      this.setData({
+        currentMuseumId: newMuseumId
+      })
       this.onRefresh();
-    }
-    // get origin height
-    if(this.data.descriptionOriginHeight === undefined){
-      this.createSelectorQuery()
-          .select('.museum-card-description')
-          .boundingClientRect()
-          .exec(e => {
-            this.setData({
-              descriptionOriginHeight: e[0].height + 'px'
-            });
-            this.setCardDescriptionHidden(false);
-          });
+      app.getCurrentMuseumInfo().then(data => {
+        this.setData({
+          currentMuseumInfo: data
+        });
+        // get origin height
+          this.createSelectorQuery()
+              .select('.description-content')
+              .boundingClientRect()
+              .exec(e => {
+                this.setData({
+                  // '场馆介绍'的高度27px
+                  descriptionOriginHeight: e[0].height + 27 + 'px'
+                });
+                this.setCardDescriptionHidden(false);
+              });
+      })
     }
   },
   onHide: function () {},
-  onUnload: function () {},
+  onUnload: function () {
+    
+  },
   switchMuseum(){
     wx.navigateTo({
       url: '/pages/switch-museum/index',
@@ -61,6 +72,10 @@ Page({
     })
   },
   onScrollToLower(){
+    if(!this.data.currentMuseumId){
+      return;
+    }
+
     if(!this.data.loading){
       this.setData({
         loading: true,
@@ -80,6 +95,9 @@ Page({
     }
   },
   onRefresh(){
+    if(!this.data.currentMuseumId){
+      return;
+    }
     getExhibits(16).then(data => {
       this.setData({
         recommendations: data

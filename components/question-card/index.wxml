@@ -11,7 +11,7 @@
   </view>
   <slot></slot>
   
-  <exhibit-action class="question-card-action" wx:if="{{showActionBar}}"></exhibit-action>
+  <exhibit-action class="question-card-action" wx:if="{{showActionBar}}" bind:exhibitactionfeedback="sendFeedback"></exhibit-action>
 
   <view wx:if="{{showDividerDown}}" class="divider divider-down">
     <van-icon name="arrow-down" size="16px" color="#ccc"></van-icon>

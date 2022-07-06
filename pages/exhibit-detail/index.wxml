@@ -27,6 +27,7 @@
     round
     bind:close="closePopup">
     <question-card
+      question-id="{{popupQuestion.questionId}}"
       question="{{popupQuestion.questionText || ''}}"
       answer="{{popupQuestion.answerType === 2 ? '' : (popupQuestion.answerText || '')}}"
       src="{{popupQuestion.answerType === 2 ? popupQuestion.answerText : popupQuestion.exhibitFigureUrl}}"

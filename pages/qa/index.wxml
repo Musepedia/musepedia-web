@@ -29,3 +29,21 @@ url="{{exhibitUrl}}"/>
     <rich-text nodes="{{detailText}}"></rich-text>
   </view>
 </van-popup>
+
+<van-popup 
+    show="{{showSwitchMuseumPopup}}" 
+    close-on-click-overlay="{{false}}"
+    custom-style="width: 80%"
+    round >
+  <view style="text-align: center; padding: 18px 10px;">
+    <view style="font-size: 18px;">您还未选择博物馆</view>
+    <view style="display:flex; margin-top: 16px">
+      <van-button 
+          style="width:100%"
+          type="primary"
+          custom-style="width:80%;height:32px"
+          bindtap="closeSwitchMuseumPopup"
+          round>前往选择</van-button>
+    </view>
+  </view>
+</van-popup>

@@ -11,15 +11,15 @@
       </van-sidebar-item>
     </van-sidebar>
     <view class="museum-content">
-      <view class="content-title">按照距离排序</view>
+      <!-- <view class="content-title">按照距离排序</view> -->
       <view class="museum-list">
-        <view class="museum-item {{item.active ? '' : 'inactive'}}"
+        <view class="museum-item {{item.service ? '' : 'inactive'}}"
               wx:for="{{museumList}}" 
               wx:key="unique"
-              data-item="{{item}}"
+              data-museum="{{item}}"
               bindtap="switchCurrentMuseum">
           <view class="museum-name">{{item.name}}</view>
-          <view class="museum-info">
+          <view wx:if="{{false}}" class="museum-info">
             <text>{{item.distance}}</text>
             <text> · </text>
             <text>{{item.location}}</text>

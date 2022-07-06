@@ -5,6 +5,8 @@ Page({
     phoneNumber: '',
     smsInterval: 0,
     sms: '',
+    showInitProfilePopup: false,
+    completeProfile: false
   },
   onLoad: function (options) {
   },
@@ -39,15 +41,32 @@ Page({
       sms: this.data.sms,
       vc: this.data.vc
     }).then(data => {
-      // 初次登陆设置偏好 
-      if(!wx.getStorageSync('initPreference')){
-        wx.setStorageSync('initPreference', true);
-        wx.redirectTo({
-          url: '/pages/setting/preference/index',
+      if(!wx.getStorageSync('initProfile')){
+        wx.setStorageSync('initProfile', true);
+        // 完善个人资料 
+        this.setData({
+          showInitProfilePopup: true
         })
-      } else {
-        wx.navigateBack()
       }
     }).catch(ignore => {})
+  },
+  goProfile(){
+    wx.navigateTo({
+      url: '/pages/setting/profile/index',
+    });
+    this.setData({
+      completeProfile: true
+    })
+  },
+  closeInitProfilePopup(){
+    // 初次登陆设置偏好 
+    if(!wx.getStorageSync('initPreference')){
+      wx.setStorageSync('initPreference', true);
+      wx.redirectTo({
+        url: '/pages/setting/preference/index',
+      })
+    } else {
+      wx.navigateBack()
+    }
   }
 })

@@ -34,12 +34,12 @@
 
     <view class="user-tabbar">
       <view class="user-tabbar-item" 
-            wx:for="{{['发布', '收藏']}}" 
+            wx:for="{{tabbarItems}}" 
             wx:key="unique" 
             bindtap="changeUserTabbar" 
             data-index="{{index}}">
-        <view class="{{index === activeTabbar ? 'tabbar-item-selected' : ''}}">{{item}}</view>
-        <view style="margin-top:4px;font-size:20px" class="item2">{{0}}</view>
+        <view class="tabbar-text {{index === activeTabbar ? 'selected' : ''}}">{{item.text}}</view>
+        <view style="margin-top:4px;font-size:20px" class="item2">{{item.count}}</view>
       </view>
     </view>
 
@@ -60,9 +60,9 @@
             wx:for="{{questions}}" 
             wx:key="index"
             data-question="{{item}}"
-            src="{{item.src}}"
+            src="{{item.exhibitFigureUrl}}"
             mode="widthFix" 
-            question="{{item.question}}">
+            question="{{item.questionText}}">
         </question-card>
       </view>
       <view class="loading-section">
@@ -83,8 +83,9 @@
     round
     bind:close="closePopup">
     <question-card
-      question="{{popupQuestion.question || ''}}"
-      answer="{{popupQuestion.answer || ''}}"
-      src="{{popupQuestion.src || ''}}"
+      question-id="{{popupQuestion.questionId}}"
+      question="{{popupQuestion.questionText || ''}}"
+      answer="{{popupQuestion.answerText || ''}}"
+      src="{{popupQuestion.exhibitFigureUrl || ''}}"
       show-action-bar></question-card>
   </van-popup>

@@ -163,6 +163,7 @@ Component({
       this.setData({
         popupQuestion: {
           src: data.status === 2 ? data.answer : '',
+          questionId: data.questionId,
           question: data.question,
           answer: data.status === 2 ? '' : data.answer,
           recommendQuestions: data.recommendQuestions

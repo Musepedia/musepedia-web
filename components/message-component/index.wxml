@@ -84,6 +84,7 @@
   round
   bind:close="closePopup">
   <question-card
+    question-id="{{popupQuestion.id || 0}}"
     question="{{popupQuestion.question || ''}}"
     answer="{{popupQuestion.answer || ''}}"
     src="{{popupQuestion.src || ''}}"

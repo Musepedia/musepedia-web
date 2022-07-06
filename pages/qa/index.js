@@ -12,6 +12,7 @@ Page({
     avatar: '',
     messages: [],
     lastMessageTime: 0,
+    showSwitchMuseumPopup: false,
 
     displayInfo: false,
     exhibitLabel: '',
@@ -35,6 +36,13 @@ Page({
   onShow: function () {
     app.checkLogin(true);
 
+    // 未选择博物馆则弹窗提示
+    if(!app.getCurrentMuseumId()){
+      this.setData({
+        showSwitchMuseumPopup: true
+      })
+    }
+
     this.messageComponent.resetKeyboard();
     const userInfo = getApp().globalData.userInfo;
     const history = wx.getStorageSync('qaHistory') || [];
@@ -49,6 +57,14 @@ Page({
   onHide: function () {
   },
   onUnload: function () {
+  },
+  closeSwitchMuseumPopup(){
+    wx.navigateTo({
+      url: '/pages/switch-museum/index',
+    });
+    this.setData({
+      showSwitchMuseumPopup: false
+    })
   },
   questionMessage(question){
     return CommonMessage(question, this.data.avatar, true);
@@ -137,8 +153,11 @@ Page({
       this.messageComponent.scrollToBottom();
 
       // 推荐展区信息
-      // this.pushMessage(HintMessage('推荐展区', true));
-      // this.pushMessage(HallMessage({src: 'https://abstractmgs.cn/figs/驼鹿.jpg', text: '生命CHANG和'}));
+      const hall = data.recommendExhibitionHall;
+      if(hall){
+        this.pushMessage(HintMessage('推荐展区', true));
+        this.pushMessage(HallMessage({src: 'https://abstractmgs.cn/figs/驼鹿.jpg', text: hall.name}));
+      }
     }).catch(err => {
       wx.Toast.fail('请求失败')
     })

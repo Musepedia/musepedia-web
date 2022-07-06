@@ -6,16 +6,16 @@
   
   <view class="header-section">
     <view class="museum-card" bindtap="toggleCardDescriptionHidden">
-        <view class="museum-card-header">
+      <view class="museum-card-header">
           <van-icon name="location-o" size="28px" color="var(--primary-theme-color)"></van-icon>
-          <image class="museum-logo" src="https://www.snhm.org.cn/webpc/images/logo.png" mode="heightFix"></image>
+          <image wx:if="{{currentMuseumId}}" class="museum-logo" src="{{currentMuseumInfo.logoUrl}}" mode="heightFix"></image>
+          <text wx:else>点击右侧按钮选择博物馆</text>
           <text class="iconfont icon-gaibianfangxiang icon-switch-museum"  
                 catchtap="switchMuseum"></text>
         </view>
-        <view class="museum-card-description {{cardDescriptionHidden ? 'hidden' : ''}}" style="height: {{cardDescriptionHeight}}">
+        <view wx:if="{{currentMuseumId}}" class="museum-card-description {{cardDescriptionHidden ? 'hidden' : ''}}" style="height: {{cardDescriptionHeight}}">
           <view class="description-header">场馆介绍</view>
-          <view class="description-content">上海自然博物馆(上海科技馆分馆),位于上海市静安区北京西路510号(静安罹塑公园内),建筑面积45257平方米,展览教育服务面积32200平方米,是综合性博物馆。
-          </view>
+          <view class="description-content">{{currentMuseumInfo.description}}</view>
         </view>
       </view>
     </view>
@@ -42,8 +42,10 @@
         <!-- 目前只有一张图 120px -->
       </explore-card>
     </view>
+
     <view class="loading-section">
-      <van-loading wx:if="{{loading}}" color="var(--primary-theme-color)"/>
+      <text wx:if="{{!currentMuseumId}}">您当前还未选择博物馆</text>
+      <van-loading wx:elif="{{loading}}" color="var(--primary-theme-color)"/>
       <text wx:else>已经没有更多了...</text>
     </view>
   </scroll-view>

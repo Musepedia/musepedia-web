@@ -50,4 +50,31 @@
   </view>
 
   <van-toast id="van-toast"></van-toast>
+
+  <van-popup
+    show="{{showInitProfilePopup}}"
+    custom-style="width: 80%;"
+    round
+    bind:close="closeInitProfilePopup">
+    <view style="text-align: center; padding: 20px 12px;">
+      <view style="font-size: 22px; font-weight: 600;">完善个人资料</view>
+      <view style="margin-top:10px;">可以选填以下的资料</view>
+      <view>帮助我们更好地改进系统性能</view>
+      <view style="display:flex; margin-top: 10px">
+        <van-button 
+          wx:if="{{!completeProfile}}"
+          class="btn-login" 
+          type="primary"
+          custom-style="width:80%;"
+          bindtap="goProfile"
+          round>前往填写</van-button>
+        <van-button 
+          class="btn-login {{completeProfile ? '' : 'btn-skip'}}" 
+          type="primary" 
+          custom-style="width:80%;"
+          bindtap="closeInitProfilePopup"
+          round>{{completeProfile ? '完成' : '跳过'}}</van-button>
+      </view>
+    </view>
+  </van-popup>
 </view>
