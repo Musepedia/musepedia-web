@@ -113,7 +113,6 @@ Page({
     clear();
     const messages = [this.questionMessage(question)];
     if(this.checkMessageInterval()){
-      console.log('d');
       messages.unshift(TimeMessage());
     }
     this.pushMessage(...messages);

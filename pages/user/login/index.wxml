@@ -24,11 +24,11 @@
       <van-button 
         class="btn-send-sms" 
         type="primary" 
-        disabled="{{smsInterval > 0}}"
+        disabled="{{sendingSMS || smsInterval > 0 || !validPhoneNumber}}"
         border="{{false}}"
         round
         bind:click="onSendSMSClick">
-        {{smsInterval > 0 ? '重新发送(' + smsInterval + ')' : '发送短信'}}
+        {{smsInterval > 0 ? '重新发送(' + smsInterval + ')' : sendingSMS ? '正在发送中...' : '发送短信'}}
       </van-button>
     </view>
     <view wx:if="{{false}}" class="input-cell">

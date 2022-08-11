@@ -76,7 +76,9 @@ Page({
   onRefresh(){
     if(this.data.activeTabbar === 0){
       // fetch history
-
+      // this.setData({
+      //   isRefreshing: false
+      // })
     }
   },
   onQuestionCardTap(e){
@@ -122,5 +124,5 @@ Page({
         questions: this.data.favorQuestions || []
       })
     }
-  }
+  },
 })

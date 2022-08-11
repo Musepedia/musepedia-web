@@ -36,16 +36,10 @@ export function listMuseum(){
       service: true,
     },
     {
-      name: '上海艺术品博博博博博博物馆',
+      name: '上海艺术品博物馆',
       distance: '2.3km',
       location: '天山',
       actiserviceve: false
-    },
-    {
-      name: '上海海海海海海海海艺术品博物馆',
-      distance: '33.2km',
-      location: '天天天天天山',
-      service: false
     },
     {
       name: '上海自然博物馆',

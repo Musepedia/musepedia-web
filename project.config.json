@@ -39,7 +39,7 @@
     "showES6CompileOption": false
   },
   "compileType": "miniprogram",
-  "libVersion": "2.20.0",
+  "libVersion": "2.20.3",
   "appid": "wxfe9a49b9f26c289d",
   "projectname": "museum-qa",
   "debugOptions": {

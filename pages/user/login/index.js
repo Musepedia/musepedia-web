@@ -3,7 +3,9 @@ import {sendSMS} from '../../../api/sms'
 Page({
   data: {
     phoneNumber: '',
+    validPhoneNumber: false,
     smsInterval: 0,
+    sendingSMS: false,
     sms: '',
     showInitProfilePopup: false,
     completeProfile: false
@@ -14,13 +16,22 @@ Page({
   onShow: function () {},
   onHide: function () {},
   onPhoneInput({detail}){
-    return detail.value.replace(/\D/g, '')
+    const phonePattern = /^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}$/g;
+    const v = detail.value.replace(/\D/g, '')
+    this.setData({
+      validPhoneNumber: phonePattern.test(v)
+    })
+    return v
   },
   onSMSInput({detail}){
     const v = detail.value.replace(/\D/g, '')
     return v;
   },
   onSendSMSClick(){
+    this.setData({
+      sendingSMS: true
+    });
+
     sendSMS({
       phone: this.data.phoneNumber
     }).then(data => {
@@ -33,7 +44,9 @@ Page({
           smsInterval: this.data.smsInterval - 1
         })
       }, 1000);
-    })
+    }).finally(() => this.setData({
+      sendingSMS: false
+    }))
   },
   login(){
     getApp().userLoginWx({
