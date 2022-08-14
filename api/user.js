@@ -14,3 +14,11 @@ export function getUserInfo(){
     method: 'get'
   })
 }
+
+export function updateUserProfile(data){
+  return axios({
+    url: 'user/profile',
+    method: 'put',
+    data: data
+  })
+}

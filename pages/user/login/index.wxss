@@ -75,3 +75,9 @@
 .btn-login{
   width: 100%;
 }
+
+.btn-skip{
+  --button-border-width: 1px;
+  --button-primary-background-color: #fff;
+  --button-primary-color: var(--primary-theme-color);
+}

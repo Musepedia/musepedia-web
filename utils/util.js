@@ -41,16 +41,17 @@ export function wxLogin(){
   return Promise.all([p1, p2]);
 }
 
-export function wxLoginWithBackend(){
+export function wxLoginWithBackend(data){
   return wxLogin().then(res => {
-    console.log(res);
-    return userLogin({
+    const body = {
       code: res[0].code,
       encryptedData: res[1].encryptedData,
       iv: res[1].iv,
       avatarUrl: res[1].userInfo.avatarUrl,
-      nickname: res[1].userInfo.nickName
-    });
+      nickname: res[1].userInfo.nickName,
+    }
+    Object.assign(body, data);
+    return userLogin(body);
   })
 }
 

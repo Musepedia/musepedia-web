@@ -147,11 +147,14 @@
 .user-tabbar-item:first-child{
   border-left: none;
 }
-
-.tabbar-item-selected::after{
+.tabbar-text::after{
   content: "";
   height: 2px;
   display: block;
+  border-bottom: 1px transparent solid;
+}
+
+.tabbar-text.selected::after{
   border-bottom: 1px var(--primary-orange) solid;
 }
 

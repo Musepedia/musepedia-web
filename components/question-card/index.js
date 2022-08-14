@@ -1,3 +1,5 @@
+import {questionFeedback} from '../../api/feedback'
+
 Component({
   options: {
     multipleSlots: true
@@ -10,6 +12,9 @@ Component({
     mode: {
       type: String,
       value: 'aspectFill'
+    },
+    questionId: {
+      type: Number
     },
     question: {
       type: String,
@@ -36,5 +41,13 @@ Component({
 
   },
   methods: {
+    sendFeedback({detail}){
+      questionFeedback({
+        questionId: this.data.questionId,
+        feedback: detail.feedback
+      }).then(() => {
+        console.log('提交反馈成功');
+      })
+    }
   }
 })

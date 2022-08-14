@@ -1,0 +1,5 @@
+@import "../index.wxss";
+
+.updateable{
+  --cell-value-color: #323232;
+}

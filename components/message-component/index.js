@@ -102,19 +102,22 @@ Component({
     sendMessage(event){
       const dataset = event.target.dataset;
 
-      let text = this.data.message;
+      // 通过DOM点击事件调用时使用点击事件的参数，默认使用输入框中文字
+      const text = dataset.message || this.data.message;
 
-      let showRecommend = true;
-      if(dataset.message){
-        // 通过DOM点击事件调用时使用点击事件的参数，默认使用输入框中文字
-        text = dataset.message;
-        showRecommend = false; // 设计为通过推荐发送的消息不触发推荐
-      }
       this.triggerEvent('sendmessage', {
         text: text,
         clear: bindedClearText,
-        showRecommend: showRecommend
       });
+    },
+    /**
+     * 通过点击推荐问题发送消息
+     */
+    sendRecMessage(event){
+      this.setData({
+        showQuestionCard: false
+      })
+      this.sendMessage(event);
     },
     clearText(){
       this.setData({
@@ -156,9 +159,13 @@ Component({
     },
     showQuestionCardPopup(e){
       const data = e.target.dataset.data;
+      console.log(data);
       this.setData({
         popupQuestion: {
-          src: data.answer,
+          src: data.status === 2 ? data.answer : '',
+          questionId: data.questionId,
+          question: data.question,
+          answer: data.status === 2 ? '' : data.answer,
           recommendQuestions: data.recommendQuestions
         },
         showQuestionCard: true

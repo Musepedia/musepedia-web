@@ -7,30 +7,31 @@
     <view class="input-cell input-phone">
       <input
         class="text-field" 
-        model:value="{{phone}}"  
+        type="number"
+        model:value="{{phoneNumber}}"  
         bindinput="onPhoneInput"
-        placeholder="请输入手机号"
-        type="text"/>
+        placeholder="请输入手机号"/>
     </view>
     <view class="input-cell input-sms">
       <input
         class="text-field" 
+        type="number"
+        maxlength="6"
         model:value="{{sms}}"  
         bindinput="onSMSInput"
         bindconfirm="onSMSConfirm" 
-        placeholder="请输入验证码"
-        type="text"/>
+        placeholder="请输入验证码"/>
       <van-button 
         class="btn-send-sms" 
         type="primary" 
-        disabled="{{smsInterval > 0}}"
+        disabled="{{sendingSMS || smsInterval > 0 || !validPhoneNumber}}"
         border="{{false}}"
         round
         bind:click="onSendSMSClick">
-        {{smsInterval > 0 ? '重新发送(' + smsInterval + ')' : '发送短信'}}
+        {{smsInterval > 0 ? '重新发送(' + smsInterval + ')' : sendingSMS ? '正在发送中...' : '发送短信'}}
       </van-button>
     </view>
-    <view class="input-cell">
+    <view wx:if="{{false}}" class="input-cell">
       <label class="agreement-label">
         <checkbox class="agreement-checkbox">同意用户协议</checkbox>
       </label>
@@ -41,9 +42,39 @@
         type="primary" 
         border="{{false}}"
         custom-style="width:100%;"
+        bindtap="login"
         round>
         登录
       </van-button>
     </view>
   </view>
+
+  <van-toast id="van-toast"></van-toast>
+
+  <van-popup
+    show="{{showInitProfilePopup}}"
+    custom-style="width: 80%;"
+    round
+    bind:close="closeInitProfilePopup">
+    <view style="text-align: center; padding: 20px 12px;">
+      <view style="font-size: 22px; font-weight: 600;">完善个人资料</view>
+      <view style="margin-top:10px;">可以选填以下的资料</view>
+      <view>帮助我们更好地改进系统性能</view>
+      <view style="display:flex; margin-top: 10px">
+        <van-button 
+          wx:if="{{!completeProfile}}"
+          class="btn-login" 
+          type="primary"
+          custom-style="width:80%;"
+          bindtap="goProfile"
+          round>前往填写</van-button>
+        <van-button 
+          class="btn-login {{completeProfile ? '' : 'btn-skip'}}" 
+          type="primary" 
+          custom-style="width:80%;"
+          bindtap="closeInitProfilePopup"
+          round>{{completeProfile ? '完成' : '跳过'}}</van-button>
+      </view>
+    </view>
+  </van-popup>
 </view>

@@ -15,11 +15,18 @@
 
 .museum-card-header{
   display: flex;
+  align-items: center;
 }
 
 .museum-logo{
   margin-left: 10px;
   height: 40px;
+}
+
+.icon-switch-museum{
+  margin-left: auto;
+  font-size: 20px;
+  color:#888;
 }
 
 .museum-card{

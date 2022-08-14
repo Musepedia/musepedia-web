@@ -1,5 +1,5 @@
 <!--index.wxml-->
-<view class="index-container page-wrapper">
+<view style="margin-top:14vh" class="index-container page-wrapper">
   <view class="header">
     <view style="display:none" class="header-row">
       <text>选择博物馆</text>
@@ -15,7 +15,7 @@
     </view>
   </view>
 
-  <view class="index-body">
+  <view wx:if="{{false}}" class="index-body">
     <view class="recommend-header">为您推荐</view>
     <view class="recommend-tag"></view>
     <view class="masonry">

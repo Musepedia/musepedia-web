@@ -1,7 +1,10 @@
 // components/message-item/index.js
 Component({
   properties: {
-    right: Boolean,
+    right: {
+      type: Boolean,
+      value: false
+    },
     avatar: {
       type: String,
       value: ''

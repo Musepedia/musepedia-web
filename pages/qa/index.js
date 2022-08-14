@@ -8,10 +8,11 @@ const globalUserInfo = app.globalData.userInfo;
 Page({
   data: {
     isLogin: false,
-    messages: [],
-    lastMessageTime: 0,
     nickname: '',
     avatar: '',
+    messages: [],
+    lastMessageTime: 0,
+    showSwitchMuseumPopup: false,
 
     displayInfo: false,
     exhibitLabel: '',
@@ -33,13 +34,22 @@ Page({
     
   },
   onShow: function () {
+    app.checkLogin(true);
+
+    // 未选择博物馆则弹窗提示
+    if(!app.getCurrentMuseumId()){
+      this.setData({
+        showSwitchMuseumPopup: true
+      })
+    }
+
     this.messageComponent.resetKeyboard();
     const userInfo = getApp().globalData.userInfo;
     const history = wx.getStorageSync('qaHistory') || [];
     this.setData({
       isLogin: userInfo.isLogin,
       nickname: userInfo.nickname,
-      avatar: userInfo.avatar,
+      avatar: userInfo.avatarUrl,
       history: history,
       historyIndex: history.length
     });
@@ -48,25 +58,18 @@ Page({
   },
   onUnload: function () {
   },
-  checkLogin() {
-    // 判断用户是否登录
-    return this.data.isLogin;
+  closeSwitchMuseumPopup(){
+    wx.navigateTo({
+      url: '/pages/switch-museum/index',
+    });
+    this.setData({
+      showSwitchMuseumPopup: false
+    })
   },
-  forceLogin() {
-    // 跳转到登录页面
-    wx.switchTab({
-      url: '../user/index',
-    })
-    wx.showToast({
-      title: '请先登录',
-      icon: 'error'
-    })
+  questionMessage(question){
+    return CommonMessage(question, this.data.avatar, true);
   },
   scanCode(){
-    if (!this.checkLogin()) {
-      this.forceLogin();
-      return ;
-    }
     wx.scanCode({
       onlyFromCamera: false,
       scanType: [],
@@ -87,10 +90,9 @@ Page({
   },
   checkMessageInterval(){
     const now = new Date().getTime();
-    this.setData({
-      lastMessageTime: now
-    });
-    return now - this.data.lastMessageTime > 120000;
+    const last = this.data.lastMessageTime;
+    this.data.lastMessageTime = now;
+    return now - last > 120000;
   },
   pushMessage(...messages){
     this.setData({
@@ -103,41 +105,44 @@ Page({
     });
   },
   onMessage({detail}){
-    const {text, clear} = detail;
-    if(!(text && text.trim().length)){
+    const {text: question, clear} = detail;
+    if(!(question && question.trim().length)){
       // empty string
       return;
     }
-    if (!this.checkLogin()) {
-      this.forceLogin();
-      return;
-    }
     clear();
-    const messages = [CommonMessage(text, this.data.avatar, true)];
-    if(this.checkMessageInterval(messages)){
+    const messages = [this.questionMessage(question)];
+    if(this.checkMessageInterval()){
       messages.unshift(TimeMessage());
     }
     this.pushMessage(...messages);
     this.messageComponent.scrollToBottom();
-    // do request
-    getAnswer(text).then(data => {
+    // get answer
+    getAnswer(question).then(data => {
       data.isReply = true;
+      data.question = question;
 
       const isImgReply = data.status === 2 || data.status === 3 
         || data.answer.startsWith('https://') 
         || data.answer.startsWith('http://');
+      isImgReply && (data.status = 2);
 
       const answerMsg = isImgReply ? ImageReplyMessage(data) : RecommendMessage(
-        data.answer, 
         // 'https://www.shanghaimuseum.net/mu/site/img/favicon.ico', 
         '',  // 展馆头像暂不显示
-        data.status ? '更多推荐:' : '可以试试这样问:', 
-        data.recommendQuestions, 
         data
       );
 
       // save history
-      this.data.history.push([...messages, answerMsg]);
+      // TODO 优化存储方式
+      if(messages.length > 1){
+        // 记录时间消息
+        answerMsg.time = messages[0].text;
+      }
+      this.data.history.push([answerMsg]);
+      if(this.data.history.length >= 512){
+        this.data.history.shift();
+      }
       wx.setStorage({
         key: 'qaHistory',
         data: this.data.history
@@ -147,8 +152,11 @@ Page({
       this.messageComponent.scrollToBottom();
 
       // 推荐展区信息
-      this.pushMessage(HintMessage('推荐展区', true));
-      this.pushMessage(HallMessage({src: 'https://abstractmgs.cn/figs/驼鹿.jpg', text: '生命CHANG和'}));
+      const hall = data.recommendExhibitionHall;
+      if(hall){
+        this.pushMessage(HintMessage('推荐展区', true));
+        this.pushMessage(HallMessage({src: 'https://abstractmgs.cn/figs/驼鹿.jpg', text: hall.name}));
+      }
     }).catch(err => {
       wx.Toast.fail('请求失败')
     })
@@ -156,10 +164,20 @@ Page({
   fetchHistory({detail}){
     const done = detail.done;
 
-    const data = this.data.history;
     const hi = this.data.historyIndex;
     const fetchCount = 3, fromIndex = Math.max(hi - fetchCount, 0);
-    const historySlice = data.slice(fromIndex, hi).flat();
+    // 截取三条记录
+    const data = this.data.history.slice(fromIndex, hi);
+    data.forEach(h => {
+      const his = h[0];
+      if(his.data && his.data.question){
+        h.unshift(this.questionMessage(his.data.question));
+      }
+      if(his.time){
+        h.unshift(TimeMessage(his.time));
+      }
+    })
+    const historySlice = data.flat();
 
     if(!this.data.showHistoryHint && historySlice.length > 0){
       historySlice.push(HintMessage('以上为历史消息', true))

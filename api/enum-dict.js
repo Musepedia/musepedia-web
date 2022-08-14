@@ -1,11 +1,11 @@
 import axios from '../utils/axios'
 
-export function getRecommendation(count){
+export function getEnumDict(name){
   return axios({
-    url: 'recommendation',
+    url: 'edict',
     method: 'get',
     params: {
-      count: count
+      name: name
     }
   })
 }

@@ -5,7 +5,6 @@
     binddetailtap="showDetailTextPopup"
     bindrefresh="fetchHistory" 
     messages="{{messages}}">
-      <additional-input slot="input-icons" hint="扫一扫" icon-name="scan" bindtap="scanCode"></additional-input>
   </message-component>
   <van-toast id="van-toast"></van-toast>
 </view>
@@ -28,5 +27,23 @@ url="{{exhibitUrl}}"/>
     close-on-click-overlay>
   <view class="detail-text">
     <rich-text nodes="{{detailText}}"></rich-text>
+  </view>
+</van-popup>
+
+<van-popup 
+    show="{{showSwitchMuseumPopup}}" 
+    close-on-click-overlay="{{false}}"
+    custom-style="width: 80%"
+    round >
+  <view style="text-align: center; padding: 18px 10px;">
+    <view style="font-size: 18px;">您还未选择博物馆</view>
+    <view style="display:flex; margin-top: 16px">
+      <van-button 
+          style="width:100%"
+          type="primary"
+          custom-style="width:80%;height:32px"
+          bindtap="closeSwitchMuseumPopup"
+          round>前往选择</van-button>
+    </view>
   </view>
 </van-popup>

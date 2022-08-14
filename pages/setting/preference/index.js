@@ -2,6 +2,8 @@
 import {getUserPreference,updateUserPreference} from '../../../api/setting'
 import {getExhibitionHallByMuseumId} from '../../../api/exhibition-hall'
 
+const app = getApp();
+
 Page({
   data: {
     result: [],
@@ -11,6 +13,13 @@ Page({
   onLoad: function (options) {},
   onReady: function () {},
   onShow: function () {
+    if(!app.getCurrentMuseumId()){
+      // 检查是否已选择当前博物馆
+      wx.navigateTo({
+        url: '/pages/switch-museum/index',
+      })
+      return;
+    }
     Promise.all([
       getUserPreference(), 
       getExhibitionHallByMuseumId()

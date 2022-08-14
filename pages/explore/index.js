@@ -1,5 +1,7 @@
 // pages/explore/index.js
-import {getRecommendation} from '../../api/recommendation'
+import {getExhibits} from '../../api/explore'
+
+const app = getApp();
 
 Page({
   data: {
@@ -7,9 +9,9 @@ Page({
     loading: false,
     refreshing: false,
     refresherEnabled: false,
-    recommendations: [
-
-    ],
+    recommendations: [],
+    currentMuseumId: null,
+    currentMuseumInfo: {},
     // ui
     cardDescriptionHidden: false, 
     cardDescriptionHeight: 'auto',
@@ -18,34 +20,69 @@ Page({
   onLoad: function (options) {},
   onReady: function () {},
   onShow: function () {
-    this.onRefresh();
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
       this.getTabBar().setData({
         active: 1,
       });
     };
-    // get origin height
-    if(this.data.descriptionOriginHeight === undefined){
-      this.createSelectorQuery()
-          .select('.museum-card-description')
-          .boundingClientRect()
-          .exec(e => {
-            this.setData({
-              descriptionOriginHeight: e[0].height + 'px'
-            });
-            this.setCardDescriptionHidden(false);
-          });
+    if(!getApp().checkLogin(true)){
+      return;
+    }
+    // set current museum info
+    const newMuseumId = app.getCurrentMuseumId();
+    if(newMuseumId !== this.data.currentMuseumId){
+      this.setData({
+        currentMuseumId: newMuseumId
+      })
+      this.onRefresh();
+      app.getCurrentMuseumInfo().then(data => {
+        this.setData({
+          currentMuseumInfo: data
+        });
+        // get origin height
+          this.createSelectorQuery()
+              .select('.description-content')
+              .boundingClientRect()
+              .exec(e => {
+                this.setData({
+                  // '场馆介绍'的高度27px
+                  descriptionOriginHeight: e[0].height + 27 + 'px'
+                });
+                this.setCardDescriptionHidden(false);
+              });
+      })
     }
   },
   onHide: function () {},
-  onUnload: function () {},
+  onUnload: function () {
+    
+  },
+  switchMuseum(){
+    wx.navigateTo({
+      url: '/pages/switch-museum/index',
+    })
+  },
+  intoDetail(e){
+    const data = e.currentTarget.dataset.data;
+    wx.navigateTo({
+      url: '/pages/exhibit-detail/index',
+      success(res){
+        res.eventChannel.emit('exhibitData', data)
+      }
+    })
+  },
   onScrollToLower(){
+    if(!this.data.currentMuseumId){
+      return;
+    }
+
     if(!this.data.loading){
       this.setData({
         loading: true,
         refresherEnabled: false
       });
-      getRecommendation(4).then(data => {
+      getExhibits(4).then(data => {
+        console.log(data);
         this.setData({
           recommendations: this.data.recommendations.concat(data),
         })
@@ -58,13 +95,19 @@ Page({
     }
   },
   onRefresh(){
-    getRecommendation(16).then(data => {
+    if(!this.data.currentMuseumId){
+      return;
+    }
+    getExhibits(16).then(data => {
       this.setData({
-        recommendations: data,
+        recommendations: data
+      })
+    }).catch(ignore => {}).finally(() => {
+      this.setData({
         refreshing: false,
         refresherEnabled: true
       })
-    }).catch(ignore => {})
+    })
   },
   // ui related
   onRecommendScroll(e){

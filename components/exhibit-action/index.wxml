@@ -3,7 +3,7 @@
   <view class="exhibit-action-btn left" bindtap="onActionTap" data-action="info">
     <van-icon name="question" size="{{iconSize}}" color="var(--primary-theme-color)"></van-icon>
   </view>
-  <view class="exhibit-action-btn" bindtap="onActionTap" data-action="like">
+  <view wx:if="{{false}}" class="exhibit-action-btn" bindtap="onActionTap" data-action="like">
     <van-icon name="{{likeIcon}}" size="{{iconSize}}" color="{{likeColor}}"></van-icon>
   </view>
   <view wx:if="{{false}}" class="exhibit-action-btn" bindtap="onActionTap" data-action="comment">
@@ -17,8 +17,8 @@
         placement="top"
         bind:change="onChange">
         <view slot="content">
-          <view class="feedback-act" catchtap="hide">有帮助</view>
-          <view class="feedback-act" catchtap="hide">没帮助</view> 
+          <view class="feedback-act" catchtap="sendFeedback" data-feedback="{{true}}">有帮助</view>
+          <view class="feedback-act" catchtap="sendFeedback" data-feedback="{{false}}">没帮助</view> 
         </view>
         
       <van-icon name="ellipsis" size="{{iconSize}}"></van-icon>
