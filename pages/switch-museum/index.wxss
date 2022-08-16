@@ -16,7 +16,21 @@
 
 .switch-wrapper{
   display: flex;
-  height: 100%;
+  height: calc(100% - 60px);
+}
+
+.switch-museum-footer{
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 0;
+}
+
+.btn-complete{
+  width: 80%;
+  --button-default-height: 36px;
+  --button-default-border-color: #ddd;
 }
 
 .museum-content{

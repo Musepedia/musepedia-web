@@ -24,15 +24,17 @@ page{
   border-radius: 10px;
   width: 100%;
   overflow: hidden;
-  height: 26vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   position: relative;
+  margin-top: 48px;
+  margin-bottom: 48px;
 }
 
 .museum-name{
-  position: absolute;
   font-size: 22px;
-  left: 10px;
-  top: 10px;
 }
 
 .search-row{

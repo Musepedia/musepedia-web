@@ -63,6 +63,8 @@ Page({
         userInfo: this.data.userInfo,
         showPopup: false
       })
+    }).then(() => {
+      wx.Toast.success('已更新用户信息')
     }).catch(e => {
       wx.Toast.fail('更新用户信息失败，请稍后重试')
     })

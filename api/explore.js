@@ -13,8 +13,7 @@ export function getExhibits(count){
 
 export function getRecommendQuestion(params){
   return axios({
-    // url: 'explore/question',
-    url: 'recommendation',
+    url: 'explore/question',
     method: 'get',
     params: params
   })

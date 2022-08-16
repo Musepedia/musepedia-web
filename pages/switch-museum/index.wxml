@@ -31,4 +31,8 @@
       </view>
     </view>
   </view>
+
+  <view class="switch-museum-footer">
+    <van-button class="btn-complete" custom-style="width:100%" type="primary" round bind:click="completeSetting">完成</van-button>
+  </view>
 </view>

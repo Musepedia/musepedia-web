@@ -86,4 +86,7 @@ page{
   --button-primary-border-color: var(--primary-theme-color);
   
   --tag-primary-color: var(--primary-theme-color);
+
+  /* Tabbar高度 */
+  --tabbar-height: 64px;
 }

@@ -40,7 +40,7 @@ Page({
   onShow: function () {
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
       this.getTabBar().setData({
-        active: 3,
+        active: 2,
       });
     };
     if(app.globalData.showLoginHint){
@@ -65,20 +65,15 @@ Page({
     wx.navigateTo({
       url: '/pages/user/login/index',
     })
-    // app.userLoginWx().then(data => {
-    //   this.setData({
-    //     isLogin: true,
-    //     nickname: data.nickname,
-    //     avatar: data.avatarUrl,
-    //   });
-    // }).catch(ignore => {})
   },
   onRefresh(){
     if(this.data.activeTabbar === 0){
-      // fetch history
-      // this.setData({
-      //   isRefreshing: false
-      // })
+      this.fetchQuestionHistory().then(() => {
+        // fetch history
+        this.setData({
+          isRefreshing: false
+        })
+      })
     }
   },
   onQuestionCardTap(e){
@@ -93,6 +88,17 @@ Page({
       showPopup: false
     })
   },
+  fetchQuestionHistory(){
+    return getQuestionHistory().then(data => {
+      const item = this.data.tabbarItems;
+      item[0].count = data.length;
+      this.setData({
+        historyQuestions: data,
+        questions: data,
+        tabbarItems: item
+      })
+    }).catch(ignore => {});
+  },
   changeUserTabbar({currentTarget = {}}){
     const activeIndex = currentTarget.dataset.index;
     this.setData({
@@ -105,21 +111,14 @@ Page({
     if(activeIndex === 0){
       // fetch history
       if(this.data.historyQuestions === null){
-        getQuestionHistory().then(data => {
-          const item = this.data.tabbarItems;
-          item[0].count = data.length;
-          this.setData({
-            historyQuestions: data,
-            questions: data,
-            tabbarItems: item
-          })
-        }).catch(ignore => {});
+        this.fetchQuestionHistory();
       } else {
         this.setData({
           questions: this.data.historyQuestions
         })
       }
     } else if(activeIndex === 1){
+      // 收藏的问题
       this.setData({
         questions: this.data.favorQuestions || []
       })

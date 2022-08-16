@@ -2,15 +2,23 @@
 <van-tabbar
   class="custom-tabbar"
   active="{{ active }}"
-  active-color="#4834d4"
-  inactive-color="#000"
+  active-color="#FF6839"
+  inactive-color="#828282"
   bind:change="onChange"
 >
-  <van-tabbar-item icon="home-o">首页</van-tabbar-item>
-  <van-tabbar-item icon="notes-o">发现</van-tabbar-item>
-    <!-- <view class="mid-tabbar-item">
-      <van-icon name="scan" size="26px">asd</van-icon>
-    </view> -->
-  <van-tabbar-item icon="calendar-o">社区</van-tabbar-item>
-  <van-tabbar-item icon="friends-o">个人</van-tabbar-item>
+  <van-tabbar-item>
+    <image class="tabbar-icon" slot="icon" src="/assets/icons/home.png" mode="heightFix"></image>
+    <image class="tabbar-icon" slot="icon-active" src="/assets/icons/home-active.png" mode="heightFix"></image>
+    <text>主页</text>
+  </van-tabbar-item>
+  <van-tabbar-item>
+    <image class="tabbar-icon" slot="icon" src="/assets/icons/explore.png" mode="heightFix"></image>
+    <image class="tabbar-icon" slot="icon-active" src="/assets/icons/explore-active.png" mode="heightFix"></image>
+    <text>发现</text>
+  </van-tabbar-item>
+  <van-tabbar-item>
+    <image class="tabbar-icon" slot="icon" src="/assets/icons/user.png" mode="heightFix"></image>
+    <image class="tabbar-icon" slot="icon-active" src="/assets/icons/user-active.png" mode="heightFix"></image>
+    <text>个人</text>
+  </van-tabbar-item>
 </van-tabbar>

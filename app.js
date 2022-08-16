@@ -21,7 +21,7 @@ App({
     currentMuseumInfo: null,
     isiPhoneX: false,
     appInfo: {
-      version: 'Beta 0.3.5'
+      version: 'Beta 0.3.6'
     }
   },
   checkiPhoneX: function() {

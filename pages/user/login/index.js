@@ -60,6 +60,8 @@ Page({
         this.setData({
           showInitProfilePopup: true
         })
+      } else {
+        wx.navigateBack();
       }
     }).catch(ignore => {})
   },

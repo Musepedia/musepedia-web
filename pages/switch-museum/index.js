@@ -35,6 +35,8 @@ Page({
         currentMuseumId: museumId
       })
     }
-    
+  },
+  completeSetting(){
+    wx.navigateBack();
   }
 })
