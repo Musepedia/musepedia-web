@@ -1,0 +1,27 @@
+.loading-dots{
+  --dot-size: 8px;
+
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+}
+.loading-dots .dot{
+  display: inline-block;
+  width: var(--dot-size);
+  height: var(--dot-size);
+  margin-right: 5px;
+  border-radius: 50%;
+  background: var(--primary-theme-color);
+  animation: load 1.3s ease infinite;
+}
+
+@keyframes load{
+  0%{
+      opacity: 1;
+  }
+  100%{
+      opacity: 0;
+  }
+}

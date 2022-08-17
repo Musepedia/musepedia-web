@@ -85,7 +85,7 @@
     <question-card
       question-id="{{popupQuestion.questionId}}"
       question="{{popupQuestion.questionText || ''}}"
-      answer="{{popupQuestion.answerText || ''}}"
-      src="{{popupQuestion.exhibitFigureUrl || ''}}"
+      answer="{{popupQuestion.answerType === 2 ? '' : (popupQuestion.answerText || '')}}"
+      src="{{popupQuestion.answerType === 2 ? popupQuestion.answerText : popupQuestion.exhibitFigureUrl}}"
       show-action-bar></question-card>
   </van-popup>

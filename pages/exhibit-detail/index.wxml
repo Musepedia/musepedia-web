@@ -33,4 +33,5 @@
       src="{{popupQuestion.answerType === 2 ? popupQuestion.answerText : popupQuestion.exhibitFigureUrl}}"
       show-action-bar></question-card>
   </van-popup>
+  <van-toast id="van-toast" />
 </view>

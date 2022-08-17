@@ -1,0 +1,4 @@
+<!--components/loading-dot/index.wxml-->
+<view class="loading-dots">
+  <view class="dot" style="animation-delay: {{0.13 * (index+1)}}s;" wx:for="{{3}}" wx:key="unique"></view>
+</view>

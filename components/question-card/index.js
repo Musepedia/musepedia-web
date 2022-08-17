@@ -46,7 +46,9 @@ Component({
         questionId: this.data.questionId,
         feedback: detail.feedback
       }).then(() => {
-        console.log('提交反馈成功');
+        wx.Toast.success({
+          message: '已提交反馈'
+        });
       })
     }
   }

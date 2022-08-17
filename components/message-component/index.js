@@ -12,6 +12,10 @@ Component({
     messages: {
       type: Array,
       value: []
+    },
+    showPendingMessage: {
+      type: Boolean,
+      value: false
     }
   },
   data: {

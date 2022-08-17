@@ -1,6 +1,6 @@
 .question-card{
   border-radius: var(--border-radius);
-  box-shadow: 0 4px 6px 2px rgba(255, 215, 215, 0.12);
+  box-shadow: 0 4px 6px 2px rgba(255, 104, 57, 0.12);
   background-color: #fff;
 
   --padding-horizontal: 16px;
@@ -31,4 +31,5 @@
 
 .content-text{
   overflow-wrap: anywhere;
+  user-select: text;
 }

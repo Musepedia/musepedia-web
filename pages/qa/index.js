@@ -13,6 +13,7 @@ Page({
     messages: [],
     lastMessageTime: 0,
     showSwitchMuseumPopup: false,
+    pendingMessages: 0,
 
     displayInfo: false,
     exhibitLabel: '',
@@ -118,6 +119,9 @@ Page({
     this.pushMessage(...messages);
     this.messageComponent.scrollToBottom();
     // get answer
+    this.setData({
+      pendingMessages: this.data.pendingMessages + 1
+    });
     getAnswer(question).then(data => {
       data.isReply = true;
       data.question = question;
@@ -159,6 +163,10 @@ Page({
       }
     }).catch(err => {
       wx.Toast.fail('请求失败')
+    }).finally(() => {
+      this.setData({
+        pendingMessages: this.data.pendingMessages - 1
+      })
     })
   },
   fetchHistory({detail}){

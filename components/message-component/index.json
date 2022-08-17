@@ -2,6 +2,7 @@
   "component": true,
   "usingComponents": {
     "message-dialog": "message-dialog/index",
-    "common-message": "common-message/index"
+    "common-message": "common-message/index",
+    "loading-dot": "/components/loading-dot/index"
   }
 }

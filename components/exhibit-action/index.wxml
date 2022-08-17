@@ -20,7 +20,6 @@
           <view class="feedback-act" catchtap="sendFeedback" data-feedback="{{true}}">有帮助</view>
           <view class="feedback-act" catchtap="sendFeedback" data-feedback="{{false}}">没帮助</view> 
         </view>
-        
       <van-icon name="ellipsis" size="{{iconSize}}"></van-icon>
     </popover>
   </view>

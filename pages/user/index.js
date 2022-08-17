@@ -92,6 +92,13 @@ Page({
     return getQuestionHistory().then(data => {
       const item = this.data.tabbarItems;
       item[0].count = data.length;
+      data.forEach(e => {
+        // answerType 2和3都是图片
+        const answer = e.answerText;
+        if(e.answerType === 3 || answer.startsWith('https://') || answer.startsWith('http://')){
+          e.answerType = 2;
+        }
+      })
       this.setData({
         historyQuestions: data,
         questions: data,

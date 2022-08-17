@@ -4,6 +4,7 @@
     bindsendmessage="onMessage" 
     binddetailtap="showDetailTextPopup"
     bindrefresh="fetchHistory" 
+    show-pending-message="{{pendingMessages > 0}}"
     messages="{{messages}}">
   </message-component>
   <van-toast id="van-toast"></van-toast>

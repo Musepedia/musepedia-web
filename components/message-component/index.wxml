@@ -22,6 +22,20 @@
       <template is="{{messageComponent[message.type]}}" data="{{...message}}"></template>
     </message-dialog>
 
+    <message-dialog 
+      wx:if="{{showPendingMessage}}"
+      id="message-pending" 
+      right="{{false}}"
+      avatar="{{pendingAvatar || ''}}">
+      <common-message 
+          class="message-reply"
+          right="{{false}}" 
+          show-arrow="{{false}}">
+        <view style="height:37px;padding:8px 12px;"><loading-dot></loading-dot></view>
+        
+      </common-message>
+    </message-dialog>
+
     <view style="height: 6px" id="bottom-anchor"></view>
   </scroll-view>
 
@@ -55,10 +69,6 @@
       </view>
 
     </view>
-    <view class="float-input" wx:if="{{false}}">
-      <text class="hint-question-btn" wx:for="{{['RECOMM','大熊猫','小熊猫','中熊猫分布']}}" wx:key="unique">{{item}}</text>
-      <van-icon name="clear" size="16px" bindtap="clearText"></van-icon>
-    </view>
   </view>
 </view>
 
@@ -72,7 +82,7 @@
       full-width="{{fullWidth}}" 
       transparent="{{transparent}}"
       text-center="{{textCenter}}">
-      <text style="display:inline-block;padding:8px 12px;">{{text}}</text>
+      <text style="display:inline-block;padding:8px 12px;user-select: text;">{{text}}</text>
   </common-message>
 </template>
 
@@ -120,7 +130,7 @@
 <!-- 文字回复 -->
 <template name="common-message-recommend">
   <common-message 
-      class="message-reply'"
+      class="message-reply"
       right="{{false}}" 
       show-arrow="{{showArrow}}"
       show-more
@@ -129,7 +139,7 @@
       text-center="{{false}}"
       data-data="{{data}}"
       bindmoretap="showQuestionCardPopup">
-    <text style="display:inline-block;padding:8px 28px 8px 12px;width:100%;">{{data.answer}}</text>
+    <text style="display:inline-block;padding:8px 28px 8px 12px;width:100%;user-select:text;">{{data.answer}}</text>
   </common-message>
 </template>
 
