@@ -117,11 +117,11 @@ Page({
       messages.unshift(TimeMessage());
     }
     this.pushMessage(...messages);
-    this.messageComponent.scrollToBottom();
     // get answer
     this.setData({
       pendingMessages: this.data.pendingMessages + 1
     });
+    this.messageComponent.scrollToBottom();
     getAnswer(question).then(data => {
       data.isReply = true;
       data.question = question;

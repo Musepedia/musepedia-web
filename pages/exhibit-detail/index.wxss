@@ -18,3 +18,7 @@
   flex-direction: column;
   gap: 10px;
 }
+
+.exhibit-detail-page .explore-content{
+  display: block;
+}

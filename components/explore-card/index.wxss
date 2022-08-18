@@ -11,6 +11,11 @@
 }
 
 .explore-content{
+  display: block;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
   width: 100%;
   font-size: 14px;
   margin-top: 16px;

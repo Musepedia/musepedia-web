@@ -54,6 +54,14 @@
   padding: 4px 0;
 }
 
+.description-content{
+  display: block;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
 .recommendation-section{
   height: calc(100% - 50px - env(safe-area-inset-bottom));
 }

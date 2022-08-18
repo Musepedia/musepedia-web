@@ -8,7 +8,10 @@
     <view class="museum-card" bindtap="toggleCardDescriptionHidden">
       <view class="museum-card-header">
           <van-icon name="location-o" size="28px" color="var(--primary-theme-color)"></van-icon>
-          <image wx:if="{{currentMuseumId}}" class="museum-logo" src="{{currentMuseumInfo.logoUrl}}" mode="heightFix"></image>
+          <block wx:if="{{currentMuseumId}}">
+            <image wx:if="{{currentMuseumInfo.logoUrl}}" class="museum-logo" src="{{currentMuseumInfo.logoUrl}}" mode="heightFix"></image>
+            <text wx:else style="padding-left:8px;">{{currentMuseumInfo.name}}</text>
+          </block>
           <text wx:else>点击右侧按钮选择博物馆</text>
           <text class="iconfont icon-gaibianfangxiang icon-switch-museum"  
                 catchtap="switchMuseum"></text>
