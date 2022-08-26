@@ -36,8 +36,9 @@ export function HallMessage(data){
  * 带图片的回复
  * @param {*} data 
  */
-export function ImageReplyMessage(data){
+export function ImageReplyMessage(avatar, data){
   return {
+    avatar: avatar,
     right: false,
     fullWidth: true,
     transparent: false,
@@ -53,6 +54,7 @@ export function ImageReplyMessage(data){
  */
 export function RecommendMessage(avatar, data){
   return {
+    avatar: avatar,
     showArrow: !!(avatar && avatar.length),
     type: 'recommend',
     data: data

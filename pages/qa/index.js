@@ -131,11 +131,9 @@ Page({
         || data.answer.startsWith('http://');
       isImgReply && (data.status = 2);
 
-      const answerMsg = isImgReply ? ImageReplyMessage(data) : RecommendMessage(
-        // 'https://www.shanghaimuseum.net/mu/site/img/favicon.ico', 
-        '',  // 展馆头像暂不显示
-        data
-      );
+      const answerMsg = isImgReply 
+      ? ImageReplyMessage('/assets/icons/M2.png', data) 
+      : RecommendMessage('/assets/icons/M2.png', data);
 
       // save history
       // TODO 优化存储方式

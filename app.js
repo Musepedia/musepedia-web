@@ -15,7 +15,7 @@ App({
   globalData: {
     userInfo: {
       nickname: '',
-      avatarUrl: 'https://tse3-mm.cn.bing.net/th/id/OIP-C.ffanePxGit2grTcR8wrJ4QAAAA?pid=ImgDet&rs=1',
+      avatarUrl: '/assets/icons/default-avatar.svg',
       isLogin: false
     },
     currentMuseumInfo: null,
