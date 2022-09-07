@@ -1,4 +1,6 @@
 <!--pages/search/index.wxml-->
+<include src="/pages/helpers/page-meta.wxml"/>
+
 <view class="page-wrapper">
   <view style="height:32px" class="search-row">
     <search-bar bindconfirm="onSearchBarConfirm"></search-bar>

@@ -1,4 +1,6 @@
 <!-- 个人信息设置 -->
+<include src="/pages/helpers/page-meta.wxml"/>
+
 <view class="setting-main">
   <view>
     <view class="setting-title">个人信息</view>
@@ -19,6 +21,7 @@
   </view>
 
   <van-popup
+    class="popup-picker"
     overlay-style="background-color: transparent"
     show="{{showPopup}}"
     bindclose="closePopup"

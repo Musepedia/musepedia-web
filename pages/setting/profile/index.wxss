@@ -3,3 +3,8 @@
 .updateable{
   --cell-value-color: #323232;
 }
+
+.popup-picker{
+  --picker-action-font-size: .875rem;
+  --picker-option-font-size: 1rem;
+}

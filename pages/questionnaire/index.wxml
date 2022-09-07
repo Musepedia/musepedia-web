@@ -1,4 +1,6 @@
 <!--用户对展览偏好设置-->
+<include src="/pages/helpers/page-meta.wxml"/>
+
 <view class="preference-setting">
   <view class="setting-header">
     <text>偏好问卷</text>

@@ -43,7 +43,8 @@
 
 .btn-complete{
   width: 80%;
-  --button-default-height: 36px;
+  --button-normal-font-size: 1rem;
+  --button-default-height: 40px;
   --button-default-border-color: #ddd;
 }
 

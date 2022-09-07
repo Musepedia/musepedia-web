@@ -25,8 +25,8 @@
 .setting-header{
   padding: 10px 20px 0;
   grid-area: 'header';
-  font-size: 20px;
-  font-weight: 600;
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
 .setting-body{
@@ -84,7 +84,7 @@
 }
 
 .setting-item__text{
-  font-size: 16px;
+  font-size: 1rem;
   padding: 2px;
   max-width: 100%;
   overflow: hidden;
@@ -124,6 +124,8 @@
 
 .btn-complete{
   width: 80%;
+  
+  --button-normal-font-size: 1rem;
   --button-default-height: 36px;
 }
 

@@ -1,3 +1,4 @@
+import BasePage from '../helpers/base-page'
 import {getAnswer} from '../../api/question'
 import {getExhibitInfoById} from '../../api/exhibit'
 import {CommonMessage, RecommendMessage, ImageReplyMessage, TimeMessage, HintMessage, HallMessage} from '../../utils/message-builder'
@@ -5,7 +6,7 @@ import {CommonMessage, RecommendMessage, ImageReplyMessage, TimeMessage, HintMes
 const app = getApp();
 const globalUserInfo = app.globalData.userInfo;
 
-Page({
+BasePage({
   data: {
     isLogin: false,
     nickname: '',

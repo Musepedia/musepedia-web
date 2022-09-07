@@ -9,6 +9,7 @@ App({
     this.checkUpdate();
     this.checkiPhoneX();
     this.initShortcut();
+    this.initStorage();
     this.getUserInfo();
     this.setDefaultMuseum();
   },
@@ -21,10 +22,23 @@ App({
     currentMuseumInfo: null,
     isiPhoneX: false,
     appInfo: {
-      version: 'Beta 0.3.6'
+      version: 'Beta 0.3.7'
     }
   },
-  checkiPhoneX: function() {
+  resetUserInfo(){
+    this.globalData.userInfo = {
+      nickname: '',
+      avatarUrl: '/assets/icons/default-avatar.svg',
+      isLogin: false
+    }
+  },
+  initStorage(){
+    // 添加默认本地设置
+    if(!wx.getStorageSync('globalFontSize')){
+      wx.setStorageSync('globalFontSize', 'system');
+    }
+  },
+  checkiPhoneX() {
     wx.getSystemInfo({
       success: res => {
         this.globalData.isiPhoneX = res.model.search('iPhone X') != -1;

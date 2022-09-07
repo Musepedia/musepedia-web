@@ -13,7 +13,13 @@
 
 .exhibit-text-section{
   padding: 8px var(--padding-horizontal) 10px;
-  font-weight: 600;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.exhibit-text-section.answer{
+  font-weight: normal;
+  font-size: 1rem;
 }
 
 .divider{

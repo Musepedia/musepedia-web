@@ -1,10 +1,11 @@
 // pages/preference/index.js
+import BasePage from '../../helpers/base-page'
 import {getUserPreference,updateUserPreference} from '../../../api/setting'
 import {getExhibitionHallByMuseumId} from '../../../api/exhibition-hall'
 
 const app = getApp();
 
-Page({
+BasePage({
   data: {
     result: [],
     exhibitionHalls: [],

@@ -1,3 +1,6 @@
+<!-- QA问答页面 -->
+<include src="/pages/helpers/page-meta.wxml"/>
+
 <view class="qa">
   <message-component 
     id="qa-message-component"
@@ -37,7 +40,7 @@ url="{{exhibitUrl}}"/>
     custom-style="width: 80%"
     round >
   <view style="text-align: center; padding: 18px 10px;">
-    <view style="font-size: 18px;">您还未选择博物馆</view>
+    <view style="font-size: 1.125rem;">您还未选择博物馆</view>
     <view style="display:flex; margin-top: 16px">
       <van-button 
           style="width:100%"

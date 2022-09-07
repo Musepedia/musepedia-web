@@ -1,10 +1,11 @@
 <!--pages/user/index.wxml-->
+<include src="/pages/helpers/page-meta.wxml"/>
 
 <view class="user-page">
   <view class="header-card">
     <view class="setting-btn">
       <router-link to="../setting/index">
-        <van-icon name="setting-o" size="20px" bindtap=""></van-icon>
+        <van-icon name="setting-o" size="26px" bindtap="" style="color:#fff;"></van-icon>
       </router-link>
     </view>
   </view>
@@ -39,7 +40,7 @@
             bindtap="changeUserTabbar" 
             data-index="{{index}}">
         <view class="tabbar-text {{index === activeTabbar ? 'selected' : ''}}">{{item.text}}</view>
-        <view style="margin-top:4px;font-size:20px" class="item2">{{item.count}}</view>
+        <view style="margin-top:4px;font-size:1.3rem;" class="item2">{{item.count}}</view>
       </view>
     </view>
 
@@ -83,6 +84,7 @@
     round
     bind:close="closePopup">
     <question-card
+      id="popup-question-card"
       question-id="{{popupQuestion.questionId}}"
       question="{{popupQuestion.questionText || ''}}"
       answer="{{popupQuestion.answerType === 2 ? '' : (popupQuestion.answerText || '')}}"

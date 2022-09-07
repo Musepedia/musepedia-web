@@ -1,5 +1,7 @@
 // pages/search/index.js
-Page({
+import BasePage from '../helpers/base-page'
+
+BasePage({
   data: {
 
   },

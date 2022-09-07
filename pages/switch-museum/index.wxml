@@ -1,6 +1,7 @@
 <!-- 切换博物馆 -->
-<view class="page-switch-museum">
+<include src="/pages/helpers/page-meta.wxml"/>
 
+<view class="page-switch-museum">
   <view class="switch-wrapper">
     <van-sidebar active-key="{{activeMuseumGroup}}" bind:change="switchActiveMuseumGroup">
       <van-sidebar-item wx:for="{{museumGroup}}" wx:key="unique">

@@ -1,6 +1,7 @@
+import BasePage from '../helpers/base-page'
 import {getRecommendQuestion} from '../../api/explore'
 
-Page({
+BasePage({
   data: {
     exhibit: {},
     questions: [],
@@ -42,6 +43,13 @@ Page({
     })
   },
   closePopup(){
+    const popup = this.selectComponent('#popup-question-card');
+    if(popup){
+      const action = popup.selectComponent('.question-card-action');
+      action && action.setData({
+        showPopover: false
+      })
+    }
     this.setData({
       showPopup: false
     });

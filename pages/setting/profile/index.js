@@ -1,3 +1,4 @@
+import BasePage from '../../helpers/base-page'
 import {updateUserProfile} from '../../../api/user'
 
 const app = getApp();
@@ -14,7 +15,7 @@ const genderDict = {}, ageDict = {};
 genderColumns.forEach(e => genderDict[e.value] = e.text);
 ageColumns.forEach(e => ageDict[e.value] = e.text);
 
-Page({
+BasePage({
   data: {
     userInfo: {
       nickname: '',

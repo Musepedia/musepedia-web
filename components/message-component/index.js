@@ -163,7 +163,6 @@ Component({
     },
     showQuestionCardPopup(e){
       const data = e.target.dataset.data;
-      console.log(data);
       this.setData({
         popupQuestion: {
           src: data.status === 2 ? data.answer : '',
@@ -176,6 +175,14 @@ Component({
       })
     },
     closePopup(){
+      const popup = this.selectComponent('#popup-question-card');
+      if(popup){
+        const action = popup.selectComponent('.question-card-action');
+        action && action.setData({
+          showPopover: false
+        })
+      }
+
       this.setData({
         showQuestionCard: false
       })

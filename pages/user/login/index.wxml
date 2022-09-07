@@ -1,4 +1,6 @@
 <!--登录页面-->
+<include src="/pages/helpers/page-meta.wxml"/>
+
 <view class="login-page">
   <view class="login-avatar-section"> 
     <image class="login-avatar" src="/assets/icons/default-avatar.svg"></image>
@@ -57,9 +59,9 @@
     round
     bind:close="closeInitProfilePopup">
     <view style="text-align: center; padding: 20px 12px;">
-      <view style="font-size: 22px; font-weight: 600;">完善个人资料</view>
-      <view style="margin-top:10px;">可以选填以下的资料</view>
-      <view>帮助我们更好地改进系统性能</view>
+      <view class="init-profile-title">完善个人资料</view>
+      <view class="init-profile-text" style="margin-top:10px;">可以选填以下的资料</view>
+      <view class="init-profile-text">帮助我们更好地改进系统性能</view>
       <view style="display:flex; margin-top: 10px">
         <van-button 
           wx:if="{{!completeProfile}}"

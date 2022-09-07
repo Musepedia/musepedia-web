@@ -1,10 +1,11 @@
+import BasePage from '../helpers/base-page'
 import { userLogin } from '../../api/user';
 import {getQuestionHistory} from '../../api/recommend-question'
 
 const app = getApp();
 const globalAppInfo = app.globalData.appInfo;
 
-Page({
+BasePage({
   data: {
     // 用户信息相关
     isLogin: false,
@@ -55,12 +56,25 @@ Page({
       nickname: globalUserInfo.nickname,
       avatarUrl: globalUserInfo.avatarUrl,
     });
-    // todo 展示历史提问数量
+    
+    if(!globalUserInfo.isLogin){
+      this.resetTabbarItems();
+    }
+
     this.changeUserTabbar({currentTarget: {dataset: {index: 0}}})
   },
   onHide: function () {},
   onUnload: function () {},
   onShareAppMessage: function () {},
+  resetTabbarItems(){
+    this.setData({
+      tabbarItems: [
+        {text: '历史提问', count: 0}, 
+        {text: '收藏', count: 0}
+      ],
+      questions: []
+    })
+  },
   handleLoginTap(e){
     wx.navigateTo({
       url: '/pages/user/login/index',
@@ -84,6 +98,13 @@ Page({
     })
   },
   closePopup(){
+    const popup = this.selectComponent('#popup-question-card');
+    if(popup){
+      const action = popup.selectComponent('.question-card-action');
+      action && action.setData({
+        showPopover: false
+      })
+    }
     this.setData({
       showPopup: false
     })
@@ -117,13 +138,7 @@ Page({
 
     if(activeIndex === 0){
       // fetch history
-      if(this.data.historyQuestions === null){
-        this.fetchQuestionHistory();
-      } else {
-        this.setData({
-          questions: this.data.historyQuestions
-        })
-      }
+      this.fetchQuestionHistory();
     } else if(activeIndex === 1){
       // 收藏的问题
       this.setData({

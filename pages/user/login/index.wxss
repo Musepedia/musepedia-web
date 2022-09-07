@@ -7,6 +7,7 @@
   align-items: center;
 
   --button-default-height: 36px;
+  --button-normal-font-size: 1rem;
 }
 
 .login-avatar{
@@ -30,9 +31,10 @@
 .input-cell .text-field{
   display: inline-block;
   width: 100%;
-  height: 28px;
+  height: 1.75rem;
   border-bottom: 1px solid #888;
   transition: .3s cubic-bezier(0.075, 0.82, 0.165, 1);
+  font-size: 1rem;
 }
 
 .btn-send-sms .van-button{
@@ -74,6 +76,15 @@
 
 .btn-login{
   width: 100%;
+}
+
+.init-profile-title{
+  font-size: 1.57rem; 
+  font-weight: bold;
+}
+
+.init-profile-text{
+  font-size: 1rem;
 }
 
 .btn-skip{

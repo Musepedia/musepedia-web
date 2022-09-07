@@ -1,4 +1,6 @@
-<!--index.wxml-->
+<!-- index首页 -->
+<include src="/pages/helpers/page-meta.wxml"/>
+
 <view class="index-container page-wrapper">
   <view class="header">
     <view class="museum-row">

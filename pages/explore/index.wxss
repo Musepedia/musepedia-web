@@ -18,6 +18,12 @@
   align-items: center;
 }
 
+.museum-card-header .museum-name{
+  font-size: 1.25rem;
+  font-weight: bold;
+  padding-left: 8px;
+}
+
 .museum-logo{
   margin-left: 10px;
   height: 40px;
@@ -25,7 +31,7 @@
 
 .icon-switch-museum{
   margin-left: auto;
-  font-size: 20px;
+  font-size: 1.5rem;
   color:#888;
 }
 
@@ -38,7 +44,8 @@
 
 .museum-card-description{
   margin-top: 12px;
-  font-size: 14px;
+  font-size: 1rem;
+  line-height: 1.2rem;
   transition: .5s cubic-bezier(0.165, 0.84, 0.44, 1);
   overflow: hidden;
   height: 100px;
@@ -50,7 +57,7 @@
 }
 
 .description-header{
-  font-weight: 600;
+  font-weight: bold;
   padding: 4px 0;
 }
 
@@ -73,7 +80,6 @@
 .recommendation{
   margin-bottom: 10px;
   background-color: #fff;
-
 }
 
 .loading-section{

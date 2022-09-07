@@ -2,7 +2,7 @@
 <view class="explore-card">
   <view class="explore-title">{{title}}</view>
   <view class="explore-content">{{content}}</view>
-  <view class="image-section" style="height: {{imageHeight}}">
+  <view class="image-section" style="height: {{imageHeight}}" wx:if="{{images && images.length > 0}}">
     <image class="explore-image" wx:for="{{images}}" wx:key="index" src="{{item}}" mode="aspectFill"></image>
   </view>
   <view class="explore-content explore-detail" wx:if="{{detail}}">{{detail}}</view>

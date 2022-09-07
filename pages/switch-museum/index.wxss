@@ -2,6 +2,7 @@
   height: calc(100vh - env(safe-area-inset-bottom));
 
   --background-color: #fdfdfd;
+  --sidebar-font-size: 1rem;
   --sidebar-selected-border-color: var(--primary-theme-color);
   --sidebar-selected-text-color: var(--primary-theme-color);
   --sidebar-selected-background-color: var(--background-color);
@@ -31,6 +32,7 @@
   width: 80%;
   --button-default-height: 36px;
   --button-default-border-color: #ddd;
+  --button-normal-font-size: 1rem;
 }
 
 .museum-content{
@@ -44,7 +46,7 @@
 
 .content-title{
   padding: var(--sidebar-padding);
-  font-size: 14px;
+  font-size: 1rem;
   font-weight: 600;
   height: var(--content-title-height);
 }
@@ -63,7 +65,7 @@
   position: relative;
   padding: 14px 26px;
   border-bottom: 1px solid #ccc;
-  font-size: 16px;
+  font-size: 1rem;
 
   --inactive-color: #ccc;
   --inactive-background-color: #efefef
@@ -80,12 +82,13 @@
 
 .museum-info{
   margin-top: 4px;
-  font-size: 12px;
+  font-size: .85rem;
   color: #aaa;
 }
 
 .museum-name{
-  font-weight: 600;
+  font-size: 1rem;
+  font-weight: bold;
 }
 
 .museum-tag{

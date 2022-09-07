@@ -2,11 +2,11 @@
 <!-- 上下布局，图片+文字 -->
 <view class="question-card">
   <image class="question-card-image" wx:if="{{src}}" src="{{src}}" mode="{{mode}}"></image>
-  <view class="exhibit-text-section" wx:if="{{question}}">
+  <view class="exhibit-text-section question" wx:if="{{question}}">
     <text class="content-text">{{question}}</text>
   </view>
   <view class="divider" wx:if="{{showDivider || answer}}"></view>
-  <view class="exhibit-text-section" wx:if="{{answer}}">
+  <view class="exhibit-text-section answer" wx:if="{{answer}}">
     <text class="content-text">{{answer}}</text>
   </view>
   <slot></slot>

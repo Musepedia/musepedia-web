@@ -3,13 +3,15 @@
 
   --cell-background-color: transparent;
   --cell-border-color: #ddd;
+  --cell-large-title-font-size: 1rem;
+  --cell-large-title-value-size: 1rem;
 }
 
 .setting-title{
   padding: var(--cell-vertical-padding,10px) var(--cell-horizontal-padding,16px);
   color: var(--vscode-keyword);
-  font-weight: 600;
-  font-size: 14px;
+  font-weight: bold;
+  font-size: .875rem;
 }
 
 .setting-main .van-cell:after{

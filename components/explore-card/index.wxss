@@ -5,8 +5,8 @@
 }
 
 .explore-title{
-  font-size: 18px;
-  font-weight: 600;
+  font-size: 1.25rem;
+  font-weight: bold;
   overflow-wrap: anywhere;
 }
 
@@ -17,7 +17,7 @@
   -webkit-line-clamp: 2;
   overflow: hidden;
   width: 100%;
-  font-size: 14px;
+  font-size: 1rem;
   margin-top: 16px;
   overflow-wrap: break-word;
 }

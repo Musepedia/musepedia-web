@@ -1,8 +1,9 @@
+import BasePage from '../helpers/base-page'
 import {getRandomExhibits} from '../../api/exhibit'
 import {updateUserPreference} from '../../api/setting'
 
 // pages/preference/index.js
-Page({
+BasePage({
   data: {
     preferenceSettings: [[]],
     selectedExhibits: {}, // 勾选的展品，用于class

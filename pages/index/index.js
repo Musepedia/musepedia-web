@@ -1,19 +1,15 @@
 // index.js
-// 获取应用实例
+import BasePage from '../helpers/base-page'
+
 const app = getApp()
 
-Page({
+BasePage({
   options: {
     addGlobalClass: true
   },
   data: {
-    motto: 'Hello World',
-    userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    canIUseGetUserProfile: false,
-    canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl') && wx.canIUse('open-data.type.userNickName'), // 如需尝试获取用户信息可改为false
-    showPopupMap: false
+  },
+  onShow(){
   },
   scanCode(){
     wx.scanCode({

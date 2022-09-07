@@ -1,7 +1,9 @@
 <!--用户对展览偏好设置-->
+<include src="/pages/helpers/page-meta.wxml"/>
+
 <setting-layout bind:complete="completeSetting">
   <view slot="header">
-    <text style="font-weight: 600;font-size:20px">
+    <text class="hint-title">
       展区偏好选择
     </text>
     <text class="hint">了解详细展区内的展品信息您可以</text>

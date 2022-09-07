@@ -1,0 +1,4 @@
+<!-- page-meta元素，在每个page页include，用于设置页面根元素字体大小(rem) -->
+<!-- 开发时可设置为14px（默认字体大小），发布时为适应老年人等设置为system（与微信字体大小一致） -->
+<!-- 需要配合/pages/helpers/base-page 引入__globalFontSize -->
+<page-meta root-font-size="{{__globalFontSize || 'system'}}"/>

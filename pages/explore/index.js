@@ -1,9 +1,10 @@
 // pages/explore/index.js
+import BasePage from '../helpers/base-page'
 import {getExhibits} from '../../api/explore'
 
 const app = getApp();
 
-Page({
+BasePage({
   data: {
     keyword: '',
     loading: false,

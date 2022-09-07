@@ -1,4 +1,6 @@
-<!--pages/explore/index.wxml-->
+<!--发现页面-->
+<include src="/pages/helpers/page-meta.wxml"/>
+
 <view class="explore-page">
   <!-- <view class="search-bar-wrapper">
     <search-bar value="{{keyword}}" bindtap="onSearchTap" redirect="/pages/search/index"></search-bar>
@@ -7,10 +9,10 @@
   <view class="header-section">
     <view class="museum-card" bindtap="toggleCardDescriptionHidden">
       <view class="museum-card-header">
-          <van-icon name="location-o" size="28px" color="var(--primary-theme-color)"></van-icon>
+          <van-icon name="location-o" size="2rem" color="var(--primary-theme-color)"></van-icon>
           <block wx:if="{{currentMuseumId}}">
             <image wx:if="{{currentMuseumInfo.logoUrl}}" class="museum-logo" src="{{currentMuseumInfo.logoUrl}}" mode="heightFix"></image>
-            <text wx:else style="padding-left:8px;">{{currentMuseumInfo.name}}</text>
+            <text wx:else class="museum-name">{{currentMuseumInfo.name}}</text>
           </block>
           <text wx:else>点击右侧按钮选择博物馆</text>
           <text class="iconfont icon-gaibianfangxiang icon-switch-museum"  
@@ -38,7 +40,7 @@
       <explore-card 
         title="{{item.label}}"
         content="{{item.description || ''}}"
-        images="{{[item.figureUrl]}}"
+        images="{{item.figureUrl ? [item.figureUrl] : []}}"
         bindtap="intoDetail"
         data-data="{{item}}"
         image-height="120px">

@@ -1,6 +1,7 @@
+import BasePage from '../../helpers/base-page'
 import {sendSMS} from '../../../api/sms'
 
-Page({
+BasePage({
   data: {
     phoneNumber: '',
     validPhoneNumber: false,

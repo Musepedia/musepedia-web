@@ -1,8 +1,9 @@
+import BasePage from '../helpers/base-page'
 import {listMuseum} from '../../api/museum'
 
 const app = getApp();
 
-Page({
+BasePage({
   data: {
     museumGroup: ['上海'],
     activeMuseumGroup: 0,
