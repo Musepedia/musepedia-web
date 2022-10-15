@@ -7,8 +7,8 @@ const MUSEUM_HEADER = 'x-museum';
 
 const _axios = axios.create({
   // baseURL: 'https://abstractmgs.cn/api/',
-  baseURL: 'https://abstractmgs.cn/_test/api/',
-  // baseURL: 'http://localhost/api/',
+  // baseURL: 'https://abstractmgs.cn/_test/api/',
+  baseURL: 'http://localhost:16002/api/',
   headers: {
     'Content-Type': 'application/json'
   },

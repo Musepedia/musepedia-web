@@ -9,9 +9,13 @@
 
 .setting-title{
   padding: var(--cell-vertical-padding,10px) var(--cell-horizontal-padding,16px);
-  color: var(--vscode-keyword);
+  color: var(--primary-theme-color);
   font-weight: bold;
   font-size: .875rem;
+}
+
+.setting-cell.disabled {
+  --cell-text-color: #969799;
 }
 
 .setting-main .van-cell:after{

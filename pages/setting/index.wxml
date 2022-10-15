@@ -5,14 +5,20 @@
 
   <view>
     <view class="setting-title">基本设置</view>
-    <van-cell class="top-cell" center icon="" size="large" title="当前博物馆" is-link="true" url="/pages/switch-museum/index" bindtap=""></van-cell>
-    <van-cell center icon="" size="large" title="展区偏好" is-link="true" url="preference/index" bindtap=""></van-cell>
-    <van-cell center icon="" size="large" title="个人信息" is-link="true" url="profile/index" bindtap=""></van-cell>
-    <van-cell center icon="" size="large" title="关于我们" is-link="true" url="/pages/about/index" bindtap=""></van-cell>
+    <van-cell 
+      wx:for="{{linkSettings}}" 
+      wx:key="unique"
+      wx:for-item="setting" 
+      class="setting-cell {{index === 0 ? 'top-cell' : ''}} {{setting.requireLogin && !isLogin ? 'disabled' : ''}}" 
+      center icon="" size="large" 
+      title="{{setting.title}}" 
+      is-link="true" 
+      url="{{setting.requireLogin && !isLogin ? '' : setting.url}}" 
+      bindtap=""></van-cell>
   </view>
   
   <view>
-    <view class="setting-title">其他设置</view>
+    <view class="setting-title">其他</view>
     <van-cell class="top-cell" center size="large" title="清除本地存储" bindtap="clearStorage"></van-cell>
   </view>
 
