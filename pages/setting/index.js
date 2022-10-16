@@ -6,6 +6,8 @@ const app = getApp();
 BasePage({
   data: {
     isLogin: false,
+    wjSid: '10772502',
+    wjHash: 'ca28',
     linkSettings: [
       {
         title: '当前博物馆',
@@ -22,8 +24,8 @@ BasePage({
         requireLogin: true
       },
       {
-        title: '关于我们',
-        url: '/pages/about/index',
+        title: '字体设置',
+        url: 'font/index',
       }
     ]
   },
@@ -68,5 +70,11 @@ BasePage({
   printStorage(){
     const s = wx.getStorageInfoSync();
     s.keys.forEach(e => console.log(e, ":", wx.getStorageSync(e)))
+  },
+  sendFeedback(){
+    wx.navigateToMiniProgram({
+      appId: "wxebadf544ddae62cb",
+      path: `pages/survey/index?sid=${this.data.wjSid}&hash=${this.data.wjHash}&navigateBackMiniProgram=true`
+    }).catch(ignore => {})
   }
 })

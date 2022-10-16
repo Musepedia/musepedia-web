@@ -13,7 +13,8 @@
     "pages/user/login/index",
     "pages/exhibit-detail/index",
     "pages/setting/profile/index",
-    "pages/switch-museum/index"
+    "pages/switch-museum/index",
+    "pages/setting/font/index"
   ],
   "usingComponents": {
     "van-button": "@vant/weapp/button/index",

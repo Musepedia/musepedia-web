@@ -1,0 +1,60 @@
+/* pages/setting/font/index.wxss */
+.setting-font{
+  height: calc(100vh - env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  --switch-on-background-color: var(--primary-theme-color);
+  --slider-active-background-color: var(--primary-theme-color);
+  --slider-button-height: 20px;
+  --slider-button-width: 20px;
+}
+
+.font-display{
+  flex-grow: 1;
+  padding: 16px 0;
+}
+
+.font-slider{
+  padding: 20px;
+}
+
+.font-slider-cell{
+  display: flex;
+}
+
+.font-slider-cell.slider{
+  margin-top: 20px;
+  align-items: center;
+}
+
+.font-slider-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 0 4px;
+}
+
+.font-slider-wrapper::before{
+  content: "小";
+  display: block;
+  position: absolute;
+  left: 0;
+  top: -30px;
+  font-size: 12px !important;
+}
+
+.font-slider-wrapper::after{
+  content: "大";
+  display: block;
+  position: absolute;
+  right: -8px;
+  top: -40px;
+  font-size: 22px !important;
+}
+
+.font-slider__slider{
+  width: 100%;
+}

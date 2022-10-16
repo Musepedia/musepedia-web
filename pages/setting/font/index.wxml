@@ -1,0 +1,34 @@
+<!--pages/setting/font/index.wxml-->
+<include src="/pages/helpers/page-meta.wxml"/>
+
+<view class="setting-font">
+  <view class="font-display">
+    <message-dialog 
+      wx:for="{{testMessages}}" 
+      wx:for-item="m" 
+      wx:key="unique"
+      right="{{m.right}}"
+      avatar="{{m.avatar}}">
+      <common-message 
+          right="{{m.right}}" 
+          show-arrow="{{m.showArrow}}"
+          full-width="{{m.fullWidth}}" 
+          transparent="{{m.transparent}}"
+          text-center="{{m.textCenter}}">
+          <text style="display:inline-block;padding:8px 12px;user-select: text;">{{m.text}}</text>
+      </common-message>
+    </message-dialog>
+  </view>
+  <view class="font-slider">
+    <view class="font-slider-cell" style="height: 32px">
+      <view style="font-size: 18px !important;">与微信字体大小一致：</view>
+      <van-switch size="24px" checked="{{ useWechatFontSize }}" bind:change="toggleWechatFontSize" />
+    </view>
+    <view class="font-slider-cell slider">
+      <view style="min-width: 90px; margin-right: 12px; font-size: 18px !important;">字体大小:</view>
+      <view class="font-slider-wrapper">
+        <van-slider class="font-slider__slider" disabled="{{useWechatFontSize}}" min="0" max="5" value="{{fontSizeValue}}" bind:drag="changeFontSize" />
+      </view>
+    </view>
+  </view>
+</view>

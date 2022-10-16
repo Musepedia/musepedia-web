@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "van-slider": "@vant/weapp/slider/index",
+    "van-switch": "@vant/weapp/switch/index",
+    "message-dialog": "/components/message-component/message-dialog/index",
+    "common-message": "/components/message-component/common-message/index"
+  }
+}
