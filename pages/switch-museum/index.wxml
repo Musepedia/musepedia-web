@@ -20,10 +20,12 @@
               data-museum="{{item}}"
               bindtap="switchCurrentMuseum">
           <view class="museum-name">{{item.name}}</view>
-          <view wx:if="{{false}}" class="museum-info">
-            <text>{{item.distance}}</text>
-            <text> · </text>
-            <text>{{item.location}}</text>
+          <view class="museum-info">
+            <text wx:if="item.distanceStr">{{item.distanceStr}}</text>
+            <block wx:if="{{item.location}}">
+              <text> · </text>
+              <text>{{item.location}}</text>
+            </block>
             <text wx:if="{{item.tag}}" class="museum-tag">{{item.tag}}</text>
           </view>
           <view class="selected-tick" wx:if="{{currentMuseumId === item.id}}">✔</view>

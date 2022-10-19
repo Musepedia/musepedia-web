@@ -2,7 +2,7 @@ import Toast from '@vant/weapp/toast/toast'
 import Dialog from '@vant/weapp/dialog/dialog'
 import {getUserInfo, userLogin, updateUserProfile} from './api/user'
 import {wxLoginWithBackend} from './utils/util'
-import {getCurrentMuseum} from './api/museum'
+import {queryMuseumWithDistance, getCurrentMuseum} from './api/museum'
 
 App({
   onLaunch() {
@@ -19,6 +19,7 @@ App({
       avatarUrl: '/assets/icons/default-avatar.svg',
       isLogin: false
     },
+    userLocation: null, // 用户经纬度坐标
     currentMuseumInfo: null,
     isiPhoneX: false,
     appInfo: {
@@ -63,19 +64,24 @@ App({
           ? getCurrentMuseum().then(data => this.globalData.currentMuseumInfo = data)
           : Promise.resolve(this.globalData.currentMuseumInfo);
   },
+  getUserLocation(){
+    return this.globalData.userLocation === null 
+      ? wx.getLocation({type: 'gcj02'}).then(res => {
+        this.globalData.userLocation = [res.longitude, res.latitude];
+        return Promise.resolve([res.longitude, res.latitude]);
+      }) 
+      : Promise.resolve(this.globalData.userLocation)
+  },
   setDefaultMuseum(){
     if(wx.getStorageSync('currentMuseumId')){
       return;
     }
-    wx.getLocation({
-      type:'gcj02', // 使用国标坐标系
-      success: (res) => {
-        console.log(res.latitude, res.longitude);
-      },
-      fail: () => {
-        // choose default museum
-      }
-    })
+    this.getUserLocation()
+      .then(res => queryMuseumWithDistance({}, res))
+      .then(data => {
+        data.sort((a,b) => a.distance - b.distance);
+        wx.setStorageSync('currentMuseumId', data[0].id);
+      }).catch(ignore => {})
   },
   /**
    * @param {*} data data包含nickname, avatarUrl
