@@ -1,0 +1,8 @@
+<!-- 加载数据的动画组件 -->
+<view class="loading-section">
+  <block wx:if="{{loading}}">
+    <van-loading color="var(--primary-theme-color)"/>
+    <text>{{loadingText}}</text>
+  </block>
+  <text wx:else>{{loadingFinishText}}</text>
+</view>

@@ -1,0 +1,6 @@
+/* components/loading-spin/index.wxss */
+.loading-section{
+  width:100%;
+  display:flex;
+  justify-content: center;
+}

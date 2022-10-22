@@ -6,8 +6,8 @@
     <text>偏好问卷</text>
   </view>
   <view class="setting-body">
+    <choose-museum wx:if="{{!currentMuseumId}}"></choose-museum>
     <swiper class="body-swiper" current="{{currentIndex}}" duration="400" bindchange="settingPageChange">
-
       <block wx:for="{{preferenceSettings}}" wx:key="pageIndex" wx:for-item="settingPage" wx:for-index="pageIndex">
           <swiper-item class="body-swiper-item">
             <view wx:for="{{settingPage}}" 
@@ -29,7 +29,6 @@
             </view>
           </swiper-item>
       </block>
-
     </swiper>
   </view>
   <view class="setting-footer">

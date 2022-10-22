@@ -9,18 +9,15 @@ BasePage({
   data: {
     result: [],
     exhibitionHalls: [],
-    exhibitionHallChecked: {}
+    exhibitionHallChecked: {},
+    currentMuseumId: null
   },
   onLoad: function (options) {},
   onReady: function () {},
   onShow: function () {
-    if(!app.getCurrentMuseumId()){
-      // 检查是否已选择当前博物馆
-      wx.navigateTo({
-        url: '/pages/switch-museum/index',
-      })
-      return;
-    }
+    this.setData({
+      currentMuseumId: app.getCurrentMuseumId()
+    })
     Promise.all([
       getUserPreference(), 
       getExhibitionHallByMuseumId()

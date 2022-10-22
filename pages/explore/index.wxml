@@ -9,21 +9,25 @@
   <view class="header-section">
     <view class="museum-card" bindtap="toggleCardDescriptionHidden">
       <view class="museum-card-header">
-          <van-icon name="location-o" size="2rem" color="var(--primary-theme-color)"></van-icon>
-          <block wx:if="{{currentMuseumId}}">
-            <image wx:if="{{currentMuseumInfo.logoUrl}}" class="museum-logo" src="{{currentMuseumInfo.logoUrl}}" mode="heightFix"></image>
-            <text wx:else class="museum-name">{{currentMuseumInfo.name}}</text>
-          </block>
-          <text wx:else>点击右侧按钮选择博物馆</text>
-          <text class="iconfont icon-gaibianfangxiang icon-switch-museum"  
-                catchtap="switchMuseum"></text>
-        </view>
-        <view wx:if="{{currentMuseumId}}" class="museum-card-description {{cardDescriptionHidden ? 'hidden' : ''}}" style="height: {{cardDescriptionHeight}}">
-          <view class="description-header">场馆介绍</view>
-          <view class="description-content">{{currentMuseumInfo.description}}</view>
-        </view>
+        <van-icon name="location-o" size="2rem" color="var(--primary-theme-color)"></van-icon>
+        <block wx:if="{{currentMuseumId}}">
+          <image wx:if="{{currentMuseumInfo.logoUrl}}" class="museum-logo" src="{{currentMuseumInfo.logoUrl}}" mode="heightFix"></image>
+          <text wx:else class="museum-name">{{currentMuseumInfo.name}}</text>
+        </block>
+        <text wx:else>点击右侧按钮选择博物馆</text>
+        <text class="iconfont icon-gaibianfangxiang icon-switch-museum"  
+              catchtap="switchMuseum"></text>
+      </view>
+      <view wx:if="{{currentMuseumId}}" class="museum-card-description {{cardDescriptionHidden ? 'hidden' : ''}}" style="height: {{cardDescriptionHeight}}">
+        <view class="description-header">场馆介绍</view>
+        <view class="description-content">{{currentMuseumInfo.description}}</view>
       </view>
     </view>
+  </view>
+
+  <view style="height:50%" wx:if="{{!currentMuseumId}}">
+    <choose-museum></choose-museum>
+  </view>
 
   <scroll-view class="recommendation-section"
       refresher-enabled="{{refresherEnabled}}"
@@ -48,9 +52,8 @@
       </explore-card>
     </view>
 
-    <view class="loading-section">
-      <text wx:if="{{!currentMuseumId}}">您当前还未选择博物馆</text>
-      <van-loading wx:elif="{{loading}}" color="var(--primary-theme-color)"/>
+    <view wx:if="{{currentMuseumId}}" class="loading-section">
+      <van-loading wx:if="{{loading}}" color="var(--primary-theme-color)"/>
       <text wx:else>已经没有更多了...</text>
     </view>
   </scroll-view>

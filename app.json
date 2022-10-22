@@ -36,7 +36,8 @@
     "search-bar": "/components/search-bar/index",
     "explore-card": "/components/explore-card/index",
     "question-card": "/components/question-card/index",
-    "modal": "/components/modal/index"
+    "modal": "/components/modal/index",
+    "loading-spin": "/components/loading-spin/index"
   },
   "window": {
     "backgroundTextStyle": "light",

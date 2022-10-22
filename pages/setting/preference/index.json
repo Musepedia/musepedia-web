@@ -2,6 +2,7 @@
   "usingComponents": {
     "van-checkbox": "@vant/weapp/checkbox/index",
     "van-checkbox-group": "@vant/weapp/checkbox-group/index",
-    "setting-layout": "../../../components/setting-layout/index"
+    "setting-layout": "../../../components/setting-layout/index",
+    "choose-museum": "../../../components/choose-museum/index"
   }
 }

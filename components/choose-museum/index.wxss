@@ -1,0 +1,19 @@
+/* components/choose-museum/index.wxss */
+.choose-museum{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+  font-size: 1rem;
+
+  --button-normal-font-size: 1rem;
+  --button-default-height: 40px;
+  --button-default-border-color: #ddd;
+}
+
+.choose-icon{
+  width: 100px;
+  height: 100px;
+  margin-bottom: -12px;
+}

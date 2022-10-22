@@ -2,14 +2,16 @@ import BasePage from '../helpers/base-page'
 import {getRandomExhibits} from '../../api/exhibit'
 import {updateUserPreference} from '../../api/setting'
 
-// pages/preference/index.js
+const app = getApp();
+
 BasePage({
   data: {
     preferenceSettings: [[]],
     selectedExhibits: {}, // 勾选的展品，用于class
     selectedExhibitionHalls: {}, // 实际选择的展厅id
     currentIndex: 0, // page index
-    hideSkipButton: false
+    hideSkipButton: false,
+    currentMuseumId: null
   },
   onLoad: function (options) {
     this.setData({
@@ -32,6 +34,10 @@ BasePage({
         preferenceSettings: pages
       })
     }).catch(ignore => {});
+
+    this.setData({
+      currentMuseumId: app.getCurrentMuseumId()
+    })
   },
   onHide: function () {},
   onUnload: function () {},
@@ -56,7 +62,6 @@ BasePage({
   },
   completeSetting(){
     const selectedHallIds = Object.entries(this.data.selectedExhibitionHalls).filter(e => e[1]).map(e => e[0]);
-    console.log(selectedHallIds);
     updateUserPreference(selectedHallIds).then(data => {
       wx.Toast.success('设置已保存');
       setTimeout(() => wx.navigateBack(), 700);

@@ -6,8 +6,8 @@ const app = getApp();
 BasePage({
   data: {
     isLogin: false,
-    wjSid: '10772502',
-    wjHash: 'ca28',
+    wjSid: '10970457',
+    wjHash: '64f7',
     linkSettings: [
       {
         title: '当前博物馆',

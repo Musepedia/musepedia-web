@@ -7,6 +7,10 @@ Component({
     settingSetLength: {
       type: Number,
       value: 1
+    },
+    completeHint: {
+      type: String,
+      value: '完成'
     }
   },
   data: {

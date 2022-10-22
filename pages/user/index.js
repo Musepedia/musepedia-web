@@ -17,6 +17,7 @@ BasePage({
     questions: [],
     // ui相关
     isRefreshing: false,
+    loading: false,
     scrollViewHeight: 0,
     noMoreData: false,
     showPopup: false,
@@ -44,12 +45,15 @@ BasePage({
         active: 2,
       });
     };
+    // 未登录跳转过来的传参
     if(app.globalData.showLoginHint){
       wx.Toast.fail('请先登录');
       app.globalData.showLoginHint = false;
     }
 
     this.setScrollViewHeight();
+    // 获取用户信息
+    // TODO: 正在获取用户信息时处理
     const globalUserInfo = app.globalData.userInfo; 
     this.setData({
       isLogin: globalUserInfo.isLogin,
@@ -66,6 +70,9 @@ BasePage({
   onHide: function () {},
   onUnload: function () {},
   onShareAppMessage: function () {},
+  /**
+   * 重新设置 历史提问/收藏 数据
+   */
   resetTabbarItems(){
     this.setData({
       tabbarItems: [
@@ -82,8 +89,8 @@ BasePage({
   },
   onRefresh(){
     if(this.data.activeTabbar === 0){
-      this.fetchQuestionHistory().then(() => {
-        // fetch history
+      // 用户选择'历史提问'
+      this.fetchQuestionHistory().finally(() => {
         this.setData({
           isRefreshing: false
         })

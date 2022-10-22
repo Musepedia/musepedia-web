@@ -66,10 +66,11 @@
             question="{{item.questionText}}">
         </question-card>
       </view>
-      <view class="loading-section">
-        <!-- <van-loading color="var(--primary-theme-color)"/> -->
+      <loading-spin loading="{{isRefreshing}}"></loading-spin>
+      <!-- <view class="loading-section">
+        暂时无上划加载，使用刷新时的加载动画
         <text>已经没有更多了...</text>
-      </view>
+      </view> -->
     </scroll-view>
 
   </view>

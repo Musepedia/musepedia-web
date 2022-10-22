@@ -1,3 +1,5 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "choose-museum": "../../components/choose-museum/index"
+  }
 }

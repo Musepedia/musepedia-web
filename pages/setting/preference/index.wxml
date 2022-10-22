@@ -1,15 +1,18 @@
 <!--用户对展览偏好设置-->
 <include src="/pages/helpers/page-meta.wxml"/>
 
-<setting-layout bind:complete="completeSetting">
+<setting-layout bind:complete="completeSetting" completeHint="{{currentMuseumId ? '完成' : '跳过'}}">
   <view slot="header">
     <text class="hint-title">
       展区偏好选择
     </text>
-    <text class="hint">了解详细展区内的展品信息您可以</text>
-    <text class="hint" style="color: var(--primary-theme-color)" bindtap="navigateToQuestionnaire">填写问卷</text>
+    <block wx:if="{{currentMuseumId}}">
+      <text class="hint">了解详细展区内的展品信息您可以</text>
+      <text class="hint" style="color: var(--primary-theme-color)" bindtap="navigateToQuestionnaire">填写问卷</text>
+    </block>
   </view>
   <view class="preference-setting" slot="body">
+    <choose-museum wx:if="{{!currentMuseumId}}"></choose-museum>
     <van-checkbox-group value="{{result}}" bind:change="onSettingChange">
       <van-checkbox 
           wx:for="{{exhibitionHalls}}"

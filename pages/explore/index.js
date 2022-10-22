@@ -35,6 +35,12 @@ BasePage({
       this.setData({
         currentMuseumId: newMuseumId
       })
+      if(!newMuseumId){
+        this.setData({
+          recommendations: []
+        })
+        return;
+      }
       this.onRefresh();
       app.getCurrentMuseumInfo().then(data => {
         this.setData({

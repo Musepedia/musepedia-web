@@ -1,0 +1,6 @@
+<!-- 用户未选择博物馆时的提示选择组件 -->
+<view class="choose-museum">
+  <image class="choose-icon" src="/assets/icons/M2.svg"></image>
+  <text class="choose-text">您当前还未选择博物馆</text>
+  <text class="choose-button" style="color: var(--primary-theme-color)" bindtap="chooseMuseum">前往选择</text>
+</view>
