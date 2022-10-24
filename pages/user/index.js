@@ -1,9 +1,7 @@
 import BasePage from '../helpers/base-page'
-import { userLogin } from '../../api/user';
 import {getQuestionHistory} from '../../api/recommend-question'
 
 const app = getApp();
-const globalAppInfo = app.globalData.appInfo;
 
 BasePage({
   data: {
@@ -23,7 +21,7 @@ BasePage({
     showPopup: false,
     tabbarItems: [
       {text: '历史提问', count: 0}, 
-      {text: '收藏', count: 0}
+      // {text: '收藏', count: 0}
     ],
     activeTabbar: 1,
     popupQuestion: {}
@@ -77,7 +75,7 @@ BasePage({
     this.setData({
       tabbarItems: [
         {text: '历史提问', count: 0}, 
-        {text: '收藏', count: 0}
+        // {text: '收藏', count: 0}
       ],
       questions: []
     })

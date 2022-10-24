@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "message-component": "/components/message-component/index"
+    "message-component": "/components/message-component/index",
+    "indicator-dots": "/components/indicator-dots/index"
   }
 }

@@ -3,15 +3,38 @@
 
 <view class="index-container page-wrapper">
   <view class="header">
-    <view class="museum-row">
+    <view class="carousel-section">
+      <swiper class="carousel"
+              circular
+              autoplay
+              previous-margin="60px" 
+              next-margin="60px"
+              interval="{{10000}}" 
+              indicator-active-color="var(--primary-theme-color)"
+              bindchange="carouselIndexChange">
+        <swiper-item wx:for="{{carousels}}"  wx:key="unique" 
+                     class="swiper-item {{currentCarouselIndex === index ? 'active' : ''}}">
+          <view class="carousel-item">
+            <image src="{{item.src}}" mode="aspectFill"></image>
+          </view>
+        </swiper-item>
+      </swiper>
+      <indicator-dots length="{{carousels.length}}"  class="page-indicator"
+                      current-index="{{currentCarouselIndex}}"></indicator-dots>
+    </view>
+  </view>
+
+  <view class="index-body">
+    <view wx:if="{{false}}" class="museum-row">
       <image src="/assets/icons/M2.png" style="width: 180px; height:135px;" mode="aspectFill"></image>
-      <!-- <text class="museum-name">上海自然博物馆</text> -->
+        <!-- <text class="museum-name">上海自然博物馆</text> -->
     </view>
     <view class="header-row search-row">
       <search-bar style="width:100%; height:100%;" redirect="/pages/qa/index" placeholder="输入您的提问"></search-bar>
-      <!-- <van-icon name="scan" size="26px" bindtap="scanCode"/> -->
+        <!-- <van-icon name="scan" size="26px" bindtap="scanCode"/> -->
     </view>
   </view>
+  
 
   <view wx:if="{{false}}" class="index-body">
     <view class="recommend-header">为您推荐</view>

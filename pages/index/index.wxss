@@ -4,13 +4,12 @@ page{
 }
 
 .index-container {
-  padding: 10px 20px;
+  padding: 10px 0;
   height: calc(100vh - var(--tabbar-height, 50px) - env(safe-area-inset-bottom));
   overflow-y: scroll;
 } 
 
 .header{
-  height: 60%;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -36,7 +35,6 @@ page{
   align-items: center;
   flex-direction: column;
   position: relative;
-  margin-bottom: 12%;
 }
 
 .museum-name{
@@ -50,7 +48,7 @@ page{
 
 .index-body{
   margin-top: 20px;
-  height: 100vh;
+  padding: 0 20px;
 }
 
 .masonry{
@@ -66,4 +64,55 @@ page{
   display: block;
   margin-bottom: 4px;
   padding: 6px 6px 10px 6px;
+}
+
+.carousel-section{
+  margin-bottom: 20px;
+}
+
+.carousel{
+  height: 200px;
+  padding: 10px 0 0;
+}
+
+.swiper-item{
+  /* 手动垂直居中 height + 2*margin-top = .crousel.height */
+  height: 150px !important;
+  margin-top: 25px;
+  overflow: visible;
+  width: 100%;
+}
+
+.swiper-item.active {
+  z-index: 2;
+  transform: inherit ;
+}
+
+.carousel-item{
+  height: 100%;
+  background-color: transparent;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  transform: scale(.9);
+  transition: transform .4s;
+}
+
+.carousel-item image{
+  width: 100%;
+}
+
+.swiper-item.active .carousel-item{
+  z-index: 2;
+  transform: scale(1.2);
+  box-shadow: 0 0 4px 2px rgba(0,0,0,.12);
+}
+
+.page-indicator{
+  --indicator-size: 10px;
+  --indicator-active-size: 12px;
+  --indicator-margin: 4px;
+  --indicator-color: #ddd;
+  --indicator-active-color: var(--primary-theme-color);
 }

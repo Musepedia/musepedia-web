@@ -1,0 +1,21 @@
+.page-indicator{
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  height: 20px;
+}
+
+.page-indicator-dot{
+  height: var(--indicator-size, 8px);
+  width: var(--indicator-size, 8px);
+  margin: 0 var(--indicator-margin, 2px);
+  border-radius: 50%;
+  background-color: var(--indicator-color, #888);
+  transition: all .3s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.page-indicator-dot.active{
+  height: var(--indicator-active-size, 10px);
+  width: var(--indicator-active-size, 10px);
+  background-color: var(--indicator-active-color, #000);
+}

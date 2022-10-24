@@ -1,0 +1,6 @@
+<view class="page-indicator">
+  <view class="page-indicator-dot {{index === currentIndex ? 'active' : ''}}"
+        wx:for="{{length}}" 
+        wx:key="index">
+  </view>
+</view>

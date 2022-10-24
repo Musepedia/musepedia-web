@@ -43,7 +43,7 @@
     "backgroundTextStyle": "light",
     "backgroundColor": "#eee",
     "navigationBarBackgroundColor": "#eee",
-    "navigationBarTitleText": "MuseumQA",
+    "navigationBarTitleText": "Musepedia",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
