@@ -6,7 +6,6 @@ const app = getApp();
 
 BasePage({
   data: {
-    keyword: '',
     loading: false,
     refreshing: false,
     refresherEnabled: false,
@@ -16,7 +15,8 @@ BasePage({
     // ui
     cardDescriptionHidden: false, 
     cardDescriptionHeight: 'auto',
-    descriptionOriginHeight: undefined
+    descriptionOriginHeight: undefined,
+    showMuseumDetail: false
   },
   onLoad: function (options) {},
   onReady: function () {},
@@ -131,5 +131,10 @@ BasePage({
       cardDescriptionHidden: hidden,
       cardDescriptionHeight: hidden ? 0 : this.data.descriptionOriginHeight
     });
+  },
+  toggleMuseumDetail(){
+    this.setData({
+      showMuseumDetail: !this.data.showMuseumDetail
+    })
   }
 })

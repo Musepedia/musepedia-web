@@ -9,19 +9,21 @@
 }
 
 .header-section{
-  /* margin-top: 22px; */
-  padding: 10px 20px;
+  position: relative;
+  margin: 10px 20px;
 }
 
 .museum-card-header{
   display: flex;
   align-items: center;
+  margin-bottom: 20px;
 }
 
 .museum-card-header .museum-name{
   font-size: 1.25rem;
   font-weight: bold;
   padding-left: 8px;
+  width: 100%;
 }
 
 .museum-logo{
@@ -69,6 +71,41 @@
   overflow: hidden;
 }
 
+/* 博物馆详情卡片 */
+.museum-detail-card {
+  height: 40px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: content-box;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  z-index: 10010;
+  transition: height .5s;
+}
+
+.museum-detail-card.active{
+  /* 博物馆logo属于详情卡片直接覆盖原本的logo */
+  height: 75vh;
+}
+
+.museum-detail-card .museum-card-body{
+  overflow-y: scroll;
+  flex-grow: 1;
+}
+
+.museum-detail-card ::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
+.museum-address{
+  font-size: .75rem;
+}
+
+/* 展品发现列表 */
 .recommendation-section{
   height: calc(100% - 50px - env(safe-area-inset-bottom));
 }

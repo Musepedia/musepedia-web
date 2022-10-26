@@ -47,7 +47,7 @@
 .content-title{
   padding: var(--sidebar-padding);
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: bold;
   height: var(--content-title-height);
 }
 

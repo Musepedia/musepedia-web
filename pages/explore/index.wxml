@@ -8,21 +8,44 @@
   
   <view class="header-section">
     <view class="museum-card" bindtap="toggleCardDescriptionHidden">
-      <view class="museum-card-header">
-        <van-icon name="location-o" size="2rem" color="var(--primary-theme-color)"></van-icon>
-        <block wx:if="{{currentMuseumId}}">
-          <image wx:if="{{currentMuseumInfo.logoUrl}}" class="museum-logo" src="{{currentMuseumInfo.logoUrl}}" mode="heightFix"></image>
-          <text wx:else class="museum-name">{{currentMuseumInfo.name}}</text>
-        </block>
-        <text wx:else>点击右侧按钮选择博物馆</text>
-        <text class="iconfont icon-gaibianfangxiang icon-switch-museum"  
-              catchtap="switchMuseum"></text>
-      </view>
+      <view class="is-padding" style="opacity:0;height:40px"></view>
       <view wx:if="{{currentMuseumId}}" class="museum-card-description {{cardDescriptionHidden ? 'hidden' : ''}}" style="height: {{cardDescriptionHeight}}">
         <view class="description-header">场馆介绍</view>
         <view class="description-content">{{currentMuseumInfo.description}}</view>
       </view>
     </view>
+    <!-- 博物馆详情 -->
+    <view class="museum-card museum-detail-card {{showMuseumDetail ? 'active' : ''}}">
+      <view class="museum-card-header">
+        <van-icon name="location-o" size="2rem" color="var(--primary-theme-color)"></van-icon>
+        <block wx:if="{{currentMuseumId}}">
+          <image wx:if="{{currentMuseumInfo.logoUrl}}" 
+                 class="museum-logo" 
+                 src="{{currentMuseumInfo.logoUrl}}" 
+                 mode="heightFix"
+                 catchtap="toggleMuseumDetail"></image>
+          <text wx:else class="museum-name"  catchtap="toggleMuseumDetail">{{currentMuseumInfo.name}}</text>
+        </block>
+        <text wx:if="{{!currentMuseumId}}">点击右侧按钮选择博物馆</text>
+        <text wx:if="{{!showMuseumDetail}}" class="iconfont icon-gaibianfangxiang icon-switch-museum"  
+              catchtap="switchMuseum"></text>
+      </view>
+      <view class="museum-card-body">
+        <view>
+          <image wx:if="{{currentMuseumInfo.imageUrl}}" src="{{currentMuseumInfo.imageUrl}}" mode="widthFix"></image>
+          <text class="museum-address">{{currentMuseumInfo.address}}</text>
+        </view>
+        <view>
+          <view style="margin: 20px 0 12px; font-size: 1.2rem; font-weight: bold">详细介绍</view>
+          <text style="font-size: 1rem">{{currentMuseumInfo.description}}</text>
+        </view>
+      </view>
+    </view>
+    <van-popup
+      show="{{ showMuseumDetail }}"
+      duration="300"
+      z-index="10000"
+      bind:close="toggleMuseumDetail"></van-popup>
   </view>
 
   <view style="height:50%" wx:if="{{!currentMuseumId}}">
