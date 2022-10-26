@@ -1,11 +1,15 @@
 import Toast from '@vant/weapp/toast/toast'
 import Dialog from '@vant/weapp/dialog/dialog'
+import EventEmitter2 from 'eventemitter2';
 import {getUserInfo, userLogin, updateUserProfile} from './api/user'
 import {wxLoginWithBackend} from './utils/util'
 import {queryMuseumWithDistance, getCurrentMuseum} from './api/museum'
 
+const defaultAvatarUrl = '/assets/icons/default-avatar.svg';
+
 App({
   onLaunch() {
+    this.initEventEmitter();
     this.checkUpdate();
     this.checkiPhoneX();
     this.initShortcut();
@@ -14,9 +18,10 @@ App({
     this.setDefaultMuseum();
   },
   globalData: {
+    defaultAvatarUrl: defaultAvatarUrl,
     userInfo: {
       nickname: '',
-      avatarUrl: '/assets/icons/default-avatar.svg',
+      avatarUrl: defaultAvatarUrl,
       isLogin: false
     },
     userLocation: null, // 用户经纬度坐标
@@ -25,6 +30,21 @@ App({
     appInfo: {
       version: 'Beta 0.3.7'
     }
+  },
+  initEventEmitter(){
+    const emitter = new EventEmitter2({
+      wildcard: false,
+      delimiter: '.', 
+      newListener: false, 
+      removeListener: false, 
+      maxListeners: 10,
+      verboseMemoryLeak: false,
+      ignoreErrors: false
+    });
+    emitter.emit('test', 'hello')
+    this.emitter = emitter;
+    this.$on = emitter.on.bind(emitter);
+    this.$emit = emitter.emit.bind(emitter);
   },
   resetUserInfo(){
     this.globalData.userInfo = {
@@ -124,7 +144,13 @@ App({
     const loginSuccess = data => {
       data.isLogin = true;
       this.setGlobalUserInfo(data);
+      this.globalData.doingLogin = false;
+      this.$emit('user.login.finish', data);
     } ;
+    // 请求后端，先标志正在请求
+    this.globalData.doingLogin = true;
+    this.$emit('user.login.begin', true);
+
     getUserInfo().then(data => {
       if(data){
         loginSuccess(data);
@@ -134,12 +160,18 @@ App({
           success: (res) => {
             userLogin({
               code: res.code
-            }).then(loginSuccess).catch(err => console.log(err))
+            }).then(loginSuccess)
+              .catch(err => {
+                this.globalData.doingLogin = false;
+                this.$emit('user.login.finish', null)
+              })
           }
         })
       }
     }).catch(err => {
-      console.log("failed to getUserInfo()");
+      console.log("getUserInfo请求服务器失败", err);
+      this.globalData.doingLogin = false;
+      this.$emit('user.login.finish', null);
     })
   },
   checkUpdate() {

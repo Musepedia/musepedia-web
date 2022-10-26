@@ -8,7 +8,8 @@ BasePage({
     // 用户信息相关
     isLogin: false,
     nickname: '',
-    avatarUrl: '',
+    avatarUrl: app.globalData.defaultAvatarUrl,
+    doingLogin: false, // 是否正在登陆
     // 用户个人收藏相关
     historyQuestions: null,
     favorQuestions: null,
@@ -25,6 +26,14 @@ BasePage({
     ],
     activeTabbar: 1,
     popupQuestion: {}
+  },
+  onReady(){
+    app.$on('user.login.finish', () => {
+      this.setData({
+        doingLogin: false
+      })
+      this.updateUserInfo();
+    })
   },
   onLoad: function (options) {
   },
@@ -50,24 +59,30 @@ BasePage({
     }
 
     this.setScrollViewHeight();
-    // 获取用户信息
-    // TODO: 正在获取用户信息时处理
+    this.setData({
+      doingLogin: app.globalData.doingLogin
+    })
+    if(!this.data.doingLogin){
+      this.updateUserInfo();
+    }
+  },
+  onHide: function () {},
+  onUnload: function () {},
+  /**
+   * 更新界面显示的用户信息并且获取历史提问/收藏
+   */
+  updateUserInfo(){
     const globalUserInfo = app.globalData.userInfo; 
     this.setData({
       isLogin: globalUserInfo.isLogin,
       nickname: globalUserInfo.nickname,
       avatarUrl: globalUserInfo.avatarUrl,
     });
-    
     if(!globalUserInfo.isLogin){
       this.resetTabbarItems();
     }
-
-    this.changeUserTabbar({currentTarget: {dataset: {index: 0}}})
+    this.changeUserTabbarIndex(0);
   },
-  onHide: function () {},
-  onUnload: function () {},
-  onShareAppMessage: function () {},
   /**
    * 重新设置 历史提问/收藏 数据
    */
@@ -81,6 +96,9 @@ BasePage({
     })
   },
   handleLoginTap(e){
+    if(this.data.doingLogin){
+      return;
+    }
     wx.navigateTo({
       url: '/pages/user/login/index',
     })
@@ -134,6 +152,13 @@ BasePage({
   },
   changeUserTabbar({currentTarget = {}}){
     const activeIndex = currentTarget.dataset.index;
+    this.changeUserTabbarIndex(activeIndex);
+  },
+  /**
+   * 切换历史提问/收藏一栏，同时会刷新切换到那一栏的数据
+   * @param {Number} activeIndex
+   */
+  changeUserTabbarIndex(activeIndex = 0){
     this.setData({
       activeTabbar: activeIndex
     })
@@ -142,7 +167,7 @@ BasePage({
     }
 
     if(activeIndex === 0){
-      // fetch history
+      // 历史提问
       this.fetchQuestionHistory();
     } else if(activeIndex === 1){
       // 收藏的问题
@@ -150,5 +175,5 @@ BasePage({
         questions: this.data.favorQuestions || []
       })
     }
-  },
+  }
 })

@@ -6,11 +6,12 @@ const TOKEN_HEADER = 'x-auth-token';
 const MUSEUM_HEADER = 'x-museum';
 
 const _axios = axios.create({
-  baseURL: 'https://pt.musepedia.cn/api/',
-  // baseURL: 'http://localhost:16002/api/',
+  // baseURL: 'https://pt.musepedia.cn/api/',
+  baseURL: 'http://localhost:16002/api/',
   headers: {
     'Content-Type': 'application/json'
   },
+  timeout: 10000
 });
 _axios.defaults.adapter = adapter;
 
