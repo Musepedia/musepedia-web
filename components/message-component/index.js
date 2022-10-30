@@ -161,6 +161,7 @@ Component({
         urls: [event.target.dataset.src],
       })
     },
+    /** 点击回答右侧省略号触发回答卡片popup */
     showQuestionCardPopup(e){
       const data = e.target.dataset.data;
       this.setData({
@@ -174,6 +175,7 @@ Component({
         showQuestionCard: true
       })
     },
+    /** 关闭回答卡片popup */
     closePopup(){
       const popup = this.selectComponent('#popup-question-card');
       if(popup){
@@ -186,6 +188,10 @@ Component({
       this.setData({
         showQuestionCard: false
       })
+    },
+
+    showHallCardPopup(){
+
     }
   }
 })

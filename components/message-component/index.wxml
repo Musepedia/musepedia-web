@@ -144,11 +144,13 @@
   </common-message>
 </template>
 
+<!-- 展区/博物馆相关信息的消息 -->
 <template name="hall-message">
   <common-message 
-      class="message-reply with-image"
+      class="message-reply with-image hall-message"
       right="{{right}}" 
       show-arrow="{{showArrow}}"
+      show-more
       full-width
       data-data="{{data}}">
     <image style="width:100%;border-radius:12px;position:relative;" src="{{data.src}}" mode="widthFix">

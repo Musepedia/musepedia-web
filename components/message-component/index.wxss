@@ -128,3 +128,8 @@
   z-index: 10;
   color: #eee;
 }
+
+.hall-message{
+  border: none;
+  --more-btn-zindex: 2;
+}

@@ -136,7 +136,7 @@ BasePage({
       ? ImageReplyMessage('/assets/icons/M2.png', data) 
       : RecommendMessage('/assets/icons/M2.png', data);
 
-      // save history
+      // 本地保存历史消息
       // TODO 优化存储方式
       if(messages.length > 1){
         // 记录时间消息
@@ -152,14 +152,16 @@ BasePage({
       });
 
       this.pushMessage(answerMsg);
-      this.messageComponent.scrollToBottom();
 
       // 推荐展区信息
+      // data.recommendExhibitionHall = {imageUrl: 'https://abstractmgs.cn/figs/驼鹿.jpg', name: '生命长河'}
       const hall = data.recommendExhibitionHall;
       if(hall){
         this.pushMessage(HintMessage('推荐展区', true));
-        this.pushMessage(HallMessage({src: 'https://abstractmgs.cn/figs/驼鹿.jpg', text: hall.name}));
+        this.pushMessage(HallMessage({src: hall.imageUrl, text: hall.name}));
       }
+      
+      this.messageComponent.scrollToBottom();
     }).catch(err => {
       wx.Toast.fail('请求失败')
     }).finally(() => {
