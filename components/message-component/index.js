@@ -39,7 +39,9 @@ Component({
     bottomAnchor: 'bottom-anchor', // 底部锚点，用于滚动到对话框最下方,
     isiPhoneX: app.globalData.isiPhoneX,
     showQuestionCard: false,
-    popupQuestion: {}
+    popupQuestion: {},
+    showExploreCard: false,
+    popupExploreCard: {}
   },
   lifetimes:{
     attached(){
@@ -176,7 +178,7 @@ Component({
       })
     },
     /** 关闭回答卡片popup */
-    closePopup(){
+    closeQuestionCardPopup(){
       const popup = this.selectComponent('#popup-question-card');
       if(popup){
         const action = popup.selectComponent('.question-card-action');
@@ -189,9 +191,22 @@ Component({
         showQuestionCard: false
       })
     },
-
-    showHallCardPopup(){
-
+    /** 展区/博物馆/文创卡片popup */
+    showExploreCardPopup({currentTarget = {}}){
+      const data = currentTarget.dataset.data;
+      this.setData({
+        popupExploreCard: {
+          title: data.title,
+          content: data.content,
+          imgs: [data.img]
+        },
+        showExploreCard: true
+      })
+    },
+    closeExploreCardPopup(){
+      this.setData({
+        showExploreCard: false
+      })
     }
   }
 })

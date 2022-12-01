@@ -13,3 +13,7 @@ additional-input{
   width: 100%;
   padding: 10px;
 }
+
+.popup-explore-card .explore-content{
+  display: block;
+}

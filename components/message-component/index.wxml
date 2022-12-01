@@ -92,7 +92,7 @@
   show="{{showQuestionCard}}"
   custom-style="width: 80%;"
   round
-  bind:close="closePopup">
+  bind:close="closeQuestionCardPopup">
   <question-card
     id="popup-question-card"
     question-id="{{popupQuestion.id || 0}}"
@@ -111,6 +111,22 @@
       </view>
     </view>  
   </question-card>
+</van-popup>
+
+<!-- 弹出展区/展馆/文创详细信息 -->
+<van-popup
+  class="popup-explore-card"
+  show="{{showExploreCard}}"
+  custom-style="width: 80%; overflow: scroll-y;"
+  round
+  bind:close="closeExploreCardPopup">
+  <explore-card 
+    class="popup-explore-card"
+    title="{{popupExploreCard.title}}"
+    content="{{popupExploreCard.content || ''}}"
+    image-height="180px"
+    images="{{popupExploreCard.imgs || []}}">
+  </explore-card>
 </van-popup>
 
 <!-- 图片回复-->
@@ -149,13 +165,14 @@
   <common-message 
       class="message-reply with-image hall-message"
       right="{{right}}" 
-      show-arrow="{{showArrow}}"
+      show-arrow="{{false}}"
       show-more
       full-width
-      data-data="{{data}}">
-    <image style="width:100%;border-radius:12px;position:relative;" src="{{data.src}}" mode="widthFix">
+      data-data="{{data}}"
+      bindmoretap="showExploreCardPopup">
+    <image style="width:100%;border-radius:12px;position:relative;" src="{{data.img}}" mode="widthFix">
       <modal opacity=".5"></modal>
-      <view class="absolute-wrapper">{{data.text}}</view>
+      <view class="absolute-wrapper">{{data.title}}</view>
     </image>
   </common-message>
 </template>

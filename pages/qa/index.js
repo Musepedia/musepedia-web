@@ -1,10 +1,23 @@
 import BasePage from '../helpers/base-page'
 import {getAnswer} from '../../api/question'
 import {getExhibitInfoById} from '../../api/exhibit'
+import {recommendCreative} from '../../api/creative'
 import {CommonMessage, RecommendMessage, ImageReplyMessage, TimeMessage, HintMessage, HallMessage} from '../../utils/message-builder'
 
 const app = getApp();
 const globalUserInfo = app.globalData.userInfo;
+
+const shouldRecommendCreative = (() => {
+  let i = 3;
+  return function(){
+    i--;
+    if(i === 0){
+      i = (Math.random() * 12) + 12;
+      return true;
+    }
+    return false;
+  }
+})()
 
 BasePage({
   data: {
@@ -20,7 +33,7 @@ BasePage({
     exhibitLabel: '',
     exhibitDescription: '',
     exhibitUrl: '',
-    /**回答的详细介绍 */
+    // 回答的详细介绍
     showDetailText: false,
     detialText: '',
     // 历史记录
@@ -90,6 +103,7 @@ BasePage({
       complete: (res) => {},
     })
   },
+  // 检查两次消息之间是否需要超过一定间隔（显示时间消息）
   checkMessageInterval(){
     const now = new Date().getTime();
     const last = this.data.lastMessageTime;
@@ -106,6 +120,7 @@ BasePage({
       messages: messages.concat(this.data.messages)
     });
   },
+  // 用户发送消息回调
   onMessage({detail}){
     const {text: question, clear} = detail;
     if(!(question && question.trim().length)){
@@ -154,11 +169,23 @@ BasePage({
       this.pushMessage(answerMsg);
 
       // 推荐展区信息
-      // data.recommendExhibitionHall = {imageUrl: 'https://abstractmgs.cn/figs/驼鹿.jpg', name: '生命长河'}
+      // data.recommendExhibitionHall = {imageUrl: 'https://static.musepedia.cn/figs/驼鹿.jpg', name: '生命长河'}
       const hall = data.recommendExhibitionHall;
       if(hall){
         this.pushMessage(HintMessage('推荐展区', true));
-        this.pushMessage(HallMessage({src: hall.imageUrl, text: hall.name}));
+        this.pushMessage(HallMessage({img: hall.imageUrl, title: hall.name}));
+      } else {
+        // 不推荐展区的情况下推荐文创
+        if(shouldRecommendCreative()){
+          recommendCreative().then(data => {
+            this.pushMessage(HintMessage('推荐文创', true));
+            this.pushMessage(HallMessage({
+              img: data.img, 
+              title: data.name,
+              content: data.description
+            }));
+          })
+        }
       }
       
       this.messageComponent.scrollToBottom();

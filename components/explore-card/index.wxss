@@ -39,12 +39,3 @@
 .expolre-detail{
   margin-top: 16px;
 }
-
-.explore-text text{
-  display: block;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
-  overflow: hidden;
-  line-height: 22px;
-}

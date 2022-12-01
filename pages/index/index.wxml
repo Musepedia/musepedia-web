@@ -14,8 +14,8 @@
               bindchange="carouselIndexChange">
         <swiper-item wx:for="{{carousels}}"  wx:key="unique" 
                      class="swiper-item {{currentCarouselIndex === index ? 'active' : ''}}">
-          <view class="carousel-item">
-            <image src="{{item.src}}" mode="aspectFill"></image>
+          <view class="carousel-item" data-index="{{index}}" bindtap="onCarouselTap">
+            <image src="{{item.img}}" mode="aspectFill"></image>
           </view>
         </swiper-item>
       </swiper>
@@ -50,4 +50,20 @@
   </view>
 
 </view>
+
+<!-- 轮播图弹出提示 -->
+<van-popup
+  class="creative-popup"
+  show="{{showPopup}}"
+  custom-style="width: 90%; height: 80%; overflow: scroll-y;"
+  round
+  z-index="10000"
+  bind:close="closePopup">
+  <explore-card 
+    title="{{popupItem.title}}"
+    content="{{popupItem.content || ''}}"
+    image-height="180px"
+    images="{{popupItem.img ? [popupItem.img] : []}}">
+  </explore-card>
+</van-popup>
 

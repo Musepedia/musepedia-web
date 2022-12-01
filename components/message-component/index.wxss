@@ -131,5 +131,6 @@
 
 .hall-message{
   border: none;
-  --more-btn-zindex: 2;
+  /* 需要大于 modal.zindex */
+  --more-btn-zindex: 20;
 }
