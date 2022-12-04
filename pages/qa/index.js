@@ -184,6 +184,7 @@ BasePage({
               title: data.name,
               content: data.description
             }));
+            this.messageComponent.scrollToBottom();
           })
         }
       }

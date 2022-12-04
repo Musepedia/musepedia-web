@@ -1,7 +1,12 @@
 <!-- 展示展品/动物/植物卡片 -->
 <!-- 上下布局，图片+文字 -->
 <view class="question-card">
-  <image class="question-card-image" wx:if="{{src}}" src="{{src}}" mode="{{mode}}"></image>
+  <image class="question-card-image" 
+         wx:if="{{src}}" 
+         src="{{src}}" 
+         mode="{{mode}}" 
+         data-src="{{src}}" 
+         bindtap="startPreview"></image>
   <view class="exhibit-text-section question" wx:if="{{question}}">
     <text class="content-text">{{question}}</text>
   </view>

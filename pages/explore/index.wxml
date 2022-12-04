@@ -70,6 +70,7 @@
         images="{{item.figureUrl ? [item.figureUrl] : []}}"
         bindtap="intoDetail"
         data-data="{{item}}"
+        disable-preview
         image-height="120px">
         <!-- 目前只有一张图 120px -->
       </explore-card>

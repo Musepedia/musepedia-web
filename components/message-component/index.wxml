@@ -124,7 +124,8 @@
     class="popup-explore-card"
     title="{{popupExploreCard.title}}"
     content="{{popupExploreCard.content || ''}}"
-    image-height="180px"
+    image-height="auto"
+    image-mode="widthFix"
     images="{{popupExploreCard.imgs || []}}">
   </explore-card>
 </van-popup>

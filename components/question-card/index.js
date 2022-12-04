@@ -50,6 +50,11 @@ Component({
           message: '已提交反馈'
         });
       })
+    },
+    startPreview({currentTarget}){
+      wx.previewImage({
+        urls: [currentTarget.dataset.src],
+      })
     }
   }
 })
