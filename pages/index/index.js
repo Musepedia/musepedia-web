@@ -35,15 +35,15 @@ BasePage({
   onCarouselTap({currentTarget = {}}){
     const index = currentTarget.dataset.index;
     const carousel = this.data.carousels[index];
-    if(carousel.type === 'activity'){
+    if(carousel.type === 'link'){
       wx.navigateTo({
         url: `/pages/webpage/index?url=${this.data.carousels[index].link}`,
       })
-    } else if(carousel.type === 'creative'){
+    } else if(carousel.type === 'display'){
       this.showPopup({
-        title: carousel.detail.name,
-        content: carousel.detail.description,
-        img: carousel.detail.img
+        title: carousel.title,
+        content: carousel.detail,
+        img: carousel.img
       });
     }
   },
