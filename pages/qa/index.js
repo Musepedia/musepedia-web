@@ -177,10 +177,14 @@ BasePage({
       } else {
         // 不推荐展区的情况下推荐文创
         if(shouldRecommendCreative()){
-          recommendCreative().then(data => {
+          const museumId = app.getCurrentMuseumId();
+          recommendCreative({museumId: museumId}).then(data => {
+            if(!data){
+              return;
+            }
             this.pushMessage(HintMessage('推荐文创', true));
             this.pushMessage(HallMessage({
-              img: data.img, 
+              img: data.imageList[0], 
               title: data.name,
               content: data.description
             }));
