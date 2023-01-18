@@ -67,7 +67,7 @@
       <explore-card 
         title="{{item.label}}"
         content="{{item.description || ''}}"
-        images="{{item.figureUrl ? [item.figureUrl] : []}}"
+        images="{{item.figureUrlList}}"
         bindtap="intoDetail"
         data-data="{{item}}"
         disable-preview

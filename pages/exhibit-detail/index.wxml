@@ -7,9 +7,10 @@
       title="{{exhibit.label}}"
       content="{{exhibit.description || ''}}"
       detail="{{exhibit.detail || ''}}"
+      scroll-image
       image-height="auto"
       image-mode="widthFix"
-      images="{{exhibit.figureUrl ? [exhibit.figureUrl] : []}}">
+      images="{{exhibit.figureUrlList.length ? exhibit.figureUrlList : [exhibit.figureUrl]}}">
     </explore-card>
   </view>
 

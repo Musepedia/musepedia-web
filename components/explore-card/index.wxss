@@ -39,3 +39,10 @@
 .expolre-detail{
   margin-top: 16px;
 }
+
+.scroll-image .explore-image{
+  flex-shrink: 0;
+}
+.scroll-image .image-section{
+  overflow-x: scroll;
+}

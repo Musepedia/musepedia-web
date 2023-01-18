@@ -28,6 +28,10 @@ Component({
       type: String,
       value: 'aspectFill'
     },
+    scrollImage: {
+      type: Boolean,
+      value: false
+    },
     disablePreview: {
       type: Boolean,
       value: false
