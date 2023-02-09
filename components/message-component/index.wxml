@@ -60,7 +60,7 @@
           confirm-type="send"
           show-confirm-bar="{{false}}">
           <view class="input-section">
-            <van-icon class="scan-btn" name="scan" size="18px" bindtap="scanCode"></van-icon>
+            <!-- <van-icon class="scan-btn" name="scan" size="18px" bindtap="scanCode"></van-icon> -->
             <van-icon wx:if="{{message}}" name="clear" size="16px" bindtap="clearText"></van-icon>
           </view>
         </textarea>

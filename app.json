@@ -69,5 +69,8 @@
     "scope.userLocation": {
       "desc": "你的位置信息将用于获取最近的博物馆信息"
     }
-  }
+  },
+  "requiredPrivateInfos": [
+    "getFuzzyLocation"
+  ]
 }

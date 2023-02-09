@@ -13,6 +13,7 @@ export function getCurrentMuseum(){
  * @param {Array<Number>} pos 用户坐标 [longitude, latitude]
  */
 export function queryMuseumWithDistance(query, pos){
+  console.log("pos", pos);
   return queryMuseum(query).then(data => {
     data.forEach(museum => {
       if(!museum.longitude || !museum.latitude || !pos){

@@ -85,23 +85,36 @@ App({
           : Promise.resolve(this.globalData.currentMuseumInfo);
   },
   getUserLocation(){
+    const fuzzyLocation = new Promise((resolve, reject) => {
+      wx.getFuzzyLocation({
+        type: 'gcj02',
+        success: res => {
+          this.globalData.userLocation = [res.longitude, res.latitude];
+          resolve([res.longitude, res.latitude])
+        },
+        fail(err){
+          console.log("获取地理位置信息失败",err);
+        }
+      })
+    })
+    // const location = wx.getFuzzyLocation({type: 'gcj02'}).then(res => {
+    //   this.globalData.userLocation = [res.longitude, res.latitude];
+    //   return Promise.resolve([res.longitude, res.latitude]);
+    // }) 
     return this.globalData.userLocation === null 
-      ? wx.getLocation({type: 'gcj02'}).then(res => {
-        this.globalData.userLocation = [res.longitude, res.latitude];
-        return Promise.resolve([res.longitude, res.latitude]);
-      }) 
+      ? fuzzyLocation 
       : Promise.resolve(this.globalData.userLocation)
   },
   setDefaultMuseum(){
     if(wx.getStorageSync('currentMuseumId')){
       return;
     }
-    this.getUserLocation()
-      .then(res => queryMuseumWithDistance({}, res))
-      .then(data => {
-        data.sort((a,b) => a.distance - b.distance);
-        wx.setStorageSync('currentMuseumId', data[0].id);
-      }).catch(ignore => {})
+    // this.getUserLocation()
+    //   .then(res => queryMuseumWithDistance({}, res))
+    //   .then(data => {
+    //     data.sort((a,b) => a.distance - b.distance);
+    //     wx.setStorageSync('currentMuseumId', data[0].id);
+    //   }).catch(ignore => {})
   },
   /**
    * @param {*} data data包含nickname, avatarUrl

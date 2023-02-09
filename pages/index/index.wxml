@@ -55,7 +55,7 @@
 <van-popup
   class="creative-popup"
   show="{{showPopup}}"
-  custom-style="width: 90%; height: 80%; overflow: scroll-y;"
+  custom-style="width: 90%; max-height: 80%; overflow: scroll-y;"
   round
   z-index="10000"
   bind:close="closePopup">

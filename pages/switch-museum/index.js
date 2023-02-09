@@ -19,8 +19,9 @@ BasePage({
       this.setData({
         museumList: data
       })
+      return Promise.reject()
       // 获取博物馆列表之后获取用户位置信息
-      return app.getUserLocation()
+      // return app.getUserLocation()
     }).then(loc => {
       this.data.museumList.forEach(museum => {
         if(museum.latitude && museum.longitude){
