@@ -35,6 +35,10 @@ Component({
     showActionBar: {
       type: Boolean,
       value: false
+    },
+    exhibitId: {
+      type: Number,
+      value: 0
     }
   },
   data: {
@@ -50,6 +54,14 @@ Component({
           message: '已提交反馈'
         });
       })
+    },
+    naviToDetail(){
+      const eid = this.data.exhibitId
+      if(eid){
+        wx.navigateTo({
+          url: `/pages/exhibit-detail/index?exhibitId=${eid}`,
+        })
+      }
     },
     startPreview({currentTarget}){
       wx.previewImage({

@@ -5,6 +5,10 @@ Component({
       type: String,
       value: '20px'
     },
+    showInfo: {
+      type: Boolean,
+      value: false
+    }
   },
   data: {
     likeIcon: 'like-o',

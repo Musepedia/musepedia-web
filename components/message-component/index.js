@@ -172,7 +172,8 @@ Component({
           questionId: data.questionId,
           question: data.question,
           answer: data.status === 2 ? '' : data.answer,
-          recommendQuestions: data.recommendQuestions
+          recommendQuestions: data.recommendQuestions,
+          exhibitId: data.exhibitId
         },
         showQuestionCard: true
       })

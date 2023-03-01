@@ -1,6 +1,6 @@
 <!-- 对展品信息的操作（点赞，评论，不感兴趣...） -->
 <view class="exhibit-action">
-  <view class="exhibit-action-btn left" bindtap="onActionTap" data-action="info">
+  <view wx:if="{{showInfo}}" class="exhibit-action-btn left" bindtap="onActionTap" data-action="info">
     <van-icon name="question" size="{{iconSize}}" color="var(--primary-theme-color)"></van-icon>
   </view>
   <view wx:if="{{false}}" class="exhibit-action-btn" bindtap="onActionTap" data-action="like">

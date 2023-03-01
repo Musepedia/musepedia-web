@@ -86,6 +86,7 @@
     bind:close="closePopup">
     <question-card
       id="popup-question-card"
+      exhibit-id="{{popupQuestion.exhibitId}}"
       question-id="{{popupQuestion.questionId}}"
       question="{{popupQuestion.questionText || ''}}"
       answer="{{popupQuestion.answerType === 2 ? '' : (popupQuestion.answerText || '')}}"

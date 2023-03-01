@@ -1,5 +1,6 @@
 import BasePage from '../helpers/base-page'
 import {getRecommendQuestion} from '../../api/explore'
+import {getExhibitInfoById} from '../../api/exhibit'
 
 BasePage({
   data: {
@@ -10,8 +11,7 @@ BasePage({
     popupQuestion: {}
   },
   onLoad: function (options) {
-    const ch = this.getOpenerEventChannel();
-    ch.on('exhibitData', data => {
+    const setExhibitData = data => {
       this.setData({
         exhibit: data
       });
@@ -29,7 +29,16 @@ BasePage({
           questions: data
         })
       }).catch(ignore => {})
-    })
+    }
+
+    if(options.exhibitId){
+      getExhibitInfoById(options.exhibitId).then(setExhibitData).catch(() => {
+        wx.Toast.fail('请求失败')
+      })
+    }
+
+    const ch = this.getOpenerEventChannel();
+    ch.on('exhibitData', setExhibitData)
   },
   onReady: function () {}, 
   onShow: function () {},

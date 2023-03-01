@@ -16,7 +16,12 @@
   </view>
   <slot></slot>
   
-  <exhibit-action class="question-card-action" wx:if="{{showActionBar}}" bind:exhibitactionfeedback="sendFeedback"></exhibit-action>
+  <exhibit-action 
+    class="question-card-action" 
+    show-info="{{!!exhibitId}}"
+    wx:if="{{showActionBar}}" 
+    bind:exhibitactionfeedback="sendFeedback" 
+    bind:exhibitactioninfo="naviToDetail"></exhibit-action>
   <van-toast id="feedback-toast"/>
 
   <view wx:if="{{showDividerDown}}" class="divider divider-down">
