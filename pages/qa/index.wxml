@@ -4,6 +4,7 @@
 <view class="qa">
   <message-component 
     id="qa-message-component"
+    class="{{guideClass}}"
     bindsendmessage="onMessage" 
     binddetailtap="showDetailTextPopup"
     bindrefresh="fetchHistory" 
@@ -51,3 +52,15 @@ url="{{exhibitUrl}}"/>
     </view>
   </view>
 </van-popup>
+
+<view if="{{showGuide}}" id="guide" class="guide">
+  <modal z="{{10000}}" opacity="{{0.5}}"></modal>
+  <van-button class="guide-skip" type="primary" round>跳过</van-button>
+  <view class="guide-hint" style="top: {{guideTop}}; left: {{guideLeft}};">
+    <view class="guide-text">{{guides[guideStep].text}}</view>
+    <view class="guide-action">
+      <van-button type="primary" round wx:if="{{guideStep}}" bindtap="onGuidePrev">上一步</van-button>
+      <van-button type="primary" round bindtap="onGuideNext">{{guideStep === guides.length - 1 ? '完成' : '下一步'}}</van-button>
+    </view>
+  </view>
+</view>

@@ -40,13 +40,71 @@ BasePage({
     historyIndex: 0,
     history: [],
     reachHistoryEnd: false,
-    showHistoryHint: false
+    showHistoryHint: false,
+    // 引导
+    showGuide: false,
+    guideCount: 3,
+    guideStep: 1,
+    guides: [{
+      text: '输入您想要问的问题',
+      selector: '#qa-message-component > view > view > view > view > textarea',
+      before(){
+        this.selectComponent('#qa-message-component > view > view > view > view > textarea')
+      },
+      after(){
+
+      }
+    }],
+    activeGuideClass: '',
+    guideTop: 0,
+    guideLeft: 0
   },
   onLoad: function (options) {
     this.messageComponent || (this.messageComponent = this.selectComponent('#qa-message-component'));
   },
   onReady: function () {
     
+  },
+  // 显示QA引导UI
+  showGuide(){
+    this.setData({showGuide: true})
+
+  },
+  onGuideNext(){
+    const newGuide = this.data.guideStep + 1;
+    if(newGuide < this.data.guides.length){
+      this.setData({guideStep: newGuide})
+      this.onGuideStep(newGuide)
+    }
+  },
+  onGuidePrev(){
+    const newGuide = this.data.guideStep - 1;
+    if(newGuide >= 0){
+      this.setData({guideStep: newGuide})
+      this.onGuideStep(newGuide)
+    }
+  },
+  onGuideStart(){
+
+  },
+  onGuideStep(current){
+    const query = wx.createSelectorQuery().in(this)
+    query.select(`.${prefixCls}__element`).boundingClientRect()
+    query.selectViewport().scrollOffset()
+    query.select(`.${prefixCls}`).boundingClientRect()
+    query.exec((rects) => {
+        if (rects.filter((n) => !n).length) return
+
+          const placements = getPlacements(rects, placement)
+          const popoverStyle = styleToCssString(placements)
+
+          this.setData({
+              popoverStyle,
+          })
+      })
+  },
+  onGuideFinish(){
+
   },
   onShow: function () {
     app.checkLogin(true);
@@ -56,6 +114,8 @@ BasePage({
       this.setData({
         showSwitchMuseumPopup: true
       })
+    } else {
+      this.showGuide()
     }
 
     this.messageComponent.resetKeyboard();
