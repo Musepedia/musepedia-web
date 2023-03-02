@@ -1,5 +1,8 @@
 // components/message-item/index.js
 Component({
+  options: {
+    styleIsolation: false
+  },
   properties: {
     right: {
       type: Boolean,

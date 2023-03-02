@@ -6,6 +6,7 @@
 .dialog-area{
   height: calc(100vh - 50px - env(safe-area-inset-bottom));
   overflow-y: scroll;
+  position: relative;
 }
 
 .input-area{
@@ -16,7 +17,7 @@
   left: 0;
   background-color: #eee;
   padding: 10px;
-  padding-bottom: env(safe-area-inset-bottom);
+  padding-bottom: calc(env(safe-area-inset-bottom) + 10px);
 }
 
 .basic-input{

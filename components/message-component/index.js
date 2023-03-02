@@ -6,7 +6,8 @@ let bindedScrollToBottom;
 Component({
   options: {
     multipleSlots: true,
-    addGlobalClass: true
+    addGlobalClass: true,
+    styleIsolation: false
   },
   properties: {
     messages: {

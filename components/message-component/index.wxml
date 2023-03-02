@@ -1,6 +1,8 @@
 <view 
   class="message-component">
 
+  <modal class="guide-qa-modal" z="10000" opacity="0.5"></modal>
+
   <scroll-view 
     class="dialog-area"  
     bindtap="closeAdditionalInput"
@@ -41,9 +43,10 @@
 
   <view 
     class="input-area" 
-    style="bottom: {{showAdditionalInput ? 0 : keyboardHeight}}px; padding-bottom: {{keyboardHeight ? '10px' : 'env(safe-area-inset-bottom)'}}">
+    style="bottom: {{showAdditionalInput ? 0 : keyboardHeight}}px; padding-bottom: {{keyboardHeight ? '10px' : 'calc(env(safe-area-inset-bottom) + 10px)'}}">
     <view class="input-wrapper">
       <view class="basic-input">
+        <modal class="guide-input-modal" z="10000" opacity="{{0.5}}"></modal>
         <textarea 
           class="input-message" 
           adjust-position="{{false}}"
@@ -77,6 +80,7 @@
 <!-- 普通消息框(纯文字)，主要为发送消息 -->
 <template name="common-message">
   <common-message 
+      class="message-question"
       right="{{right}}" 
       show-arrow="{{showArrow}}"
       full-width="{{fullWidth}}" 

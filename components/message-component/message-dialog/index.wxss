@@ -2,6 +2,7 @@
   --dialog-background-color: var(--primary-theme-color);
   --dialog-font-color: #fff;
   display: grid;
+  position: relative;
   grid-template-columns: 65px 1fr 65px;
   grid-template-areas: "left-avatar message right-avatar";
 }

@@ -3,4 +3,5 @@
   <view class="message-area">
     <slot></slot>
   </view>
+  <!-- <modal class="guide-message-modal" opacity="0.5" z="10000"/> -->
 </view>

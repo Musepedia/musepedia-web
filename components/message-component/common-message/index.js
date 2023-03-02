@@ -1,5 +1,8 @@
 // components/message-component/common-message/index.js
 Component({
+  options: {
+    styleIsolation: false
+  },
   properties: {
     showArrow: {
       type: Boolean,

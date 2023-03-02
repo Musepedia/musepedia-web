@@ -24,7 +24,6 @@ additional-input{
   top: 0;
   right: 0;
   bottom: 0;
-  z-index: 10000;
   --button-round-border-radius: 4px;
   --button-normal-font-size: 1rem;
   --button-default-height: 1.6rem;
@@ -55,6 +54,7 @@ additional-input{
   font-size: 1rem;
   color: #fff;
   overflow-wrap: anywhere;
+  white-space: break-spaces;
 }
 
 .guide-action{
@@ -64,4 +64,46 @@ additional-input{
 
 .guide .van-button {
   padding: 0 8px;
+}
+
+/* 引导modal */
+.guide-input-modal, .guide-qa-modal, .guide-message-modal {
+  display: none;
+  z-index: 10000;
+}
+.guide_more-btn {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 13000;
+  display: none;
+}
+.guide_ellipsis-icon {
+  padding: 1px;
+  background-color: #aaaa;
+  color: #eaeaea;
+  border-radius: 50%;
+}
+/* 开启引导modal */
+.guide-active .guide-input-modal, .guide-active .guide-qa-modal{
+  display: block;
+}
+/* 第一步，输入框 */
+.inguide_1 .message-component .input-area .input-message{
+  z-index: 12000;
+}
+.inguide_1 .input-section{
+  display: none;
+}
+/* 第二步，发送 */
+.inguide_2 .message-component .input-area .button-send{
+  z-index: 12000;
+}
+/* 第三步，显示问答 */
+.inguide_3 .message-component .dialog-area{
+  z-index: 12000;
+}
+/* 第四步，显示详情 */
+.inguide_4 .guide_more-btn, .inguide_3 .guide_more-btn{
+  display: block;
 }

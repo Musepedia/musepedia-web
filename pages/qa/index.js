@@ -43,21 +43,117 @@ BasePage({
     showHistoryHint: false,
     // 引导
     showGuide: false,
-    guideCount: 3,
-    guideStep: 1,
+    guideStep: 0,
     guides: [{
-      text: '输入您想要问的问题',
+      text: '输入想要问的问题，\n建议使用完整句子提问：\n1. xxx是什么',
       selector: '#qa-message-component > view > view > view > view > textarea',
-      before(){
-        this.selectComponent('#qa-message-component > view > view > view > view > textarea')
-      },
-      after(){
+      execute(parent){
+        const mc = parent.selectComponent('#qa-message-component');
+        mc.setData({message: '火花是什么'})
 
+        parent.setData({
+          guideInfo: {
+            bottom: 'calc(50px + env(safe-area-inset-bottom))',
+          }
+        })
+      },
+    },{
+      text: '点击发送按钮进行提问',
+      execute(parent){
+        parent.setData({
+          guideInfo: {
+            bottom: 'calc(50px + env(safe-area-inset-bottom))',
+            right: '1px'
+          },
+          skipGuide: {
+            right: '20px',
+            top: '16px'
+          }
+        })
+      }
+    },{
+      text: '问答将在这里显示',
+      execute(parent){
+        const mc = parent.selectComponent('#qa-message-component');
+        mc.setData({message: ''});
+
+        parent.setData({
+          skipGuide: {
+            left: '20px',
+            top: '16px'
+          }
+        })
+
+        if(!parent.data.messages.length){
+          const question = '火花是什么呢';
+          const reply = RecommendMessage('/assets/icons/M2.png', {
+            question: question,
+            answer: '火柴盒上的贴画，也称火柴商标、火柴盒贴画，或叫磷票',
+            recommendQuestions: ['阴丹士林是什么'],
+            status: 1,
+          });
+          const messages = [parent.questionMessage(question), reply];
+          parent.pushMessage(...messages);
+        }
+        
+        setTimeout(() => {
+          const md = mc.selectComponent('#message-1');
+          const query = wx.createSelectorQuery().in(md);
+          query.select('.message-area').boundingClientRect();
+          query.exec((rects) => {
+            const rect = rects[0]
+            if(!rect) return;
+            const {bottom, right} = rect;
+            parent.setData({
+              inguide4: {
+                top: bottom - (21 + 8), // 21为按钮的height, 8为实际按钮的bottom
+                left: right - (16 + 8), // 16为按钮的width,  8为实际按钮的right
+              },
+              guideInfo: {
+                top: bottom + 'px',
+                right: `calc(100vw - ${right}px)`
+              },
+            })
+          })
+        })
+      }
+    },{
+      text: '点击回答右下方\'...\'查看详细信息',
+      execute(parent){
+        const mc = parent.selectComponent('#qa-message-component');
+        mc.setData({showQuestionCard: false});
+
+        const md = mc.selectComponent('#message-1');
+        const query = wx.createSelectorQuery().in(md);
+        query.select('.message-area').boundingClientRect();
+        query.exec((rects) => {
+          const rect = rects[0]
+          if(!rect) return;
+          const {bottom, right} = rect;
+          parent.setData({
+            inguide4: {
+              top: bottom - (21 + 8), // 21为按钮的height, 8为实际按钮的bottom
+              left: right - (16 + 8), // 16为按钮的width,  8为实际按钮的right
+            }
+          })
+        })
       }
     }],
-    activeGuideClass: '',
-    guideTop: 0,
-    guideLeft: 0
+    inguide4: {
+      left: 0,
+      top: 0,
+    },
+    skipGuide: {
+      left: 'auto',
+      right: '20px',
+      top: '16px'
+    },
+    guideInfo: {
+      left: 0,
+      top: 0,
+      right: 'auto',
+      bottom: 'auto',
+    }
   },
   onLoad: function (options) {
     this.messageComponent || (this.messageComponent = this.selectComponent('#qa-message-component'));
@@ -66,15 +162,30 @@ BasePage({
     
   },
   // 显示QA引导UI
-  showGuide(){
-    this.setData({showGuide: true})
-
+  onGuideStep(current){
+    console.log('guide step', current);
+    const guide = this.data.guides[current];
+    this.setData({
+      guideStep: current,
+    });
+    if (guide.execute instanceof Function){
+      guide.execute(this);
+    }
+  },
+  onGuideStart(){
+    this.setData({showGuide: true});
+    this.onGuideStep(0);
+  },
+  onGuideFinish(){
+    this.setData({showGuide: false});
   },
   onGuideNext(){
     const newGuide = this.data.guideStep + 1;
     if(newGuide < this.data.guides.length){
       this.setData({guideStep: newGuide})
       this.onGuideStep(newGuide)
+    } else if (newGuide === this.data.guides.length){
+      this.onGuideFinish();
     }
   },
   onGuidePrev(){
@@ -83,28 +194,6 @@ BasePage({
       this.setData({guideStep: newGuide})
       this.onGuideStep(newGuide)
     }
-  },
-  onGuideStart(){
-
-  },
-  onGuideStep(current){
-    const query = wx.createSelectorQuery().in(this)
-    query.select(`.${prefixCls}__element`).boundingClientRect()
-    query.selectViewport().scrollOffset()
-    query.select(`.${prefixCls}`).boundingClientRect()
-    query.exec((rects) => {
-        if (rects.filter((n) => !n).length) return
-
-          const placements = getPlacements(rects, placement)
-          const popoverStyle = styleToCssString(placements)
-
-          this.setData({
-              popoverStyle,
-          })
-      })
-  },
-  onGuideFinish(){
-
   },
   onShow: function () {
     app.checkLogin(true);
@@ -115,7 +204,7 @@ BasePage({
         showSwitchMuseumPopup: true
       })
     } else {
-      this.showGuide()
+      this.onGuideStart()
     }
 
     this.messageComponent.resetKeyboard();
@@ -183,8 +272,15 @@ BasePage({
   // 用户发送消息回调
   onMessage({detail}){
     const {text: question, clear} = detail;
+    // 引导中的提问
+    if(this.data.showGuide){
+      this.onGuideNext();
+      return;
+    }
+
+
+    // empty string
     if(!(question && question.trim().length)){
-      // empty string
       return;
     }
     clear();
