@@ -3,11 +3,31 @@
 
 <view class="setting-main">
   <view>
-    <view class="setting-title">个人信息</view>
-    <van-cell class="top-cell" 
-              size="large" title="昵称" 
-              value="{{userInfo.nickname}}" 
-              bindtap=""></van-cell>
+    <view class="setting-title" style="display: flex; align-items: center;">
+      <text>个人信息</text>
+      <van-button 
+        disabled="{{loading}}"
+        bindtap="updateProfile"
+        type="primary" 
+        size="small" round 
+        style="margin-left: auto; --button-round-border-radius: 5px;">保存</van-button>
+    </view>
+    <!-- <van-cell class="top-cell" 
+              size="large"
+              bindtap="">
+        <button open-type="chooseAvatar" class="avatar-btn" bindchooseavatar="chooseAvatar">
+          <view class="van-cell-text avatar-title">头像</view>
+          <image class="avatar-img" src="{{userInfo.avatarUrl}}"></image>
+        </button>
+    </van-cell> -->
+    <van-cell class="updateable top-cell" 
+              size="large"
+              bindtap="">
+      <view class="avatar-btn">
+        <view class="van-cell-text avatar-title">昵称</view>
+        <input type="nickname" style="text-align: right; margin-left: auto;" model:value="{{nickname}}" />
+      </view>
+    </van-cell>
     <van-cell class="updateable"
               size="large" title="性别" clickable 
               value="{{genderDict[userInfo.gender]}}"

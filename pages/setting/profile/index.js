@@ -18,10 +18,12 @@ ageColumns.forEach(e => ageDict[e.value] = e.text);
 BasePage({
   data: {
     userInfo: {
+      avatarUrl: '',
       nickname: '',
       gender: 1,
       age: 1
     },
+    nickname: '',
     // 选择器
     genderColumns: genderColumns,
     ageColumns: ageColumns,
@@ -29,16 +31,19 @@ BasePage({
     ageDict: ageDict,
     //
     currentPicker: '',
-    showPopup: false
+    showPopup: false,
+    loading: false,
   },
   onShow() {
     const userInfo = app.globalData.userInfo;
     this.setData({
       userInfo: {
+        avatarUrl: userInfo.avatarUrl,
         nickname: userInfo.nickname,
         gender: userInfo.gender || 1,
         age: userInfo.age || 1,
       },
+      nickname: userInfo.nickname
     });
   },
   closePopup(){
@@ -58,16 +63,23 @@ BasePage({
     if(!property) {
       return;
     }
-    app.updateUserInfo({[property]: value.value}).then(() => {
-      this.data.userInfo[property] = value.value;
+   
+  },
+  chooseAvatar({detail}){
+    console.log(data);
+  },
+  updateProfile(){
+    this.data.userInfo.nickname = this.data.nickname;
+    this.setData({loading: true})
+    app.updateUserInfo(this.data.userInfo).then(() => {
       this.setData({
-        userInfo: this.data.userInfo,
         showPopup: false
       })
-    }).then(() => {
       wx.Toast.success('已更新用户信息')
     }).catch(e => {
       wx.Toast.fail('更新用户信息失败，请稍后重试')
+    }).finally(() => {
+      this.setData({loading: false})
     })
   }
 })

@@ -13,7 +13,7 @@
   <view class="body-card">
     <view class="user-info-container">
       <view class="avatar-container">
-        <image class="user-avatar" src="{{avatarUrl}}" mode="aspectFill"></image>
+        <image class="user-avatar" src="{{avatarUrl}}" mode="aspectFill" bindtap="toUserProfile"></image>
         <view class="avatar-radius avatar-radius-left">
           <view class="avatar-radius-inner"></view>
         </view>

@@ -37,6 +37,11 @@ BasePage({
   },
   onLoad: function (options) {
   },
+  toUserProfile(){
+    wx.navigateTo({
+      url: '/pages/setting/profile/index',
+    })
+  },
   setScrollViewHeight(){
     setTimeout(() => {
       this.createSelectorQuery().select('.display-scroll-view').boundingClientRect().exec(e => {

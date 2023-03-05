@@ -8,3 +8,19 @@
   --picker-action-font-size: .875rem;
   --picker-option-font-size: 1rem;
 }
+
+.avatar-btn {
+  text-align: left; 
+  padding: 0; 
+  line-height: 1;
+  display: flex;
+  align-items: center;
+}
+.avatar-btn::after{
+  border: none;
+}
+.avatar-img {
+  width: 40px;
+  height: 40px;
+  margin-left: auto;
+}

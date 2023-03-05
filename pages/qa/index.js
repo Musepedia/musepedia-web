@@ -49,7 +49,7 @@ BasePage({
       selector: '#qa-message-component > view > view > view > view > textarea',
       execute(parent){
         const mc = parent.selectComponent('#qa-message-component');
-        mc.setData({message: '火花是什么'})
+        mc.setData({message: '火花是什么呢'})
 
         parent.setData({
           guideInfo: {
@@ -163,7 +163,6 @@ BasePage({
   },
   // 显示QA引导UI
   onGuideStep(current){
-    console.log('guide step', current);
     const guide = this.data.guides[current];
     this.setData({
       guideStep: current,
@@ -178,6 +177,8 @@ BasePage({
   },
   onGuideFinish(){
     this.setData({showGuide: false});
+    const mc = parent.selectComponent('#qa-message-component');
+    mc.setData({message: ''});
   },
   onGuideNext(){
     const newGuide = this.data.guideStep + 1;
@@ -204,7 +205,10 @@ BasePage({
         showSwitchMuseumPopup: true
       })
     } else {
-      this.onGuideStart()
+      if (!wx.getStorageSync('guide')){
+        this.onGuideStart()
+        wx.setStorageSync('guide', true)
+      }
     }
 
     this.messageComponent.resetKeyboard();
