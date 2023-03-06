@@ -14,7 +14,8 @@
     "pages/exhibit-detail/index",
     "pages/setting/profile/index",
     "pages/switch-museum/index",
-    "pages/setting/font/index"
+    "pages/setting/font/index",
+    "pages/museevent/index"
   ],
   "usingComponents": {
     "van-button": "@vant/weapp/button/index",

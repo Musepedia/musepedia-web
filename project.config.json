@@ -39,7 +39,7 @@
     "minifyWXSS": true
   },
   "compileType": "miniprogram",
-  "libVersion": "2.25.4",
+  "libVersion": "2.24.7",
   "appid": "wxf2920630b976e003",
   "projectname": "museum-qa",
   "debugOptions": {

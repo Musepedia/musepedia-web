@@ -1,5 +1,6 @@
 import BasePage from '../../helpers/base-page'
 import {sendSMS} from '../../../api/sms'
+import {validatePhone} from '../../../utils/util'
 
 BasePage({
   data: {
@@ -17,10 +18,9 @@ BasePage({
   onShow: function () {},
   onHide: function () {},
   onPhoneInput({detail}){
-    const phonePattern = /^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}$/g;
     const v = detail.value.replace(/\D/g, '')
     this.setData({
-      validPhoneNumber: phonePattern.test(v)
+      validPhoneNumber: validatePhone(v)
     })
     return v
   },
