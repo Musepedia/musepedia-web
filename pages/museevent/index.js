@@ -2,6 +2,7 @@
 import {validatePhone} from '../../utils/util'
 import {getMuseEvent} from '../../api/museevent'
 import {BasePage} from '../helpers/base-page'
+import {requestPayment} from '../../utils/payment'
 
 BasePage({
   data: {
@@ -30,4 +31,7 @@ BasePage({
   },
   onHide: function () {},
   onUnload: function () {},
+  enrollInEvent(){
+    requestPayment()
+  }
 })
