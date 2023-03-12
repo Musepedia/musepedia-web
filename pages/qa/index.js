@@ -177,7 +177,7 @@ BasePage({
   },
   onGuideFinish(){
     this.setData({showGuide: false});
-    const mc = parent.selectComponent('#qa-message-component');
+    const mc = this.selectComponent('#qa-message-component');
     mc.setData({message: ''});
   },
   onGuideNext(){

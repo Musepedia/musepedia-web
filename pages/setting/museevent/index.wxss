@@ -1,0 +1,27 @@
+/* pages/setting/museevent/index.wxss */
+.enrollment-list {
+  width: 100%;
+  height: 100vh;
+}
+
+.enrollment{
+  width: 100%;
+  padding: 8px 20px;
+  margin: 10px 0;
+  background: #fff;
+}
+
+.enrollment-row {
+  margin: 8px 0;
+}
+.event-name {
+  font-size: 1.25em;
+  font-weight: bold;
+}
+.event-time {
+  float: right;
+}
+
+.enrollment-state.success {
+  color: #57a64a;
+}

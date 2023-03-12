@@ -1,6 +1,6 @@
 // pages/museevent/index.js
 import {validatePhone} from '../../utils/util'
-import {getMuseEvent} from '../../api/museevent'
+import {getMuseEvent, enrollmentInfo, enrollInEvent} from '../../api/museevent'
 import {BasePage} from '../helpers/base-page'
 import {requestPayment} from '../../utils/payment'
 
@@ -13,6 +13,9 @@ BasePage({
       link: '',
       startTime: 0,
       endTime: 0,
+    },
+    enrollment: {
+      state: 1,
     },
     phone: '',
   },

@@ -29,27 +29,22 @@ BasePage({
       }
     ]
   },
-  onLoad: function (options) {
-
-  },
-  onReady: function () {
-
-  },
+  onLoad: function (options) {},
+  onReady: function () {},
   onShow: function () {
     this.setData({
       isLogin: app.checkLogin()
     })
   },
-  onHide: function () {
-
-  },
-  onUnload: function () {
-
-  },
+  onHide: function () {},
+  onUnload: function () { },
   clearStorage(){
     const doClear = () => wx.clearStorage({
       success: (res) => {
         getApp().resetUserInfo();
+        this.setData({
+          isLogin: false
+        })
         wx.showToast({
           title: '清除存储成功',
         })

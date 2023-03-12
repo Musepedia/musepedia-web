@@ -14,6 +14,9 @@
   <view class="exhibit-text-section answer" wx:if="{{answer}}">
     <text class="content-text">{{answer}}</text>
   </view>
+  <view wx:if="{{exhibitId}}" style="padding:0 var(--padding-horizontal) 10px">
+    <view style="color: var(--primary-theme-color)" bindtap="naviToDetail">相关展品 >></view>
+  </view>
   <slot></slot>
   
   <exhibit-action 

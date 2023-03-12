@@ -105,7 +105,7 @@
     answer="{{popupQuestion.answer || ''}}"
     src="{{popupQuestion.src || ''}}"
     show-action-bar>
-    <view wx:if="{{popupQuestion.recommendQuestions}}" style="padding:var(--padding-horizontal)">
+    <view wx:if="{{popupQuestion.recommendQuestions}}" style="padding:var(--padding-horizontal); padding-top:0;">
       <view>推荐问题：</view>
       <view class="question-recommend__text" 
             wx:for="{{popupQuestion.recommendQuestions}}" 
