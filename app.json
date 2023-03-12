@@ -16,7 +16,8 @@
     "pages/switch-museum/index",
     "pages/setting/font/index",
     "pages/museevent/index",
-    "pages/setting/museevent/index"
+    "pages/setting/museevent/index",
+    "pages/signin/index"
   ],
   "usingComponents": {
     "van-button": "@vant/weapp/button/index",

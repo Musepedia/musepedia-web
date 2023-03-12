@@ -101,3 +101,15 @@ export function enrollInEvent(data){
     data: data
   })
 }
+
+/**
+ * 活动签到
+ * @param {*} data 
+ */
+export function signinEvent(data){
+  return axios({
+    url: 'event/sign',
+    method: 'post',
+    data: data
+  })
+}
