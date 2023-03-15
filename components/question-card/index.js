@@ -16,6 +16,9 @@ Component({
     questionId: {
       type: Number
     },
+    qaType: {
+      type: Number
+    },
     question: {
       type: String,
       value: ''
@@ -48,6 +51,7 @@ Component({
     sendFeedback({detail}){
       questionFeedback({
         questionId: this.data.questionId,
+        qaType: this.data.qaType,
         feedback: detail.feedback
       }).then(() => {
         wx.Toast.success({

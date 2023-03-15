@@ -35,6 +35,7 @@
       id="popup-question-card"
       question-id="{{popupQuestion.questionId}}"
       question="{{popupQuestion.questionText || ''}}"
+      qa-type="0"
       answer="{{popupQuestion.answerType === 2 ? '' : (popupQuestion.answerText || '')}}"
       src="{{popupQuestion.answerType === 2 ? popupQuestion.answerText : popupQuestion.exhibitFigureUrl}}"
       show-action-bar></question-card>

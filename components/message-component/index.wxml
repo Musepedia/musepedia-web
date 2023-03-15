@@ -100,6 +100,7 @@
   <question-card
     id="popup-question-card"
     exhibit-id="{{popupQuestion.exhibitId}}"
+    qa-type="{{popupQuestion.qaType}}"
     question-id="{{popupQuestion.id || 0}}"
     question="{{popupQuestion.question || ''}}"
     answer="{{popupQuestion.answer || ''}}"
