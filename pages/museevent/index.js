@@ -35,6 +35,6 @@ BasePage({
   onHide: function () {},
   onUnload: function () {},
   enrollInEvent(){
-    requestPayment()
+    // requestPayment()
   }
 })

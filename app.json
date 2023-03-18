@@ -17,7 +17,8 @@
     "pages/setting/font/index",
     "pages/museevent/index",
     "pages/setting/museevent/index",
-    "pages/signin/index"
+    "pages/signin/index",
+    "pages/setting/qa/index"
   ],
   "usingComponents": {
     "van-button": "@vant/weapp/button/index",

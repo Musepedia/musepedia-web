@@ -19,6 +19,12 @@ const shouldRecommendCreative = (() => {
   }
 })()
 
+const guideMessages = {
+  1: {
+
+  }
+}
+
 BasePage({
   data: {
     isLogin: false,
@@ -45,7 +51,7 @@ BasePage({
     showGuide: false,
     guideStep: 0,
     guides: [{
-      text: '输入想要问的问题，\n建议使用完整句子提问：\n1. xxx是什么',
+      text: '输入想要问的问题，\n建议使用完整句子提问，比如：\n1. xxx是什么\n 2.xxx有什么主题',
       selector: '#qa-message-component > view > view > view > view > textarea',
       execute(parent){
         const mc = parent.selectComponent('#qa-message-component');
@@ -276,6 +282,7 @@ BasePage({
   // 用户发送消息回调
   onMessage({detail}){
     const {text: question, clear} = detail;
+    const useGpt = wx.getStorageSync('useGpt') || false
     // 引导中的提问
     if(this.data.showGuide){
       this.onGuideNext();
@@ -298,7 +305,7 @@ BasePage({
       pendingMessages: this.data.pendingMessages + 1
     });
     this.messageComponent.scrollToBottom();
-    getAnswer(question).then(data => {
+    getAnswer(question, useGpt).then(data => {
       data.isReply = true;
       data.question = question;
 
@@ -329,7 +336,6 @@ BasePage({
       this.pushMessage(answerMsg);
 
       // 推荐展区信息
-      // data.recommendExhibitionHall = {imageUrl: 'https://static.musepedia.cn/figs/驼鹿.jpg', name: '生命长河'}
       const hall = data.recommendExhibitionHall;
       if(hall){
         this.pushMessage(HintMessage('推荐展区', true));

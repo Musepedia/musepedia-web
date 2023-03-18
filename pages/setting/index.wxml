@@ -27,7 +27,7 @@
 
   <view>
     <view class="setting-title">其他</view>
-    <van-cell class="top-cell" center size="large" title="清除本地存储" bindtap="clearStorage"></van-cell>
+    <van-cell class="top-cell" center size="large" title="清除登录状态" bindtap="clearStorage"></van-cell>
     <van-cell center size="large" title="意见反馈" bindtap="sendFeedback"></van-cell>
     <van-cell center size="large" title="关于我们" is-link url="/pages/about/index" bindtap=""></van-cell>
   </view>

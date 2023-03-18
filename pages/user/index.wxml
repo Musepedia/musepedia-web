@@ -87,7 +87,7 @@
     <question-card
       id="popup-question-card"
       exhibit-id="{{popupQuestion.exhibitId}}"
-      qa-type="0"
+      qa-type="{{popupQuestion.qaType}}"
       question-id="{{popupQuestion.questionId}}"
       question="{{popupQuestion.questionText || ''}}"
       answer="{{popupQuestion.answerType === 2 ? '' : (popupQuestion.answerText || '')}}"

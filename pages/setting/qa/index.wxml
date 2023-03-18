@@ -1,0 +1,32 @@
+<!--问答设置-->
+<include src="/pages/helpers/page-meta.wxml"/>
+
+<view class="qa-setting">
+  <view style="margin-top: 20px">
+    <van-cell class="top-cell" 
+              size="large"
+              bindtap="">
+      <view style="display: flex; align-items: center;">
+        <view style="color: #000;">使用GPT辅助回答</view>
+        <van-switch 
+          style="text-align: right; margin-left: auto; display: flex;" 
+          size="24px"
+          active-color="var(--primary-theme-color)"
+          inactive-color="rgb(233,233,235)"
+          checked="{{useGpt}}" 
+          bind:change="changeGptOption" />
+      </view>
+    </van-cell>
+  </view>
+
+  <van-popup
+    class="popup-picker"
+    overlay-style="background-color: transparent"
+    show="{{showPopup}}"
+    bindclose="closePopup"
+    position="bottom">
+  </van-popup>
+
+  <van-toast id="van-toast"></van-toast>
+</view>
+

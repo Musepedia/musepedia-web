@@ -19,6 +19,10 @@ BasePage({
         requireLogin: true
       },
       {
+        title: '问答设置',
+        url: 'qa/index'
+      },
+      {
         title: '个人信息',
         url: 'profile/index',
         requireLogin: true
@@ -39,21 +43,23 @@ BasePage({
   onHide: function () {},
   onUnload: function () { },
   clearStorage(){
-    const doClear = () => wx.clearStorage({
+    const doClear = () => wx.setStorage({
+      key: 'token',
+      data: '',
       success: (res) => {
         getApp().resetUserInfo();
         this.setData({
           isLogin: false
         })
         wx.showToast({
-          title: '清除存储成功',
+          title: '清除登录状态成功',
         })
       },
     });
 
     wx.showModal({
       title: '提示',
-      content: '确定要清除本地存储吗？',
+      content: '确定要清除登录状态吗？',
       success: res => {
         if (res.confirm) {
           doClear();
