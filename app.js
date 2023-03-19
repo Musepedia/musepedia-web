@@ -132,6 +132,11 @@ App({
     return this.globalData.userInfo.isLogin;
   },
   userLoginWx(data){
+    if (!data.phoneNumber){
+      const msg = '手机号不能为空';
+      wx.Toast.fail(msg)
+      return Promise.reject(msg)
+    }
     return wxLoginWithBackend(data).then(data => {
       wx.Toast.success('登录成功');
       data.isLogin = true;

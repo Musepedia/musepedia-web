@@ -139,7 +139,17 @@ BasePage({
   },
   fetchQuestionHistory(){
     return getQuestionHistory().then(data => {
+      const qset = new Set()
       const item = this.data.tabbarItems;
+      const filtered = []
+      data.forEach(e => {
+        const res = qset.has(e.questionText)
+        qset.add(e.questionText)
+        if(!res) {
+          filtered.unshift(e)
+        }
+      })
+      data = filtered;
       item[0].count = data.length;
       data.forEach(e => {
         // answerType 2和3都是图片
