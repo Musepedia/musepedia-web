@@ -7,7 +7,10 @@
               size="large"
               bindtap="">
       <view style="display: flex; align-items: center;">
-        <view style="color: #000;">大规模语言模型辅助</view>
+        <view style="color: #000; display: flex">
+          大规模语言模型辅助
+          <van-icon style="margin-left: 4px;" name="question" size="1.1em" color="var(--primary-theme-color)" bindtap="showTooltip"/>
+          </view>
         <van-switch 
           style="text-align: right; margin-left: auto; display: flex;" 
           size="24px"
