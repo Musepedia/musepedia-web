@@ -1,8 +1,0 @@
-<!-- 活动签到页面 pages/signin/index.wxml-->
-<include src="/pages/helpers/page-meta.wxml"/>
-
-<view class="signin-page">
-  <view style="font-size: 1.5em; font-weight: bold;">{{result.name}}</view>
-  <icon style="margin-top: 20px;" type="{{result.icon}}" size="80"></icon>
-  <view style="margin-top: 20px; font-size: 1em;">{{result.message}}</view>
-</view>
