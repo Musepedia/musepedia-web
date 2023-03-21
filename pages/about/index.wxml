@@ -1,4 +1,8 @@
 <!--pages/about/index.wxml-->
-<view>
-  <div class="copyright">Copyright © 2021-2022 AbstractMGS.</div>
+<view style="padding: 10px;">
+  <div class="copyright">
+  <text> 我们是来自华东师范大学和上海交通大学的创业团队，目前致力于用科技为博物馆文旅赋能，为博物馆、学校和教育机构围绕导览、文创、教育和研学开发产品，并提供相应的解决方案。 团队成员有计算机科学、软件工程、数据科学、统计学、经济学、教育学、美术和设计学等多学科背景，依托强大的技术实验室团队、深度资源整合能力以及开放性创意平台，致力于打造文化知识传播运营“求知、分享”生态圈。\n</text>
+  <text> 欢迎通过邮箱mimiter@mimiter.com与我们取得联系。\n</text>
+  <text> Copyright  2022-2023 Mimiter Technology. All rights reserved. 米弥特科技 版权所有</text>
+  </div>
 </view>

@@ -17,13 +17,13 @@
       bindtap=""></van-cell>
   </view>
 
-  <view>
+  <!-- <view>
     <view class="setting-title">活动</view>
     <van-cell 
       class="top-cell setting-cell {{!isLogin ? 'disabled' : ''}}" 
       center size="large" title="报名的活动" is-link 
       url="{{!isLogin ? '' : '/pages/setting/museevent/index'}}" bindtap=""></van-cell>
-  </view>
+  </view> -->
 
   <view>
     <view class="setting-title">其他</view>
