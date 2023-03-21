@@ -21,7 +21,7 @@
 }
 
 .input-cell{
-  width: 250px;
+  width: 280px;
   padding: 6px 0;
   display: flex;
   align-items: flex-end;
@@ -53,8 +53,8 @@
 }
 
 .agreement-checkbox .wx-checkbox-input{
-  width: 14px; 
-  height: 14px; 
+  width: 18px; 
+  height: 18px; 
   border-radius: 2px;
   box-sizing: border-box;
 }

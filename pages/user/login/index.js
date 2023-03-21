@@ -10,7 +10,8 @@ BasePage({
     sendingSMS: false,
     sms: '',
     showInitProfilePopup: false,
-    completeProfile: false
+    completeProfile: false,
+    agreed: false
   },
   onLoad: function (options) {
   },
@@ -50,6 +51,10 @@ BasePage({
     }))
   },
   login(){
+    if(!this.data.agreed){
+      wx.Toast.fail('请先阅读并同意《用户协议及隐私政策》')
+      return;
+    }
     getApp().userLoginWx({
       phoneNumber: this.data.phoneNumber,
       sms: this.data.sms,
@@ -74,6 +79,11 @@ BasePage({
       completeProfile: true
     })
   },
+  toAgreement(){
+    wx.navigateTo({
+      url: '/pages/webpage/index?url=https://musepedia.cn/term.html',
+    })
+  },
   closeInitProfilePopup(){
     // 初次登陆设置偏好 
     if(!wx.getStorageSync('initPreference')){
@@ -84,5 +94,11 @@ BasePage({
     } else {
       wx.navigateBack()
     }
+  },
+  onAgreementChange({detail}){
+    const values = detail.value;
+    this.setData({
+      agreed: values.length > 0
+    })
   }
 })

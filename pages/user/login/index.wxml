@@ -33,11 +33,11 @@
         {{smsInterval > 0 ? '重新发送(' + smsInterval + ')' : sendingSMS ? '正在发送中...' : '发送验证码'}}
       </van-button>
     </view>
-    <view wx:if="{{false}}" class="input-cell">
+    <checkbox-group class="input-cell" bindchange="onAgreementChange">
       <label class="agreement-label">
-        <checkbox class="agreement-checkbox">同意用户协议</checkbox>
+        <checkbox class="agreement-checkbox" checked="{{agreed}}" value="agreement">我已阅读并同意<text style="color: var(--primary-theme-color)" catchtap="toAgreement">《用户协议及隐私政策》</text></checkbox>
       </label>
-    </view>
+    </checkbox-group>
     <view class="input-cell">
       <van-button 
         class="btn-login" 
