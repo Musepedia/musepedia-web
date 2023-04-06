@@ -308,6 +308,9 @@ BasePage({
     getAnswer(question, useGpt).then(data => {
       data.isReply = true;
       data.question = question;
+      if (!data.answer) {
+        data.answer = '暂时无法回答这个问题'
+      }
 
       const isImgReply = data.status === 2 || data.status === 3 
         || data.answer.startsWith('https://') 
