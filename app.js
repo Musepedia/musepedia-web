@@ -58,6 +58,9 @@ App({
     if(!wx.getStorageSync('globalFontSize')){
       wx.setStorageSync('globalFontSize', 'system');
     }
+    if(wx.getStorageSync('useGpt') === ''){
+      wx.setStorageSync('useGpt', true)
+    }
   },
   checkiPhoneX() {
     wx.getSystemInfo({

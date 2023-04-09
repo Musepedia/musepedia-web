@@ -19,12 +19,6 @@ const shouldRecommendCreative = (() => {
   }
 })()
 
-const guideMessages = {
-  1: {
-
-  }
-}
-
 BasePage({
   data: {
     isLogin: false,
