@@ -11,28 +11,48 @@ Component({
     }
   },
   data: {
-    likeIcon: 'like-o',
+    liked: 0,
+    likeIcon: '/assets/icons/like.svg',
     likeColor: '',
+    dislikeIcon: '/assets/icons/dislike.svg',
+    dislikeColor: '',
     showPopover: false
   },
   methods: {
-    toggleLikeStatus(){
-      if(this.data.likeIcon === 'like-o'){
-        this.setData({
-          likeIcon: 'like',
-          likeColor: 'var(--primary-orange)'
-        })
-      } else {
-        this.setData({
-          likeIcon: 'like-o',
-          likeColor: ''
-        })
+    triggerFeedback(liked){
+      const origin = this.data.liked
+      var likedData = 0
+      var likeIcon = '/assets/icons/like.svg'
+      var dislikeIcon = '/assets/icons/dislike.svg'
+      var trigger = false
+      if (origin !== 1 && liked) {
+        // like
+        likeIcon = '/assets/icons/like_fill.svg'
+        likedData = 1
+        trigger = true
+      } else if (origin !== -1 && !liked) {
+        // dislike
+        dislikeIcon = '/assets/icons/dislike_fill.svg'
+        likedData = -1
+        trigger = true
+      }
+      this.setData({
+        liked: likedData,
+        likeIcon: likeIcon,
+        dislikeIcon: dislikeIcon
+      })
+      if(trigger){
+        this.triggerEvent('exhibitactionfeedback', {feedback: liked}, {bubbles: true, composed:true})
       }
     },
     onActionTap(e){
       const action = e.currentTarget.dataset.action;
       if(action === 'like'){
-        this.toggleLikeStatus();
+        this.triggerFeedback(true);
+        return
+      }  else if(action === 'dislike') {
+        this.triggerFeedback(false);
+        return
       } else if(action === 'more'){
         // this.setData({
         //   showPopover: true
