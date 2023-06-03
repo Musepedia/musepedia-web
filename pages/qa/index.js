@@ -302,7 +302,11 @@ BasePage({
     getAnswer(question, useGpt).then(data => {
       data.isReply = true;
       data.question = question;
-      if (!data.answer) {
+      if(data.status === 0 ){
+        data.answer = data.exhibitId == null 
+            ? 'Musepedia是一款专为博物馆导览场景设计的AI产品，我们的功能主要是为您提供与展品相关的信息。非常抱歉，我们无法回答与展品无关的问题。'
+            : '感谢您使用Musepedia，我们的回答来自多个AI模型，并且我们一直在不断改进它们的学习能力。很抱歉目前我们的系统暂时无法回答您的问题，您可以换一种方式提问，或者了解我们提供的其他信息。'
+      } else if (!data.answer) {
         data.answer = '暂时无法回答这个问题'
       }
 
