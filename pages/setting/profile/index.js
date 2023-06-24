@@ -58,12 +58,16 @@ BasePage({
     })
   },
   confirmPicker(e){
+    console.log(this.data);
     const {value} = e.detail;
     const property = e.target.dataset.property;
-    if(!property) {
-      return;
+    if(property) {
+      this.data.userInfo[property] = value.value;
     }
-   
+    this.setData({
+      userInfo: this.data.userInfo,
+      showPopup: false
+    })
   },
   chooseAvatar({detail}){
     console.log(data);
